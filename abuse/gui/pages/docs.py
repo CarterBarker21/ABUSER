@@ -7,6 +7,7 @@ from typing import Optional
 from PyQt6.QtWidgets import QGridLayout, QLabel, QVBoxLayout, QWidget
 
 from ..components import AppButton, InfoBanner, PanelCard, SectionLabel
+from ..theme import get_theme_manager
 from .base import BasePage
 
 
@@ -179,5 +180,6 @@ class DocsPage(BasePage):
 
     def refresh_theme(self) -> None:
         super().refresh_theme()
+        dt = get_theme_manager().design_tokens
         for label in self._body_labels:
-            label.setStyleSheet(f"color: {self.theme.text_secondary}; font-size: 13px; line-height: 1.45em;")
+            label.setStyleSheet(f"color: {dt.text_secondary}; font-size: 13px; line-height: 1.45em;")
