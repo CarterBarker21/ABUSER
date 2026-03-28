@@ -1,0 +1,33 @@
+{
+  "theme": {
+    "name": "Midnight",
+    "accent": "red",
+    "bg_primary": "#09090B",
+    "bg_secondary": "#18181B",
+    "bg_tertiary": "#27272A",
+    "bg_card": "#18181B",
+    "surface": "#27272A",
+    "surface_hover": "#3F3F46",
+    "text_primary": "#FAFAFA",
+    "text_secondary": "#A1A1AA",
+    "text_disabled": "#52525B",
+    "text_muted": "#71717A",
+    "border": "#27272A",
+    "border_light": "#3F3F46",
+    "divider": "#27272A",
+    "success": "#22C55E",
+    "success_hover": "#16A34A",
+    "warning": "#F59E0B",
+    "warning_hover": "#D97706",
+    "error": "#EF4444",
+    "error_hover": "#DC2626",
+    "info": "#3B82F6",
+    "info_hover": "#2563EB",
+    "card_bg": "#18181B",
+    "card_border": "#27272A",
+    "input_bg": "#09090B",
+    "log_bg": "#000000",
+    "success_bright": "#4ADE80"
+  },
+  "version": "2.0"
+}

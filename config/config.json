@@ -1,0 +1,43 @@
+{
+    "bot": {
+        "token": "YOUR_TOKEN_HERE",
+        "prefix": ".",
+        "status": "online",
+        "activity": {
+            "type": "playing",
+            "name": "ABUSER SelfBot"
+        },
+        "max_messages_cache": 10000,
+        "heartbeat_timeout": 60.0
+    },
+    "security": {
+        "safe_mode": false,
+        "confirm_destructive": true,
+        "log_commands": true,
+        "max_purge_amount": 100
+    },
+    "performance": {
+        "command_cooldown_enabled": true,
+        "error_rate_limit_seconds": 5.0,
+        "api_cache_ttl_seconds": 30,
+        "max_retries": 3,
+        "retry_delay_seconds": 1.0,
+        "rate_limiting_enabled": true,
+        "global_rate_limit": 50.0,
+        "global_burst_size": 10,
+        "guild_rate_limit": 10.0,
+        "guild_burst_size": 5,
+        "user_rate_limit": 5.0,
+        "user_burst_size": 3
+    },
+    "logging": {
+        "level": "INFO",
+        "file": "./logs/abuse.log",
+        "max_log_buffer": 100
+    },
+    "connection": {
+        "max_reconnect_attempts": 5,
+        "reconnect_delay_seconds": 5.0,
+        "auto_reconnect": true
+    }
+}

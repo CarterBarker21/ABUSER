@@ -1,0 +1,1193 @@
+2026-03-26 14:02:18,250 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-26 17:02:32,853 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-26 17:02:32,854 - discord.client - INFO - Logging in using static token.
+2026-03-26 17:02:33,092 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 517296.
+2026-03-26 17:02:33,092 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-26 17:02:37,458 - discord.gateway - INFO - Connected to Gateway (session ID: 15cca02cb70ab6e171c02e340bd326c3).
+2026-03-26 17:02:38,073 - ABUSER - INFO - ABUSER Bot ready as krazyrain_
+2026-03-26 17:09:16,474 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-26 17:09:16,475 - discord.client - INFO - Logging in using static token.
+2026-03-26 17:09:16,640 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 517296.
+2026-03-26 17:09:16,640 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-26 17:09:17,716 - discord.gateway - INFO - Connected to Gateway (session ID: 6a01bcb5ae345128bc423afbfb9c985f).
+2026-03-26 17:09:18,334 - ABUSER - INFO - ABUSER Bot ready as krazyrain_
+2026-03-26 17:14:42 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-26 17:14:42 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-26 17:14:42 - discord.client - INFO - Logging in using static token.
+2026-03-26 17:14:42 - discord.client - INFO - Logging in using static token.
+2026-03-26 17:14:42 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 517296.
+2026-03-26 17:14:42 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 517296.
+2026-03-26 17:14:42 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-26 17:14:42 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-26 17:14:43 - ABUSER - INFO - Loaded 9 modules
+2026-03-26 17:14:44 - discord.gateway - INFO - Connected to Gateway (session ID: ffabf846174261b53d79bedb031e03cf).
+2026-03-26 17:14:44 - discord.gateway - INFO - Connected to Gateway (session ID: ffabf846174261b53d79bedb031e03cf).
+2026-03-26 17:14:44 - ABUSER - INFO - ABUSER Bot ready as krazyrain_
+2026-03-26 18:20:28 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-26 18:20:28 - discord.client - INFO - Logging in using static token.
+2026-03-26 18:20:29 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 517296.
+2026-03-26 18:20:29 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-26 18:20:29 - ABUSER - INFO - Loaded 9 modules
+2026-03-26 18:20:30 - discord.gateway - INFO - Connected to Gateway (session ID: bfc6a66656789cc0d3718c129350d552).
+2026-03-26 18:20:31 - ABUSER - INFO - ABUSER Bot ready as krazyrain_
+2026-03-26 19:33:43 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-26 19:33:43 - discord.client - INFO - Logging in using static token.
+2026-03-26 19:33:43 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 517296.
+2026-03-26 19:33:43 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-26 19:33:45 - ABUSER - INFO - Bot setup hook started
+2026-03-26 19:33:45 - ABUSER - INFO - HTTP session initialized
+2026-03-26 19:33:45 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-26 19:33:45 - ABUSER - INFO - Setup hook completed
+2026-03-26 19:33:48 - discord.gateway - INFO - Connected to Gateway (session ID: d122b82355d8afe7a0f0d2d0cb67d103).
+2026-03-26 19:33:48 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-26 19:33:48 - ABUSER - INFO - ABUSER Bot ready as krazyrain_
+2026-03-26 19:39:10 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-26 19:39:10 - discord.client - INFO - Logging in using static token.
+2026-03-26 19:39:10 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 517296.
+2026-03-26 19:39:10 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-26 19:39:10 - ABUSER - INFO - Bot setup hook started
+2026-03-26 19:39:10 - ABUSER - INFO - HTTP session initialized
+2026-03-26 19:39:10 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-26 19:39:10 - ABUSER - INFO - Setup hook completed
+2026-03-26 19:39:11 - discord.gateway - INFO - Connected to Gateway (session ID: 6aafa8c477b8f6c185c6b0a5d9aa1d86).
+2026-03-26 19:39:11 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-26 19:39:12 - ABUSER - INFO - ABUSER Bot ready as krazyrain_
+2026-03-26 19:46:13 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-26 19:46:13 - discord.client - INFO - Logging in using static token.
+2026-03-26 19:46:13 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 517296.
+2026-03-26 19:46:13 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-26 19:46:16 - ABUSER - INFO - Bot setup hook started
+2026-03-26 19:46:16 - ABUSER - INFO - HTTP session initialized
+2026-03-26 19:46:16 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-26 19:46:16 - ABUSER - INFO - Setup hook completed
+2026-03-26 19:46:17 - discord.gateway - INFO - Connected to Gateway (session ID: 41b5e112bdb05315d3b8450bbb5bb03f).
+2026-03-26 19:46:17 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-26 19:46:18 - ABUSER - INFO - ABUSER Bot ready as krazyrain_
+2026-03-26 21:14:33 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-26 21:59:35 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-26 22:04:33 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-26 22:04:33 - discord.client - INFO - Logging in using static token.
+2026-03-26 22:04:33 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 517296.
+2026-03-26 22:04:33 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-26 22:04:33 - ABUSER - INFO - Bot setup hook started
+2026-03-26 22:04:33 - ABUSER - INFO - HTTP session initialized
+2026-03-26 22:04:33 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-26 22:04:33 - ABUSER - INFO - Setup hook completed
+2026-03-26 22:04:35 - discord.gateway - INFO - Connected to Gateway (session ID: 507ec9f41feffcde98312f42add3fb7e).
+2026-03-26 22:04:35 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-26 22:04:35 - ABUSER - INFO - ABUSER Bot ready as krazyrain_
+2026-03-26 22:08:40 - discord.http - WARNING - We are being rate limited. DELETE https://discord.com/api/v9/channels/1479489252063449279/messages/1486836481933836328 responded with 429. Retrying in 0.30 seconds.
+2026-03-26 22:08:51 - discord.http - WARNING - We are being rate limited. DELETE https://discord.com/api/v9/channels/1479489252063449279/messages/1486390203060060270 responded with 429. Retrying in 0.30 seconds.
+2026-03-26 22:08:53 - discord.http - WARNING - We are being rate limited. DELETE https://discord.com/api/v9/channels/1479489252063449279/messages/1486141727042437323 responded with 429. Retrying in 0.30 seconds.
+2026-03-26 22:08:54 - discord.http - WARNING - We are being rate limited. DELETE https://discord.com/api/v9/channels/1479489252063449279/messages/1486068180182110218 responded with 429. Retrying in 0.30 seconds.
+2026-03-26 22:08:54 - discord.http - WARNING - We are being rate limited. DELETE https://discord.com/api/v9/channels/1479489252063449279/messages/1486068180182110218 responded with 429. Retrying in 0.30 seconds.
+2026-03-26 22:08:55 - discord.http - WARNING - We are being rate limited. DELETE https://discord.com/api/v9/channels/1479489252063449279/messages/1486067769408749750 responded with 429. Retrying in 0.35 seconds.
+2026-03-26 22:08:56 - discord.http - WARNING - We are being rate limited. DELETE https://discord.com/api/v9/channels/1479489252063449279/messages/1486067648742821918 responded with 429. Retrying in 0.30 seconds.
+2026-03-26 22:08:56 - discord.http - WARNING - We are being rate limited. DELETE https://discord.com/api/v9/channels/1479489252063449279/messages/1486067648742821918 responded with 429. Retrying in 1.26 seconds.
+2026-03-26 22:08:58 - discord.http - WARNING - We are being rate limited. DELETE https://discord.com/api/v9/channels/1479489252063449279/messages/1486067519658655885 responded with 429. Retrying in 1.70 seconds.
+2026-03-26 22:09:00 - discord.http - WARNING - We are being rate limited. DELETE https://discord.com/api/v9/channels/1479489252063449279/messages/1486067129127141436 responded with 429. Retrying in 1.75 seconds.
+2026-03-26 22:09:02 - discord.http - WARNING - We are being rate limited. DELETE https://discord.com/api/v9/channels/1479489252063449279/messages/1486052963720892607 responded with 429. Retrying in 1.64 seconds.
+2026-03-26 22:09:04 - discord.http - WARNING - We are being rate limited. DELETE https://discord.com/api/v9/channels/1479489252063449279/messages/1486048871850442964 responded with 429. Retrying in 1.59 seconds.
+2026-03-26 22:09:06 - discord.http - WARNING - We are being rate limited. DELETE https://discord.com/api/v9/channels/1479489252063449279/messages/1486042731749834763 responded with 429. Retrying in 1.76 seconds.
+2026-03-26 22:09:08 - discord.http - WARNING - We are being rate limited. DELETE https://discord.com/api/v9/channels/1479489252063449279/messages/1486042655107584052 responded with 429. Retrying in 1.70 seconds.
+2026-03-26 22:09:09 - ABUSER - INFO - Initiating graceful shutdown...
+2026-03-26 22:09:09 - ABUSER - INFO - HTTP session closed
+2026-03-26 22:09:09 - ABUSER - INFO - Session stats: 5 commands, 0 errors
+2026-03-26 22:09:09 - discord.gateway - INFO - Gateway received close code 1000 and reason 'Connection closed.'.
+2026-03-26 22:09:09 - ABUSER - WARNING - Disconnected from Discord
+2026-03-26 22:50:02 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-26 22:50:02 - discord.client - INFO - Logging in using static token.
+2026-03-26 22:50:03 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 517296.
+2026-03-26 22:50:03 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-26 22:50:03 - ABUSER - INFO - Bot setup hook started
+2026-03-26 22:50:03 - ABUSER - INFO - Rate limiter started
+2026-03-26 22:50:03 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-26 22:50:03 - ABUSER - INFO - HTTP session initialized
+2026-03-26 22:50:03 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-26 22:50:03 - ABUSER - INFO - Setup hook completed
+2026-03-26 22:50:04 - discord.gateway - INFO - Connected to Gateway (session ID: 5fcc93274a5ebcd5dfbe2b496bc94bf8).
+2026-03-26 22:50:04 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-26 22:50:04 - ABUSER - INFO - ABUSER Bot ready as krazyrain_
+2026-03-26 22:52:49 - ABUSER - INFO - Initiating graceful shutdown...
+2026-03-26 22:52:49 - ABUSER - INFO - Rate limiter stopped
+2026-03-26 22:52:49 - ABUSER - INFO - Rate limiter stopped
+2026-03-26 22:52:49 - ABUSER - INFO - HTTP session closed
+2026-03-26 22:52:49 - ABUSER - INFO - Session stats: 0 commands, 0 errors, 0 rate limited
+2026-03-26 22:52:49 - discord.gateway - INFO - Gateway received close code 1000 and reason 'Connection closed.'.
+2026-03-26 22:52:49 - ABUSER - WARNING - Disconnected from Discord
+2026-03-26 23:25:18 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-26 23:25:18 - discord.client - INFO - Logging in using static token.
+2026-03-26 23:25:18 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 517296.
+2026-03-26 23:25:18 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-26 23:25:19 - ABUSER - INFO - Bot setup hook started
+2026-03-26 23:25:19 - ABUSER - INFO - Rate limiter started
+2026-03-26 23:25:19 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-26 23:25:19 - ABUSER - INFO - HTTP session initialized
+2026-03-26 23:25:19 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-26 23:25:19 - ABUSER - INFO - Setup hook completed
+2026-03-26 23:25:20 - discord.gateway - INFO - Connected to Gateway (session ID: edcf630b945121448ffa8294defa6e34).
+2026-03-26 23:25:20 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-26 23:25:20 - ABUSER - INFO - ABUSER Bot ready as krazyrain_
+2026-03-26 23:26:10 - ABUSER - INFO - Initiating graceful shutdown...
+2026-03-26 23:26:10 - ABUSER - INFO - Rate limiter stopped
+2026-03-26 23:26:10 - ABUSER - INFO - Rate limiter stopped
+2026-03-26 23:26:10 - ABUSER - INFO - HTTP session closed
+2026-03-26 23:26:10 - ABUSER - INFO - Session stats: 0 commands, 0 errors, 0 rate limited
+2026-03-26 23:26:10 - discord.gateway - INFO - Gateway received close code 1000 and reason 'Connection closed.'.
+2026-03-26 23:26:10 - ABUSER - WARNING - Disconnected from Discord
+2026-03-26 23:38:11 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-26 23:38:11 - discord.client - INFO - Logging in using static token.
+2026-03-26 23:38:11 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 517296.
+2026-03-26 23:38:11 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-26 23:38:13 - ABUSER - INFO - Bot setup hook started
+2026-03-26 23:38:13 - ABUSER - INFO - Rate limiter started
+2026-03-26 23:38:13 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-26 23:38:13 - ABUSER - INFO - HTTP session initialized
+2026-03-26 23:38:13 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-26 23:38:13 - ABUSER - INFO - Setup hook completed
+2026-03-26 23:38:15 - discord.gateway - INFO - Connected to Gateway (session ID: 7de6437e407d93bff88d7ad6f027d962).
+2026-03-26 23:38:15 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-26 23:38:16 - discord.gateway - INFO - Gateway received close code 4000 and reason 'Unknown error.'.
+2026-03-26 23:38:16 - ABUSER - WARNING - Disconnected from Discord
+2026-03-26 23:38:16 - ABUSER - INFO - Attempting to reconnect...
+2026-03-26 23:38:16 - discord.gateway - INFO - Gateway session has been invalidated.
+2026-03-26 23:38:16 - ABUSER - WARNING - Disconnected from Discord
+2026-03-26 23:38:16 - ABUSER - INFO - Attempting to reconnect...
+2026-03-26 23:38:17 - discord.gateway - INFO - Connected to Gateway (session ID: 1ddc820d50053a4988ebebdc158f4950).
+2026-03-26 23:38:17 - ABUSER - INFO - Connected to Discord (attempt 2)
+2026-03-26 23:38:18 - ABUSER - INFO - ABUSER Bot ready as krazyrain_
+2026-03-26 23:39:10 - ABUSER - INFO - Initiating graceful shutdown...
+2026-03-26 23:39:10 - ABUSER - INFO - Rate limiter stopped
+2026-03-26 23:39:10 - ABUSER - INFO - Rate limiter stopped
+2026-03-26 23:39:10 - ABUSER - INFO - HTTP session closed
+2026-03-26 23:39:10 - ABUSER - INFO - Session stats: 0 commands, 0 errors, 0 rate limited
+2026-03-26 23:39:10 - discord.gateway - INFO - Gateway received close code 1000 and reason 'Connection closed.'.
+2026-03-26 23:39:10 - ABUSER - WARNING - Disconnected from Discord
+2026-03-27 01:07:23 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-27 01:07:23 - discord.client - INFO - Logging in using static token.
+2026-03-27 01:07:23 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 517296.
+2026-03-27 01:07:23 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-27 01:07:26 - ABUSER - INFO - Bot setup hook started
+2026-03-27 01:07:26 - ABUSER - INFO - Rate limiter started
+2026-03-27 01:07:26 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-27 01:07:26 - ABUSER - INFO - HTTP session initialized
+2026-03-27 01:07:26 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-27 01:07:26 - ABUSER - INFO - Setup hook completed
+2026-03-27 01:07:27 - discord.gateway - INFO - Connected to Gateway (session ID: f25ee5f1507af097b7b01092abc08a68).
+2026-03-27 01:07:27 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-27 01:07:27 - ABUSER - INFO - ABUSER Bot ready as krazyrain_
+2026-03-27 01:08:38 - ABUSER - INFO - Initiating graceful shutdown...
+2026-03-27 01:08:38 - ABUSER - INFO - Rate limiter stopped
+2026-03-27 01:08:38 - ABUSER - INFO - Rate limiter stopped
+2026-03-27 01:08:38 - ABUSER - INFO - HTTP session closed
+2026-03-27 01:08:38 - ABUSER - INFO - Session stats: 0 commands, 0 errors, 0 rate limited
+2026-03-27 01:08:38 - discord.gateway - INFO - Gateway received close code 1000 and reason 'Connection closed.'.
+2026-03-27 01:08:38 - ABUSER - WARNING - Disconnected from Discord
+2026-03-27 11:58:15 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-27 11:58:15 - discord.client - INFO - Logging in using static token.
+2026-03-27 11:58:15 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 517296.
+2026-03-27 11:58:15 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-27 11:58:15 - ABUSER - INFO - Bot setup hook started
+2026-03-27 11:58:15 - ABUSER - INFO - Rate limiter started
+2026-03-27 11:58:15 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-27 11:58:15 - ABUSER - INFO - HTTP session initialized
+2026-03-27 11:58:15 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-27 11:58:15 - ABUSER - INFO - Setup hook completed
+2026-03-27 11:58:18 - discord.gateway - INFO - Connected to Gateway (session ID: e0d496cf64ea3f326ec75194e58de5c3).
+2026-03-27 11:58:18 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-27 11:58:19 - ABUSER - INFO - ABUSER Bot ready as krazyrain_
+2026-03-27 11:59:39 - ABUSER - INFO - Initiating graceful shutdown...
+2026-03-27 11:59:39 - ABUSER - INFO - Rate limiter stopped
+2026-03-27 11:59:39 - ABUSER - INFO - Rate limiter stopped
+2026-03-27 11:59:39 - ABUSER - INFO - HTTP session closed
+2026-03-27 11:59:39 - ABUSER - INFO - Session stats: 2 commands, 0 errors, 0 rate limited
+2026-03-27 11:59:39 - discord.gateway - INFO - Gateway received close code 1000 and reason 'Connection closed.'.
+2026-03-27 11:59:39 - ABUSER - WARNING - Disconnected from Discord
+2026-03-27 11:59:49 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-28' coro=<PartialMessage.delete.<locals>.delete() done, defined at C:\Users\Carte\AppData\Roaming\Python\Python314\site-packages\discord\message.py:1049> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2026-03-27 12:01:58 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-27 12:01:58 - discord.client - INFO - Logging in using static token.
+2026-03-27 12:01:58 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 517296.
+2026-03-27 12:01:58 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-27 12:01:59 - ABUSER - INFO - Bot setup hook started
+2026-03-27 12:01:59 - ABUSER - INFO - Rate limiter started
+2026-03-27 12:01:59 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-27 12:01:59 - ABUSER - INFO - HTTP session initialized
+2026-03-27 12:01:59 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-27 12:01:59 - ABUSER - INFO - Setup hook completed
+2026-03-27 12:01:59 - discord.gateway - INFO - Connected to Gateway (session ID: c2da7763ce6473ee12ac53c55107d5a2).
+2026-03-27 12:02:00 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-27 12:02:00 - ABUSER - INFO - ABUSER Bot ready as krazyrain_
+2026-03-27 12:10:48 - ABUSER - INFO - Initiating graceful shutdown...
+2026-03-27 12:10:48 - ABUSER - INFO - Rate limiter stopped
+2026-03-27 12:10:48 - ABUSER - INFO - Rate limiter stopped
+2026-03-27 12:10:48 - ABUSER - INFO - HTTP session closed
+2026-03-27 12:10:48 - ABUSER - INFO - Session stats: 0 commands, 0 errors, 0 rate limited
+2026-03-27 12:10:48 - discord.gateway - INFO - Gateway received close code 1000 and reason 'Connection closed.'.
+2026-03-27 12:10:48 - ABUSER - WARNING - Disconnected from Discord
+2026-03-27 12:22:20 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-27 12:22:20 - discord.client - INFO - Logging in using static token.
+2026-03-27 12:22:20 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 517296.
+2026-03-27 12:22:20 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-27 12:22:22 - ABUSER - INFO - Bot setup hook started
+2026-03-27 12:22:22 - ABUSER - INFO - Rate limiter started
+2026-03-27 12:22:22 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-27 12:22:22 - ABUSER - INFO - HTTP session initialized
+2026-03-27 12:22:22 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-27 12:22:22 - ABUSER - INFO - Setup hook completed
+2026-03-27 12:22:25 - discord.gateway - INFO - Connected to Gateway (session ID: aca54fec9e28060e769d53387f22916e).
+2026-03-27 12:22:25 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-27 12:22:26 - ABUSER - INFO - ABUSER Bot ready as krazyrain_
+2026-03-27 12:26:52 - ABUSER - INFO - Initiating graceful shutdown...
+2026-03-27 12:26:52 - ABUSER - INFO - Rate limiter stopped
+2026-03-27 12:26:52 - ABUSER - INFO - Rate limiter stopped
+2026-03-27 12:26:52 - ABUSER - INFO - HTTP session closed
+2026-03-27 12:26:52 - ABUSER - INFO - Session stats: 0 commands, 0 errors, 0 rate limited
+2026-03-27 12:26:52 - discord.gateway - INFO - Gateway received close code 1000 and reason 'Connection closed.'.
+2026-03-27 12:26:52 - ABUSER - WARNING - Disconnected from Discord
+2026-03-27 16:12:44 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-27 16:12:44 - discord.client - INFO - Logging in using static token.
+2026-03-27 16:12:44 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 517985.
+2026-03-27 16:12:44 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-27 16:12:44 - ABUSER - INFO - Bot setup hook started
+2026-03-27 16:12:44 - ABUSER - INFO - Rate limiter started
+2026-03-27 16:12:44 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-27 16:12:44 - ABUSER - INFO - HTTP session initialized
+2026-03-27 16:12:44 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-27 16:12:44 - ABUSER - INFO - Setup hook completed
+2026-03-27 16:12:46 - discord.gateway - INFO - Connected to Gateway (session ID: 29a3f3c5d1c6c474143853992c75b174).
+2026-03-27 16:12:46 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-27 16:12:46 - ABUSER - INFO - ABUSER Bot ready as krazyrain_
+2026-03-27 16:15:35 - ABUSER - INFO - Initiating graceful shutdown...
+2026-03-27 16:15:35 - ABUSER - INFO - Rate limiter stopped
+2026-03-27 16:15:35 - ABUSER - INFO - Rate limiter stopped
+2026-03-27 16:15:35 - ABUSER - INFO - HTTP session closed
+2026-03-27 16:15:35 - ABUSER - INFO - Session stats: 0 commands, 0 errors, 0 rate limited
+2026-03-27 16:15:35 - discord.gateway - INFO - Gateway received close code 1000 and reason 'Connection closed.'.
+2026-03-27 16:15:35 - ABUSER - WARNING - Disconnected from Discord
+2026-03-27 17:00:42 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-27 17:00:42 - discord.client - INFO - Logging in using static token.
+2026-03-27 17:00:43 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 517985.
+2026-03-27 17:00:43 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-27 17:00:43 - ABUSER - INFO - Bot setup hook started
+2026-03-27 17:00:43 - ABUSER - INFO - Rate limiter started
+2026-03-27 17:00:43 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-27 17:00:43 - ABUSER - INFO - HTTP session initialized
+2026-03-27 17:00:43 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-27 17:00:43 - ABUSER - INFO - Setup hook completed
+2026-03-27 17:00:46 - discord.gateway - INFO - Connected to Gateway (session ID: 8eaa9b118ba8e7e179b74bd2ead1da71).
+2026-03-27 17:00:46 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-27 17:00:46 - ABUSER - INFO - ABUSER Bot ready as krazyrain_
+2026-03-27 17:05:32 - ABUSER - INFO - Initiating graceful shutdown...
+2026-03-27 17:05:32 - ABUSER - INFO - Rate limiter stopped
+2026-03-27 17:05:32 - ABUSER - INFO - Rate limiter stopped
+2026-03-27 17:05:32 - ABUSER - INFO - HTTP session closed
+2026-03-27 17:05:32 - ABUSER - INFO - Session stats: 0 commands, 0 errors, 0 rate limited
+2026-03-27 17:05:32 - discord.gateway - INFO - Gateway received close code 1000 and reason 'Connection closed.'.
+2026-03-27 17:05:32 - ABUSER - WARNING - Disconnected from Discord
+2026-03-27 17:31:22 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-27 17:31:22 - discord.client - INFO - Logging in using static token.
+2026-03-27 17:31:23 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 518551.
+2026-03-27 17:31:23 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-27 17:31:23 - ABUSER - INFO - Bot setup hook started
+2026-03-27 17:31:23 - ABUSER - INFO - Rate limiter started
+2026-03-27 17:31:23 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-27 17:31:23 - ABUSER - INFO - HTTP session initialized
+2026-03-27 17:31:23 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-27 17:31:23 - ABUSER - INFO - Setup hook completed
+2026-03-27 17:31:24 - discord.gateway - INFO - Connected to Gateway (session ID: 93a76fcec30fda287e7a0cf6d4b873d6).
+2026-03-27 17:31:24 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-27 17:31:25 - ABUSER - INFO - ABUSER Bot ready as krazyrain_
+2026-03-27 17:31:34 - ABUSER - INFO - Initiating graceful shutdown...
+2026-03-27 17:31:34 - ABUSER - INFO - Rate limiter stopped
+2026-03-27 17:31:34 - ABUSER - INFO - Rate limiter stopped
+2026-03-27 17:31:34 - ABUSER - INFO - HTTP session closed
+2026-03-27 17:31:34 - ABUSER - INFO - Session stats: 0 commands, 0 errors, 0 rate limited
+2026-03-27 17:31:34 - discord.gateway - INFO - Gateway received close code 1000 and reason 'Connection closed.'.
+2026-03-27 17:31:34 - ABUSER - WARNING - Disconnected from Discord
+2026-03-27 17:39:20 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-27 17:39:20 - discord.client - INFO - Logging in using static token.
+2026-03-27 17:39:20 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 518551.
+2026-03-27 17:39:20 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-27 17:39:20 - ABUSER - INFO - Bot setup hook started
+2026-03-27 17:39:20 - ABUSER - INFO - Rate limiter started
+2026-03-27 17:39:20 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-27 17:39:20 - ABUSER - INFO - HTTP session initialized
+2026-03-27 17:39:20 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-27 17:39:20 - ABUSER - INFO - Setup hook completed
+2026-03-27 17:39:21 - discord.gateway - INFO - Connected to Gateway (session ID: 3e8ae70e6a3d9c0b720b9b49945f1af4).
+2026-03-27 17:39:21 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-27 17:39:22 - ABUSER - INFO - ABUSER Bot ready as krazyrain_
+2026-03-27 17:41:01 - ABUSER - INFO - Initiating graceful shutdown...
+2026-03-27 17:41:01 - ABUSER - INFO - Rate limiter stopped
+2026-03-27 17:41:01 - ABUSER - INFO - Rate limiter stopped
+2026-03-27 17:41:01 - ABUSER - INFO - HTTP session closed
+2026-03-27 17:41:01 - ABUSER - INFO - Session stats: 3 commands, 0 errors, 0 rate limited
+2026-03-27 17:41:01 - discord.gateway - INFO - Gateway received close code 1000 and reason 'Connection closed.'.
+2026-03-27 17:41:01 - ABUSER - WARNING - Disconnected from Discord
+2026-03-27 17:41:11 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-23' coro=<PartialMessage.delete.<locals>.delete() done, defined at C:\Users\Carte\AppData\Roaming\Python\Python314\site-packages\discord\message.py:1049> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2026-03-27 22:23:53 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-27 22:23:53 - discord.client - INFO - Logging in using static token.
+2026-03-27 22:23:53 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 518551.
+2026-03-27 22:23:53 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-27 22:23:53 - ABUSER - INFO - Bot setup hook started
+2026-03-27 22:23:53 - ABUSER - INFO - Rate limiter started
+2026-03-27 22:23:53 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-27 22:23:53 - ABUSER - INFO - HTTP session initialized
+2026-03-27 22:23:53 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-27 22:23:53 - ABUSER - INFO - Setup hook completed
+2026-03-27 22:23:55 - discord.gateway - INFO - Connected to Gateway (session ID: 63fc73af3569f68b02858a91359b027d).
+2026-03-27 22:23:55 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-27 22:23:56 - ABUSER - INFO - ABUSER Bot ready as krazyrain_
+2026-03-27 22:33:38 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-27 22:33:38 - discord.client - INFO - Logging in using static token.
+2026-03-27 22:33:39 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 518551.
+2026-03-27 22:33:39 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-27 22:33:39 - ABUSER - INFO - Bot setup hook started
+2026-03-27 22:33:39 - ABUSER - INFO - Rate limiter started
+2026-03-27 22:33:39 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-27 22:33:39 - ABUSER - INFO - HTTP session initialized
+2026-03-27 22:33:39 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-27 22:33:39 - ABUSER - INFO - Setup hook completed
+2026-03-27 22:33:40 - discord.gateway - INFO - Connected to Gateway (session ID: d4e54de672aefa088747e2ada94836f5).
+2026-03-27 22:33:40 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-27 22:33:40 - ABUSER - INFO - ABUSER Bot ready as krazyrain_
+2026-03-27 22:37:31 - ABUSER - INFO - Initiating graceful shutdown...
+2026-03-27 22:37:31 - ABUSER - INFO - Rate limiter stopped
+2026-03-27 22:37:31 - ABUSER - INFO - Rate limiter stopped
+2026-03-27 22:37:31 - ABUSER - INFO - HTTP session closed
+2026-03-27 22:37:31 - ABUSER - INFO - Session stats: 0 commands, 0 errors, 0 rate limited
+2026-03-27 22:37:31 - discord.gateway - INFO - Gateway received close code 1000 and reason 'Connection closed.'.
+2026-03-27 22:37:31 - ABUSER - WARNING - Disconnected from Discord
+2026-03-27 22:40:06 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-27 22:40:06 - discord.client - INFO - Logging in using static token.
+2026-03-27 22:40:07 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 518551.
+2026-03-27 22:40:07 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-27 22:40:07 - ABUSER - INFO - Bot setup hook started
+2026-03-27 22:40:07 - ABUSER - INFO - Rate limiter started
+2026-03-27 22:40:07 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-27 22:40:07 - ABUSER - INFO - HTTP session initialized
+2026-03-27 22:40:07 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-27 22:40:07 - ABUSER - INFO - Setup hook completed
+2026-03-27 22:40:08 - discord.gateway - INFO - Connected to Gateway (session ID: aa107907fa34745a350f0fb5dc73bc50).
+2026-03-27 22:40:08 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-27 22:40:09 - ABUSER - INFO - ABUSER Bot ready as krazyrain_
+2026-03-27 22:41:03 - ABUSER - INFO - Initiating graceful shutdown...
+2026-03-27 22:41:03 - ABUSER - INFO - Rate limiter stopped
+2026-03-27 22:41:03 - ABUSER - INFO - Rate limiter stopped
+2026-03-27 22:41:03 - ABUSER - INFO - HTTP session closed
+2026-03-27 22:41:03 - ABUSER - INFO - Session stats: 0 commands, 0 errors, 0 rate limited
+2026-03-27 22:41:03 - discord.gateway - INFO - Gateway received close code 1000 and reason 'Connection closed.'.
+2026-03-27 22:41:03 - ABUSER - WARNING - Disconnected from Discord
+2026-03-27 22:50:24 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-27 22:50:24 - discord.client - INFO - Logging in using static token.
+2026-03-27 22:50:24 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 518551.
+2026-03-27 22:50:24 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-27 22:50:26 - ABUSER - INFO - Bot setup hook started
+2026-03-27 22:50:26 - ABUSER - INFO - Rate limiter started
+2026-03-27 22:50:26 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-27 22:50:26 - ABUSER - INFO - HTTP session initialized
+2026-03-27 22:50:26 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-27 22:50:26 - ABUSER - INFO - Setup hook completed
+2026-03-27 22:50:29 - discord.gateway - INFO - Connected to Gateway (session ID: 0660d154e3a8b077b4ba23cfa1cd3447).
+2026-03-27 22:50:29 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-27 22:50:30 - ABUSER - INFO - ABUSER Bot ready as krazyrain_
+2026-03-27 22:50:43 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-27 22:50:43 - discord.client - INFO - Logging in using static token.
+2026-03-27 22:50:43 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 518551.
+2026-03-27 22:50:43 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-27 22:50:43 - ABUSER - INFO - Bot setup hook started
+2026-03-27 22:50:43 - ABUSER - INFO - Rate limiter started
+2026-03-27 22:50:43 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-27 22:50:43 - ABUSER - INFO - HTTP session initialized
+2026-03-27 22:50:43 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-27 22:50:43 - ABUSER - INFO - Setup hook completed
+2026-03-27 22:50:45 - discord.gateway - INFO - Connected to Gateway (session ID: 16eb5567b9127584307108f62b274258).
+2026-03-27 22:50:45 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-27 22:50:45 - ABUSER - INFO - ABUSER Bot ready as krazyrain_
+2026-03-27 22:51:23 - ABUSER - INFO - Initiating graceful shutdown...
+2026-03-27 22:51:23 - ABUSER - INFO - Rate limiter stopped
+2026-03-27 22:51:23 - ABUSER - INFO - Rate limiter stopped
+2026-03-27 22:51:23 - ABUSER - INFO - HTTP session closed
+2026-03-27 22:51:23 - ABUSER - INFO - Session stats: 0 commands, 0 errors, 0 rate limited
+2026-03-27 22:51:23 - discord.gateway - INFO - Gateway received close code 1000 and reason 'Connection closed.'.
+2026-03-27 22:51:23 - ABUSER - WARNING - Disconnected from Discord
+2026-03-27 23:02:37 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-27 23:02:37 - discord.client - INFO - Logging in using static token.
+2026-03-27 23:02:37 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 518551.
+2026-03-27 23:02:37 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-27 23:02:37 - ABUSER - INFO - Bot setup hook started
+2026-03-27 23:02:37 - ABUSER - INFO - Rate limiter started
+2026-03-27 23:02:37 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-27 23:02:37 - ABUSER - INFO - HTTP session initialized
+2026-03-27 23:02:37 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-27 23:02:37 - ABUSER - INFO - Setup hook completed
+2026-03-27 23:02:39 - discord.gateway - INFO - Connected to Gateway (session ID: 546964c41433adbe4ac28bec4a1edb5b).
+2026-03-27 23:02:39 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-27 23:02:40 - ABUSER - INFO - ABUSER Bot ready as krazyrain_
+2026-03-27 23:06:15 - ABUSER - INFO - Initiating graceful shutdown...
+2026-03-27 23:06:15 - ABUSER - INFO - Rate limiter stopped
+2026-03-27 23:06:15 - ABUSER - INFO - Rate limiter stopped
+2026-03-27 23:06:15 - ABUSER - INFO - HTTP session closed
+2026-03-27 23:06:15 - ABUSER - INFO - Session stats: 0 commands, 0 errors, 0 rate limited
+2026-03-27 23:06:15 - discord.gateway - INFO - Gateway received close code 1000 and reason 'Connection closed.'.
+2026-03-27 23:06:15 - ABUSER - WARNING - Disconnected from Discord
+2026-03-27 23:19:50 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-27 23:19:50 - discord.client - INFO - Logging in using static token.
+2026-03-27 23:19:50 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 518551.
+2026-03-27 23:19:50 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-27 23:19:50 - ABUSER - INFO - Bot setup hook started
+2026-03-27 23:19:50 - ABUSER - INFO - Rate limiter started
+2026-03-27 23:19:50 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-27 23:19:50 - ABUSER - INFO - HTTP session initialized
+2026-03-27 23:19:50 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-27 23:19:50 - ABUSER - INFO - Setup hook completed
+2026-03-27 23:19:51 - discord.gateway - INFO - Connected to Gateway (session ID: dbc4200c1430b3e539f92a8e1d58a6e9).
+2026-03-27 23:19:51 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-27 23:19:52 - ABUSER - INFO - ABUSER Bot ready as krazyrain_ - 13 guilds in cache
+2026-03-27 23:21:00 - ABUSER - INFO - Initiating graceful shutdown...
+2026-03-27 23:21:00 - ABUSER - INFO - Rate limiter stopped
+2026-03-27 23:21:00 - ABUSER - INFO - Rate limiter stopped
+2026-03-27 23:21:00 - ABUSER - INFO - HTTP session closed
+2026-03-27 23:21:00 - ABUSER - INFO - Session stats: 0 commands, 0 errors, 0 rate limited
+2026-03-27 23:21:00 - discord.gateway - INFO - Gateway received close code 1000 and reason 'Connection closed.'.
+2026-03-27 23:21:00 - ABUSER - WARNING - Disconnected from Discord
+2026-03-27 23:42:17 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-27 23:42:17 - discord.client - INFO - Logging in using static token.
+2026-03-27 23:42:17 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 518551.
+2026-03-27 23:42:17 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-27 23:42:17 - ABUSER - INFO - Bot setup hook started
+2026-03-27 23:42:17 - ABUSER - INFO - Rate limiter started
+2026-03-27 23:42:17 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-27 23:42:17 - ABUSER - INFO - HTTP session initialized
+2026-03-27 23:42:17 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-27 23:42:17 - ABUSER - INFO - Setup hook completed
+2026-03-27 23:42:18 - discord.gateway - INFO - Connected to Gateway (session ID: 7bc93ab905b0d538463852ce1ea284cc).
+2026-03-27 23:42:18 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-27 23:42:19 - ABUSER - INFO - ABUSER Bot ready as krazyrain_ - 13 guilds in cache
+2026-03-27 23:44:02 - ABUSER - INFO - Initiating graceful shutdown...
+2026-03-27 23:44:02 - ABUSER - INFO - Rate limiter stopped
+2026-03-27 23:44:02 - ABUSER - INFO - Rate limiter stopped
+2026-03-27 23:44:02 - ABUSER - INFO - HTTP session closed
+2026-03-27 23:44:02 - ABUSER - INFO - Session stats: 0 commands, 0 errors, 0 rate limited
+2026-03-27 23:44:02 - discord.gateway - INFO - Gateway received close code 1000 and reason 'Connection closed.'.
+2026-03-27 23:44:02 - ABUSER - WARNING - Disconnected from Discord
+2026-03-27 23:46:15 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-27 23:46:15 - discord.client - INFO - Logging in using static token.
+2026-03-27 23:46:15 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 518551.
+2026-03-27 23:46:15 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-27 23:46:15 - ABUSER - INFO - Bot setup hook started
+2026-03-27 23:46:15 - ABUSER - INFO - Rate limiter started
+2026-03-27 23:46:15 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-27 23:46:15 - ABUSER - INFO - HTTP session initialized
+2026-03-27 23:46:15 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-27 23:46:15 - ABUSER - INFO - Setup hook completed
+2026-03-27 23:46:16 - discord.gateway - INFO - Connected to Gateway (session ID: 7453d894a63d2965d9549fc9163a54ee).
+2026-03-27 23:46:16 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-27 23:46:16 - ABUSER - INFO - ABUSER Bot ready as krazyrain_ - 13 guilds in cache
+2026-03-27 23:47:29 - discord.gateway - INFO - Gateway received close code None and reason 'Failed to WS_RECV, curl: (52) . See https://curl.se/libcurl/c/libcurl-errors.html first for more details.'.
+2026-03-27 23:47:29 - ABUSER - WARNING - Disconnected from Discord
+2026-03-27 23:47:29 - ABUSER - INFO - Attempting to reconnect...
+2026-03-27 23:47:29 - discord.gateway - INFO - Gateway has successfully RESUMED session 7453d894a63d2965d9549fc9163a54ee.
+2026-03-27 23:47:29 - ABUSER - INFO - Session resumed
+2026-03-27 23:48:58 - ABUSER - INFO - Initiating graceful shutdown...
+2026-03-27 23:48:58 - ABUSER - INFO - Rate limiter stopped
+2026-03-27 23:48:58 - ABUSER - INFO - Rate limiter stopped
+2026-03-27 23:48:58 - ABUSER - INFO - HTTP session closed
+2026-03-27 23:48:58 - ABUSER - INFO - Session stats: 0 commands, 0 errors, 0 rate limited
+2026-03-27 23:48:58 - discord.gateway - INFO - Gateway received close code 1000 and reason 'Connection closed.'.
+2026-03-27 23:48:58 - ABUSER - WARNING - Disconnected from Discord
+2026-03-27 23:51:57 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-27 23:51:57 - discord.client - INFO - Logging in using static token.
+2026-03-27 23:51:57 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 518551.
+2026-03-27 23:51:57 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-27 23:51:58 - ABUSER - INFO - Bot setup hook started
+2026-03-27 23:51:58 - ABUSER - INFO - Rate limiter started
+2026-03-27 23:51:58 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-27 23:51:58 - ABUSER - INFO - HTTP session initialized
+2026-03-27 23:51:58 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-27 23:51:58 - ABUSER - INFO - Setup hook completed
+2026-03-27 23:51:58 - discord.gateway - INFO - Connected to Gateway (session ID: aa82eb55bb9356a875efd2e0f58e368e).
+2026-03-27 23:51:58 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-27 23:51:59 - ABUSER - INFO - ABUSER Bot ready as krazyrain_ - 13 guilds in cache
+2026-03-27 23:54:37 - ABUSER - INFO - Initiating graceful shutdown...
+2026-03-27 23:54:37 - ABUSER - INFO - Rate limiter stopped
+2026-03-27 23:54:37 - ABUSER - INFO - Rate limiter stopped
+2026-03-27 23:54:37 - ABUSER - INFO - HTTP session closed
+2026-03-27 23:54:37 - ABUSER - INFO - Session stats: 0 commands, 0 errors, 0 rate limited
+2026-03-27 23:54:37 - discord.gateway - INFO - Gateway received close code 1000 and reason 'Connection closed.'.
+2026-03-27 23:54:37 - ABUSER - WARNING - Disconnected from Discord
+2026-03-27 23:58:06 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-27 23:58:06 - discord.client - INFO - Logging in using static token.
+2026-03-27 23:58:06 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 518551.
+2026-03-27 23:58:06 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-27 23:58:06 - ABUSER - INFO - Bot setup hook started
+2026-03-27 23:58:06 - ABUSER - INFO - Rate limiter started
+2026-03-27 23:58:06 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-27 23:58:06 - ABUSER - INFO - HTTP session initialized
+2026-03-27 23:58:06 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-27 23:58:06 - ABUSER - INFO - Setup hook completed
+2026-03-27 23:58:07 - discord.gateway - INFO - Connected to Gateway (session ID: 488a8c9eae60c96b921bcc74f8b03eef).
+2026-03-27 23:58:07 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-27 23:58:08 - ABUSER - INFO - ABUSER Bot ready as krazyrain_ - 13 guilds in cache
+2026-03-27 23:59:35 - ABUSER - INFO - Initiating graceful shutdown...
+2026-03-27 23:59:35 - ABUSER - INFO - Rate limiter stopped
+2026-03-27 23:59:35 - ABUSER - INFO - Rate limiter stopped
+2026-03-27 23:59:35 - ABUSER - INFO - HTTP session closed
+2026-03-27 23:59:35 - ABUSER - INFO - Session stats: 0 commands, 0 errors, 0 rate limited
+2026-03-27 23:59:35 - discord.gateway - INFO - Gateway received close code 1000 and reason 'Connection closed.'.
+2026-03-27 23:59:35 - ABUSER - WARNING - Disconnected from Discord
+2026-03-28 00:03:13 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-28 00:03:13 - discord.client - INFO - Logging in using static token.
+2026-03-28 00:03:13 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 518551.
+2026-03-28 00:03:13 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-28 00:03:15 - ABUSER - INFO - Bot setup hook started
+2026-03-28 00:03:15 - ABUSER - INFO - Rate limiter started
+2026-03-28 00:03:15 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-28 00:03:15 - ABUSER - INFO - HTTP session initialized
+2026-03-28 00:03:15 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-28 00:03:15 - ABUSER - INFO - Setup hook completed
+2026-03-28 00:03:18 - discord.gateway - INFO - Connected to Gateway (session ID: 7b0f247b646f65068925e52d2eed45b4).
+2026-03-28 00:03:18 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-28 00:03:18 - ABUSER - INFO - ABUSER Bot ready as krazyrain_ - 13 guilds in cache
+2026-03-28 00:06:26 - ABUSER - INFO - Initiating graceful shutdown...
+2026-03-28 00:06:26 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 00:06:26 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 00:06:26 - ABUSER - INFO - HTTP session closed
+2026-03-28 00:06:26 - ABUSER - INFO - Session stats: 0 commands, 0 errors, 0 rate limited
+2026-03-28 00:06:26 - discord.gateway - INFO - Gateway received close code 1000 and reason 'Connection closed.'.
+2026-03-28 00:06:26 - ABUSER - WARNING - Disconnected from Discord
+2026-03-28 00:11:47 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-28 00:11:47 - discord.client - INFO - Logging in using static token.
+2026-03-28 00:11:47 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 518551.
+2026-03-28 00:11:47 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-28 00:11:48 - ABUSER - INFO - Bot setup hook started
+2026-03-28 00:11:48 - ABUSER - INFO - Rate limiter started
+2026-03-28 00:11:48 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-28 00:11:48 - ABUSER - INFO - HTTP session initialized
+2026-03-28 00:11:48 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-28 00:11:48 - ABUSER - INFO - Setup hook completed
+2026-03-28 00:11:48 - discord.gateway - INFO - Connected to Gateway (session ID: a234539dfc9005f18f00a03aa8c66ff3).
+2026-03-28 00:11:48 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-28 00:11:49 - ABUSER - INFO - ABUSER Bot ready as krazyrain_ - 13 guilds in cache
+2026-03-28 00:14:35 - ABUSER - INFO - Initiating graceful shutdown...
+2026-03-28 00:14:35 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 00:14:35 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 00:14:35 - ABUSER - INFO - HTTP session closed
+2026-03-28 00:14:35 - ABUSER - INFO - Session stats: 0 commands, 0 errors, 0 rate limited
+2026-03-28 00:14:35 - discord.gateway - INFO - Gateway received close code 1000 and reason 'Connection closed.'.
+2026-03-28 00:14:35 - ABUSER - WARNING - Disconnected from Discord
+2026-03-28 00:14:41 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-28 00:14:41 - discord.client - INFO - Logging in using static token.
+2026-03-28 00:14:41 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 518551.
+2026-03-28 00:14:41 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-28 00:14:42 - ABUSER - INFO - Bot setup hook started
+2026-03-28 00:14:42 - ABUSER - INFO - Rate limiter started
+2026-03-28 00:14:42 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-28 00:14:42 - ABUSER - INFO - HTTP session initialized
+2026-03-28 00:14:42 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-28 00:14:42 - ABUSER - INFO - Setup hook completed
+2026-03-28 00:14:43 - discord.gateway - INFO - Connected to Gateway (session ID: f0c4c6cdafb37ae076249bbbf62f85ea).
+2026-03-28 00:14:43 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-28 00:14:44 - ABUSER - INFO - ABUSER Bot ready as krazyrain_ - 13 guilds in cache
+2026-03-28 00:15:43 - ABUSER - INFO - Initiating graceful shutdown...
+2026-03-28 00:15:43 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 00:15:43 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 00:15:43 - ABUSER - INFO - HTTP session closed
+2026-03-28 00:15:43 - ABUSER - INFO - Session stats: 0 commands, 0 errors, 0 rate limited
+2026-03-28 00:15:43 - discord.gateway - INFO - Gateway received close code 1000 and reason 'Connection closed.'.
+2026-03-28 00:15:43 - ABUSER - WARNING - Disconnected from Discord
+2026-03-28 00:15:49 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-28 00:15:49 - discord.client - INFO - Logging in using static token.
+2026-03-28 00:15:49 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 518551.
+2026-03-28 00:15:49 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-28 00:15:51 - ABUSER - INFO - Bot setup hook started
+2026-03-28 00:15:51 - ABUSER - INFO - Rate limiter started
+2026-03-28 00:15:51 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-28 00:15:51 - ABUSER - INFO - HTTP session initialized
+2026-03-28 00:15:51 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-28 00:15:51 - ABUSER - INFO - Setup hook completed
+2026-03-28 00:15:53 - discord.gateway - INFO - Connected to Gateway (session ID: 149c29e280e4bd1461bf793c5f48f1f4).
+2026-03-28 00:15:53 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-28 00:15:53 - ABUSER - INFO - ABUSER Bot ready as krazyrain_ - 13 guilds in cache
+2026-03-28 00:17:07 - ABUSER - INFO - Initiating graceful shutdown...
+2026-03-28 00:17:07 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 00:17:07 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 00:17:07 - ABUSER - INFO - HTTP session closed
+2026-03-28 00:17:07 - ABUSER - INFO - Session stats: 0 commands, 0 errors, 0 rate limited
+2026-03-28 00:17:07 - discord.gateway - INFO - Gateway received close code 1000 and reason 'Connection closed.'.
+2026-03-28 00:17:07 - ABUSER - WARNING - Disconnected from Discord
+2026-03-28 00:17:13 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-28 00:17:13 - discord.client - INFO - Logging in using static token.
+2026-03-28 00:17:13 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 518551.
+2026-03-28 00:17:13 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-28 00:17:14 - ABUSER - INFO - Bot setup hook started
+2026-03-28 00:17:14 - ABUSER - INFO - Rate limiter started
+2026-03-28 00:17:14 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-28 00:17:14 - ABUSER - INFO - HTTP session initialized
+2026-03-28 00:17:14 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-28 00:17:14 - ABUSER - INFO - Setup hook completed
+2026-03-28 00:17:15 - discord.gateway - INFO - Connected to Gateway (session ID: e96a39506aa0c9e36dc06960f12599da).
+2026-03-28 00:17:15 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-28 00:17:15 - ABUSER - INFO - ABUSER Bot ready as krazyrain_ - 13 guilds in cache
+2026-03-28 00:17:44 - ABUSER - INFO - Initiating graceful shutdown...
+2026-03-28 00:17:44 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 00:17:44 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 00:17:44 - ABUSER - INFO - HTTP session closed
+2026-03-28 00:17:44 - ABUSER - INFO - Session stats: 0 commands, 0 errors, 0 rate limited
+2026-03-28 00:17:44 - discord.gateway - INFO - Gateway received close code 1000 and reason 'Connection closed.'.
+2026-03-28 00:17:44 - ABUSER - WARNING - Disconnected from Discord
+2026-03-28 00:20:29 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-28 00:20:29 - discord.client - INFO - Logging in using static token.
+2026-03-28 00:20:29 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 518551.
+2026-03-28 00:20:29 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-28 00:20:31 - ABUSER - INFO - Bot setup hook started
+2026-03-28 00:20:31 - ABUSER - INFO - Rate limiter started
+2026-03-28 00:20:31 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-28 00:20:31 - ABUSER - INFO - HTTP session initialized
+2026-03-28 00:20:31 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-28 00:20:31 - ABUSER - INFO - Setup hook completed
+2026-03-28 00:20:32 - discord.gateway - INFO - Connected to Gateway (session ID: b25d80bc3413e07412d8f2611e639903).
+2026-03-28 00:20:32 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-28 00:20:33 - ABUSER - INFO - ABUSER Bot ready as krazyrain_ - 13 guilds in cache
+2026-03-28 00:21:13 - ABUSER - INFO - Initiating graceful shutdown...
+2026-03-28 00:21:13 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 00:21:13 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 00:21:13 - ABUSER - INFO - HTTP session closed
+2026-03-28 00:21:13 - ABUSER - INFO - Session stats: 0 commands, 0 errors, 0 rate limited
+2026-03-28 00:21:13 - discord.gateway - INFO - Gateway received close code 1000 and reason 'Connection closed.'.
+2026-03-28 00:21:13 - ABUSER - WARNING - Disconnected from Discord
+2026-03-28 00:21:24 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-28 00:21:24 - discord.client - INFO - Logging in using static token.
+2026-03-28 00:21:25 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 518551.
+2026-03-28 00:21:25 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-28 00:21:27 - ABUSER - INFO - Bot setup hook started
+2026-03-28 00:21:27 - ABUSER - INFO - Rate limiter started
+2026-03-28 00:21:27 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-28 00:21:27 - ABUSER - INFO - HTTP session initialized
+2026-03-28 00:21:27 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-28 00:21:27 - ABUSER - INFO - Setup hook completed
+2026-03-28 00:21:29 - discord.gateway - INFO - Connected to Gateway (session ID: 1f09d9d5b8617400b8c065c14983afc6).
+2026-03-28 00:21:29 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-28 00:21:29 - ABUSER - INFO - ABUSER Bot ready as krazyrain_ - 13 guilds in cache
+2026-03-28 00:21:56 - ABUSER - INFO - Initiating graceful shutdown...
+2026-03-28 00:21:56 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 00:21:56 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 00:21:56 - ABUSER - INFO - HTTP session closed
+2026-03-28 00:21:56 - ABUSER - INFO - Session stats: 0 commands, 0 errors, 0 rate limited
+2026-03-28 00:21:56 - discord.gateway - INFO - Gateway received close code 1000 and reason 'Connection closed.'.
+2026-03-28 00:21:56 - ABUSER - WARNING - Disconnected from Discord
+2026-03-28 00:22:09 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-28 00:22:09 - discord.client - INFO - Logging in using static token.
+2026-03-28 00:22:09 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 518551.
+2026-03-28 00:22:09 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-28 00:22:09 - ABUSER - INFO - Bot setup hook started
+2026-03-28 00:22:09 - ABUSER - INFO - Rate limiter started
+2026-03-28 00:22:09 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-28 00:22:09 - ABUSER - INFO - HTTP session initialized
+2026-03-28 00:22:09 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-28 00:22:09 - ABUSER - INFO - Setup hook completed
+2026-03-28 00:22:10 - discord.gateway - INFO - Connected to Gateway (session ID: 4fb2135e7e502274a3fa85b364e0fe58).
+2026-03-28 00:22:10 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-28 00:22:10 - ABUSER - INFO - ABUSER Bot ready as krazyrain_ - 13 guilds in cache
+2026-03-28 00:24:06 - ABUSER - INFO - Initiating graceful shutdown...
+2026-03-28 00:24:06 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 00:24:06 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 00:24:06 - ABUSER - INFO - HTTP session closed
+2026-03-28 00:24:06 - ABUSER - INFO - Session stats: 0 commands, 0 errors, 0 rate limited
+2026-03-28 00:24:06 - discord.gateway - INFO - Gateway received close code 1000 and reason 'Connection closed.'.
+2026-03-28 00:24:06 - ABUSER - WARNING - Disconnected from Discord
+2026-03-28 00:26:28 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-28 00:26:28 - discord.client - INFO - Logging in using static token.
+2026-03-28 00:26:29 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 518551.
+2026-03-28 00:26:29 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-28 00:26:31 - ABUSER - INFO - Bot setup hook started
+2026-03-28 00:26:31 - ABUSER - INFO - Rate limiter started
+2026-03-28 00:26:31 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-28 00:26:31 - ABUSER - INFO - HTTP session initialized
+2026-03-28 00:26:31 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-28 00:26:31 - ABUSER - INFO - Setup hook completed
+2026-03-28 00:26:32 - discord.gateway - INFO - Connected to Gateway (session ID: a884b989cfad19629070c068d779f8b1).
+2026-03-28 00:26:32 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-28 00:26:33 - ABUSER - INFO - ABUSER Bot ready as krazyrain_ - 13 guilds in cache
+2026-03-28 00:28:11 - ABUSER - INFO - Initiating graceful shutdown...
+2026-03-28 00:28:11 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 00:28:11 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 00:28:11 - ABUSER - INFO - HTTP session closed
+2026-03-28 00:28:11 - ABUSER - INFO - Session stats: 0 commands, 0 errors, 0 rate limited
+2026-03-28 00:28:11 - discord.gateway - INFO - Gateway received close code 1000 and reason 'Connection closed.'.
+2026-03-28 00:28:11 - ABUSER - WARNING - Disconnected from Discord
+2026-03-28 00:32:02 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-28 00:32:02 - discord.client - INFO - Logging in using static token.
+2026-03-28 00:32:02 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 518551.
+2026-03-28 00:32:02 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-28 00:32:02 - ABUSER - INFO - Bot setup hook started
+2026-03-28 00:32:02 - ABUSER - INFO - Rate limiter started
+2026-03-28 00:32:02 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-28 00:32:02 - ABUSER - INFO - HTTP session initialized
+2026-03-28 00:32:02 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-28 00:32:02 - ABUSER - INFO - Setup hook completed
+2026-03-28 00:32:03 - discord.gateway - INFO - Connected to Gateway (session ID: cf51e2ab097561340656c898760041e7).
+2026-03-28 00:32:03 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-28 00:32:04 - ABUSER - INFO - ABUSER Bot ready as krazyrain_ - 13 guilds in cache
+2026-03-28 00:32:16 - ABUSER - INFO - Initiating graceful shutdown...
+2026-03-28 00:32:16 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 00:32:16 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 00:32:16 - ABUSER - INFO - HTTP session closed
+2026-03-28 00:32:16 - ABUSER - INFO - Session stats: 0 commands, 0 errors, 0 rate limited
+2026-03-28 00:32:16 - discord.gateway - INFO - Gateway received close code 1000 and reason 'Connection closed.'.
+2026-03-28 00:32:16 - ABUSER - WARNING - Disconnected from Discord
+2026-03-28 00:34:14 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-28 00:34:14 - discord.client - INFO - Logging in using static token.
+2026-03-28 00:34:15 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 518551.
+2026-03-28 00:34:15 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-28 00:34:15 - ABUSER - INFO - Bot setup hook started
+2026-03-28 00:34:15 - ABUSER - INFO - Rate limiter started
+2026-03-28 00:34:15 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-28 00:34:15 - ABUSER - INFO - HTTP session initialized
+2026-03-28 00:34:15 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-28 00:34:15 - ABUSER - INFO - Setup hook completed
+2026-03-28 00:34:16 - discord.gateway - INFO - Connected to Gateway (session ID: 89615712732744aa2c5f42feadeff9a3).
+2026-03-28 00:34:16 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-28 00:34:16 - ABUSER - INFO - ABUSER Bot ready as krazyrain_ - 13 guilds in cache
+2026-03-28 00:34:25 - ABUSER - INFO - Initiating graceful shutdown...
+2026-03-28 00:34:25 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 00:34:25 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 00:34:25 - ABUSER - INFO - HTTP session closed
+2026-03-28 00:34:25 - ABUSER - INFO - Session stats: 0 commands, 0 errors, 0 rate limited
+2026-03-28 00:34:25 - discord.gateway - INFO - Gateway received close code 1000 and reason 'Connection closed.'.
+2026-03-28 00:34:25 - ABUSER - WARNING - Disconnected from Discord
+2026-03-28 00:35:37 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-28 00:35:37 - discord.client - INFO - Logging in using static token.
+2026-03-28 00:35:37 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 518551.
+2026-03-28 00:35:37 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-28 00:35:37 - ABUSER - INFO - Bot setup hook started
+2026-03-28 00:35:37 - ABUSER - INFO - Rate limiter started
+2026-03-28 00:35:37 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-28 00:35:37 - ABUSER - INFO - HTTP session initialized
+2026-03-28 00:35:37 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-28 00:35:37 - ABUSER - INFO - Setup hook completed
+2026-03-28 00:35:38 - discord.gateway - INFO - Connected to Gateway (session ID: ff5156b1757bc4b00961a9b95a261547).
+2026-03-28 00:35:38 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-28 00:35:39 - ABUSER - INFO - ABUSER Bot ready as krazyrain_ - 13 guilds in cache
+2026-03-28 00:37:07 - ABUSER - INFO - Initiating graceful shutdown...
+2026-03-28 00:37:07 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 00:37:07 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 00:37:07 - ABUSER - INFO - HTTP session closed
+2026-03-28 00:37:07 - ABUSER - INFO - Session stats: 0 commands, 0 errors, 0 rate limited
+2026-03-28 00:37:07 - discord.gateway - INFO - Gateway received close code 1000 and reason 'Connection closed.'.
+2026-03-28 00:37:07 - ABUSER - WARNING - Disconnected from Discord
+2026-03-28 00:39:09 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-28 00:39:09 - discord.client - INFO - Logging in using static token.
+2026-03-28 00:39:10 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 518551.
+2026-03-28 00:39:10 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-28 00:39:10 - ABUSER - INFO - Bot setup hook started
+2026-03-28 00:39:10 - ABUSER - INFO - Rate limiter started
+2026-03-28 00:39:10 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-28 00:39:10 - ABUSER - INFO - HTTP session initialized
+2026-03-28 00:39:10 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-28 00:39:10 - ABUSER - INFO - Setup hook completed
+2026-03-28 00:39:11 - discord.gateway - INFO - Connected to Gateway (session ID: bd3d2b983f5c250ab121a24435b9562d).
+2026-03-28 00:39:11 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-28 00:39:11 - ABUSER - INFO - ABUSER Bot ready as krazyrain_ - 13 guilds in cache
+2026-03-28 00:42:40 - ABUSER - INFO - Initiating graceful shutdown...
+2026-03-28 00:42:40 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 00:42:40 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 00:42:40 - ABUSER - INFO - HTTP session closed
+2026-03-28 00:42:40 - ABUSER - INFO - Session stats: 0 commands, 0 errors, 0 rate limited
+2026-03-28 00:42:40 - discord.gateway - INFO - Gateway received close code 1000 and reason 'Connection closed.'.
+2026-03-28 00:42:40 - ABUSER - WARNING - Disconnected from Discord
+2026-03-28 00:48:22 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-28 00:48:22 - discord.client - INFO - Logging in using static token.
+2026-03-28 00:48:22 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 518551.
+2026-03-28 00:48:22 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-28 00:48:22 - ABUSER - INFO - Bot setup hook started
+2026-03-28 00:48:22 - ABUSER - INFO - Rate limiter started
+2026-03-28 00:48:22 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-28 00:48:22 - ABUSER - INFO - HTTP session initialized
+2026-03-28 00:48:22 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-28 00:48:22 - ABUSER - INFO - Setup hook completed
+2026-03-28 00:48:24 - discord.gateway - INFO - Connected to Gateway (session ID: f312d6e604c89f50325e5a05483b5e7a).
+2026-03-28 00:48:24 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-28 00:48:24 - ABUSER - INFO - ABUSER Bot ready as krazyrain_ - 13 guilds in cache
+2026-03-28 00:49:22 - ABUSER - INFO - Initiating graceful shutdown...
+2026-03-28 00:49:22 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 00:49:22 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 00:49:22 - ABUSER - INFO - HTTP session closed
+2026-03-28 00:49:22 - ABUSER - INFO - Session stats: 0 commands, 0 errors, 0 rate limited
+2026-03-28 00:49:22 - discord.gateway - INFO - Gateway received close code 1000 and reason 'Connection closed.'.
+2026-03-28 00:49:22 - ABUSER - WARNING - Disconnected from Discord
+2026-03-28 00:50:18 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-28 00:50:18 - discord.client - INFO - Logging in using static token.
+2026-03-28 00:50:18 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 518551.
+2026-03-28 00:50:18 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-28 00:50:18 - ABUSER - INFO - Bot setup hook started
+2026-03-28 00:50:18 - ABUSER - INFO - Rate limiter started
+2026-03-28 00:50:18 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-28 00:50:18 - ABUSER - INFO - HTTP session initialized
+2026-03-28 00:50:18 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-28 00:50:18 - ABUSER - INFO - Setup hook completed
+2026-03-28 00:50:19 - discord.gateway - INFO - Connected to Gateway (session ID: 04a2ce3e5f662a6c72c86e03e69386d8).
+2026-03-28 00:50:19 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-28 00:50:20 - ABUSER - INFO - ABUSER Bot ready as krazyrain_ - 13 guilds in cache
+2026-03-28 00:50:41 - ABUSER - INFO - Initiating graceful shutdown...
+2026-03-28 00:50:41 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 00:50:41 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 00:50:41 - ABUSER - INFO - HTTP session closed
+2026-03-28 00:50:41 - ABUSER - INFO - Session stats: 0 commands, 0 errors, 0 rate limited
+2026-03-28 00:50:41 - discord.gateway - INFO - Gateway received close code 1000 and reason 'Connection closed.'.
+2026-03-28 00:50:41 - ABUSER - WARNING - Disconnected from Discord
+2026-03-28 00:53:15 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-28 00:53:15 - discord.client - INFO - Logging in using static token.
+2026-03-28 00:53:15 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 518551.
+2026-03-28 00:53:15 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-28 00:53:15 - ABUSER - INFO - Bot setup hook started
+2026-03-28 00:53:15 - ABUSER - INFO - Rate limiter started
+2026-03-28 00:53:15 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-28 00:53:15 - ABUSER - INFO - HTTP session initialized
+2026-03-28 00:53:15 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-28 00:53:15 - ABUSER - INFO - Setup hook completed
+2026-03-28 00:53:17 - discord.gateway - INFO - Connected to Gateway (session ID: 6db452b99e6a4c99d0705e4ec9db1793).
+2026-03-28 00:53:17 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-28 00:53:18 - ABUSER - INFO - ABUSER Bot ready as krazyrain_ - 13 guilds in cache
+2026-03-28 00:55:07 - ABUSER - INFO - Initiating graceful shutdown...
+2026-03-28 00:55:07 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 00:55:07 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 00:55:07 - ABUSER - INFO - HTTP session closed
+2026-03-28 00:55:07 - ABUSER - INFO - Session stats: 0 commands, 0 errors, 0 rate limited
+2026-03-28 00:55:07 - discord.gateway - INFO - Gateway received close code 1000 and reason 'Connection closed.'.
+2026-03-28 00:55:07 - ABUSER - WARNING - Disconnected from Discord
+2026-03-28 00:55:14 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-28 00:55:14 - discord.client - INFO - Logging in using static token.
+2026-03-28 00:55:14 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 518551.
+2026-03-28 00:55:14 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-28 00:55:14 - ABUSER - INFO - Bot setup hook started
+2026-03-28 00:55:14 - ABUSER - INFO - Rate limiter started
+2026-03-28 00:55:14 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-28 00:55:14 - ABUSER - INFO - HTTP session initialized
+2026-03-28 00:55:14 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-28 00:55:14 - ABUSER - INFO - Setup hook completed
+2026-03-28 00:55:15 - discord.gateway - INFO - Connected to Gateway (session ID: 72fb278c45aea5d70104c5195a027d29).
+2026-03-28 00:55:15 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-28 00:55:16 - ABUSER - INFO - ABUSER Bot ready as krazyrain_ - 13 guilds in cache
+2026-03-28 00:55:26 - ABUSER - INFO - Initiating graceful shutdown...
+2026-03-28 00:55:26 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 00:55:26 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 00:55:26 - ABUSER - INFO - HTTP session closed
+2026-03-28 00:55:26 - ABUSER - INFO - Session stats: 0 commands, 0 errors, 0 rate limited
+2026-03-28 00:55:26 - discord.gateway - INFO - Gateway received close code 1000 and reason 'Connection closed.'.
+2026-03-28 00:55:26 - ABUSER - WARNING - Disconnected from Discord
+2026-03-28 00:55:48 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-28 00:55:48 - discord.client - INFO - Logging in using static token.
+2026-03-28 00:55:48 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 518551.
+2026-03-28 00:55:48 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-28 00:55:50 - ABUSER - INFO - Bot setup hook started
+2026-03-28 00:55:50 - ABUSER - INFO - Rate limiter started
+2026-03-28 00:55:50 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-28 00:55:50 - ABUSER - INFO - HTTP session initialized
+2026-03-28 00:55:50 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-28 00:55:50 - ABUSER - INFO - Setup hook completed
+2026-03-28 00:55:51 - discord.gateway - INFO - Connected to Gateway (session ID: c85ee0c4b66c96a0f6aefde0892aa3a3).
+2026-03-28 00:55:51 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-28 00:55:52 - ABUSER - INFO - ABUSER Bot ready as krazyrain_ - 13 guilds in cache
+2026-03-28 00:56:47 - ABUSER - INFO - Initiating graceful shutdown...
+2026-03-28 00:56:47 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 00:56:47 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 00:56:47 - ABUSER - INFO - HTTP session closed
+2026-03-28 00:56:47 - ABUSER - INFO - Session stats: 0 commands, 0 errors, 0 rate limited
+2026-03-28 00:56:47 - discord.gateway - INFO - Gateway received close code 1000 and reason 'Connection closed.'.
+2026-03-28 00:56:47 - ABUSER - WARNING - Disconnected from Discord
+2026-03-28 00:58:44 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-28 00:58:44 - discord.client - INFO - Logging in using static token.
+2026-03-28 00:58:44 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 518551.
+2026-03-28 00:58:44 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-28 00:58:44 - ABUSER - INFO - Bot setup hook started
+2026-03-28 00:58:44 - ABUSER - INFO - Rate limiter started
+2026-03-28 00:58:44 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-28 00:58:44 - ABUSER - INFO - HTTP session initialized
+2026-03-28 00:58:44 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-28 00:58:44 - ABUSER - INFO - Setup hook completed
+2026-03-28 00:58:46 - discord.gateway - INFO - Connected to Gateway (session ID: 883f73f3afa2acd4d7c3e635bb0c0c71).
+2026-03-28 00:58:46 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-28 00:58:47 - ABUSER - INFO - ABUSER Bot ready as krazyrain_ - 13 guilds in cache
+2026-03-28 00:58:53 - ABUSER - INFO - Initiating graceful shutdown...
+2026-03-28 00:58:53 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 00:58:53 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 00:58:53 - ABUSER - INFO - HTTP session closed
+2026-03-28 00:58:53 - ABUSER - INFO - Session stats: 0 commands, 0 errors, 0 rate limited
+2026-03-28 00:58:53 - discord.gateway - INFO - Gateway received close code 1000 and reason 'Connection closed.'.
+2026-03-28 00:58:53 - ABUSER - WARNING - Disconnected from Discord
+2026-03-28 00:59:59 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-28 00:59:59 - discord.client - INFO - Logging in using static token.
+2026-03-28 00:59:59 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 518551.
+2026-03-28 00:59:59 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-28 00:59:59 - ABUSER - INFO - Bot setup hook started
+2026-03-28 00:59:59 - ABUSER - INFO - Rate limiter started
+2026-03-28 00:59:59 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-28 00:59:59 - ABUSER - INFO - HTTP session initialized
+2026-03-28 00:59:59 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-28 00:59:59 - ABUSER - INFO - Setup hook completed
+2026-03-28 01:00:00 - discord.gateway - INFO - Connected to Gateway (session ID: 70ee73b7194198b1fd62c15b35732ec6).
+2026-03-28 01:00:01 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-28 01:00:01 - ABUSER - INFO - ABUSER Bot ready as krazyrain_ - 13 guilds in cache
+2026-03-28 01:00:56 - ABUSER - INFO - Initiating graceful shutdown...
+2026-03-28 01:00:56 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 01:00:56 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 01:00:56 - ABUSER - INFO - HTTP session closed
+2026-03-28 01:00:56 - ABUSER - INFO - Session stats: 0 commands, 0 errors, 0 rate limited
+2026-03-28 01:00:56 - discord.gateway - INFO - Gateway received close code 1000 and reason 'Connection closed.'.
+2026-03-28 01:00:56 - ABUSER - WARNING - Disconnected from Discord
+2026-03-28 01:02:07 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-28 01:02:07 - discord.client - INFO - Logging in using static token.
+2026-03-28 01:02:07 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 518551.
+2026-03-28 01:02:07 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-28 01:02:08 - ABUSER - INFO - Bot setup hook started
+2026-03-28 01:02:08 - ABUSER - INFO - Rate limiter started
+2026-03-28 01:02:08 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-28 01:02:08 - ABUSER - INFO - HTTP session initialized
+2026-03-28 01:02:08 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-28 01:02:08 - ABUSER - INFO - Setup hook completed
+2026-03-28 01:02:08 - discord.gateway - INFO - Connected to Gateway (session ID: eca91aa208a70ac176664a008babb93b).
+2026-03-28 01:02:08 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-28 01:02:09 - ABUSER - INFO - ABUSER Bot ready as krazyrain_ - 13 guilds in cache
+2026-03-28 01:03:06 - ABUSER - INFO - Initiating graceful shutdown...
+2026-03-28 01:03:06 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 01:03:06 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 01:03:06 - ABUSER - INFO - HTTP session closed
+2026-03-28 01:03:06 - ABUSER - INFO - Session stats: 0 commands, 0 errors, 0 rate limited
+2026-03-28 01:03:06 - discord.gateway - INFO - Gateway received close code 1000 and reason 'Connection closed.'.
+2026-03-28 01:03:06 - ABUSER - WARNING - Disconnected from Discord
+2026-03-28 01:23:13 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-28 01:23:13 - discord.client - INFO - Logging in using static token.
+2026-03-28 01:23:13 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 518551.
+2026-03-28 01:23:13 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-28 01:23:13 - ABUSER - INFO - Bot setup hook started
+2026-03-28 01:23:13 - ABUSER - INFO - Rate limiter started
+2026-03-28 01:23:13 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-28 01:23:13 - ABUSER - INFO - HTTP session initialized
+2026-03-28 01:23:13 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-28 01:23:13 - ABUSER - INFO - Setup hook completed
+2026-03-28 01:23:14 - discord.gateway - INFO - Connected to Gateway (session ID: 98aab20cb98717cc06af1dc3fed7dc87).
+2026-03-28 01:23:14 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-28 01:23:15 - ABUSER - INFO - ABUSER Bot ready as krazyrain_ - 13 guilds in cache
+2026-03-28 01:25:15 - ABUSER - INFO - Initiating graceful shutdown...
+2026-03-28 01:25:15 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 01:25:15 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 01:25:15 - ABUSER - INFO - HTTP session closed
+2026-03-28 01:25:15 - ABUSER - INFO - Session stats: 0 commands, 0 errors, 0 rate limited
+2026-03-28 01:25:15 - discord.gateway - INFO - Gateway received close code 1000 and reason 'Connection closed.'.
+2026-03-28 01:25:15 - ABUSER - WARNING - Disconnected from Discord
+2026-03-28 01:40:42 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-28 01:40:42 - discord.client - INFO - Logging in using static token.
+2026-03-28 01:40:43 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 518551.
+2026-03-28 01:40:43 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-28 01:40:43 - ABUSER - INFO - Bot setup hook started
+2026-03-28 01:40:43 - ABUSER - INFO - Rate limiter started
+2026-03-28 01:40:43 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-28 01:40:43 - ABUSER - INFO - HTTP session initialized
+2026-03-28 01:40:43 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-28 01:40:43 - ABUSER - INFO - Setup hook completed
+2026-03-28 01:40:44 - discord.gateway - INFO - Connected to Gateway (session ID: bbd44799ed85d042e523b1704b02d63c).
+2026-03-28 01:40:44 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-28 01:40:44 - ABUSER - INFO - ABUSER Bot ready as krazyrain_ - 13 guilds in cache
+2026-03-28 01:42:38 - ABUSER - INFO - Initiating graceful shutdown...
+2026-03-28 01:42:38 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 01:42:38 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 01:42:38 - ABUSER - INFO - HTTP session closed
+2026-03-28 01:42:38 - ABUSER - INFO - Session stats: 0 commands, 0 errors, 0 rate limited
+2026-03-28 01:42:38 - discord.gateway - INFO - Gateway received close code 1000 and reason 'Connection closed.'.
+2026-03-28 01:42:38 - ABUSER - WARNING - Disconnected from Discord
+2026-03-28 01:44:58 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-28 01:44:58 - discord.client - INFO - Logging in using static token.
+2026-03-28 01:44:58 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 518551.
+2026-03-28 01:44:58 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-28 01:44:58 - ABUSER - INFO - Bot setup hook started
+2026-03-28 01:44:58 - ABUSER - INFO - Rate limiter started
+2026-03-28 01:44:58 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-28 01:44:58 - ABUSER - INFO - HTTP session initialized
+2026-03-28 01:44:58 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-28 01:44:58 - ABUSER - INFO - Setup hook completed
+2026-03-28 01:45:00 - discord.gateway - INFO - Connected to Gateway (session ID: 4258c74d7e77a39b901d22a7f0693820).
+2026-03-28 01:45:00 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-28 01:45:00 - ABUSER - INFO - ABUSER Bot ready as krazyrain_ - 13 guilds in cache
+2026-03-28 01:46:49 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-28 01:46:49 - discord.client - INFO - Logging in using static token.
+2026-03-28 01:46:49 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 518551.
+2026-03-28 01:46:49 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-28 01:46:50 - ABUSER - INFO - Bot setup hook started
+2026-03-28 01:46:50 - ABUSER - INFO - Rate limiter started
+2026-03-28 01:46:50 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-28 01:46:50 - ABUSER - INFO - HTTP session initialized
+2026-03-28 01:46:50 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-28 01:46:50 - ABUSER - INFO - Setup hook completed
+2026-03-28 01:46:50 - discord.gateway - INFO - Connected to Gateway (session ID: 9924ebc021d03844ac30b7261c7e590a).
+2026-03-28 01:46:50 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-28 01:46:51 - ABUSER - INFO - ABUSER Bot ready as krazyrain_ - 13 guilds in cache
+2026-03-28 01:47:18 - ABUSER - INFO - Initiating graceful shutdown...
+2026-03-28 01:47:18 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 01:47:18 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 01:47:18 - ABUSER - INFO - HTTP session closed
+2026-03-28 01:47:18 - ABUSER - INFO - Session stats: 0 commands, 0 errors, 0 rate limited
+2026-03-28 01:47:18 - discord.gateway - INFO - Gateway received close code 1000 and reason 'Connection closed.'.
+2026-03-28 01:47:18 - ABUSER - WARNING - Disconnected from Discord
+2026-03-28 01:50:09 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-28 01:50:09 - discord.client - INFO - Logging in using static token.
+2026-03-28 01:50:09 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 518551.
+2026-03-28 01:50:09 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-28 01:50:09 - ABUSER - INFO - Bot setup hook started
+2026-03-28 01:50:09 - ABUSER - INFO - Rate limiter started
+2026-03-28 01:50:09 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-28 01:50:09 - ABUSER - INFO - HTTP session initialized
+2026-03-28 01:50:09 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-28 01:50:09 - ABUSER - INFO - Setup hook completed
+2026-03-28 01:50:10 - discord.gateway - INFO - Connected to Gateway (session ID: f89775d48894a4f5479ee05362fadd05).
+2026-03-28 01:50:10 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-28 01:50:10 - ABUSER - INFO - ABUSER Bot ready as krazyrain_ - 13 guilds in cache
+2026-03-28 01:52:00 - ABUSER - INFO - Initiating graceful shutdown...
+2026-03-28 01:52:00 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 01:52:00 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 01:52:00 - ABUSER - INFO - HTTP session closed
+2026-03-28 01:52:00 - ABUSER - INFO - Session stats: 0 commands, 0 errors, 0 rate limited
+2026-03-28 01:52:00 - discord.gateway - INFO - Gateway received close code 1000 and reason 'Connection closed.'.
+2026-03-28 01:52:00 - ABUSER - WARNING - Disconnected from Discord
+2026-03-28 01:53:32 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-28 01:53:32 - discord.client - INFO - Logging in using static token.
+2026-03-28 01:53:32 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 518551.
+2026-03-28 01:53:32 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-28 01:53:32 - ABUSER - INFO - Bot setup hook started
+2026-03-28 01:53:32 - ABUSER - INFO - Rate limiter started
+2026-03-28 01:53:32 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-28 01:53:32 - ABUSER - INFO - HTTP session initialized
+2026-03-28 01:53:32 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-28 01:53:32 - ABUSER - INFO - Setup hook completed
+2026-03-28 01:53:33 - discord.gateway - INFO - Connected to Gateway (session ID: 8bf33d8ca28d0aa771253c76cb518292).
+2026-03-28 01:53:33 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-28 01:53:34 - ABUSER - INFO - ABUSER Bot ready as krazyrain_ - 13 guilds in cache
+2026-03-28 01:54:32 - ABUSER - INFO - Initiating graceful shutdown...
+2026-03-28 01:54:32 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 01:54:32 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 01:54:32 - ABUSER - INFO - HTTP session closed
+2026-03-28 01:54:32 - ABUSER - INFO - Session stats: 0 commands, 0 errors, 0 rate limited
+2026-03-28 01:54:32 - discord.gateway - INFO - Gateway received close code 1000 and reason 'Connection closed.'.
+2026-03-28 01:54:32 - ABUSER - WARNING - Disconnected from Discord
+2026-03-28 01:56:24 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-28 01:56:24 - discord.client - INFO - Logging in using static token.
+2026-03-28 01:56:25 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 518551.
+2026-03-28 01:56:25 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-28 01:56:25 - ABUSER - INFO - Bot setup hook started
+2026-03-28 01:56:25 - ABUSER - INFO - Rate limiter started
+2026-03-28 01:56:25 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-28 01:56:25 - ABUSER - INFO - HTTP session initialized
+2026-03-28 01:56:25 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-28 01:56:25 - ABUSER - INFO - Setup hook completed
+2026-03-28 01:56:26 - discord.gateway - INFO - Connected to Gateway (session ID: 3ada61a6efb1e2322ea12db938c0dcfd).
+2026-03-28 01:56:26 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-28 01:56:26 - ABUSER - INFO - ABUSER Bot ready as krazyrain_ - 13 guilds in cache
+2026-03-28 01:57:47 - ABUSER - INFO - Initiating graceful shutdown...
+2026-03-28 01:57:47 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 01:57:47 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 01:57:47 - ABUSER - INFO - HTTP session closed
+2026-03-28 01:57:47 - ABUSER - INFO - Session stats: 0 commands, 0 errors, 0 rate limited
+2026-03-28 01:57:47 - discord.gateway - INFO - Gateway received close code 1000 and reason 'Connection closed.'.
+2026-03-28 01:57:47 - ABUSER - WARNING - Disconnected from Discord
+2026-03-28 02:03:10 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-28 02:03:10 - discord.client - INFO - Logging in using static token.
+2026-03-28 02:03:10 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 518551.
+2026-03-28 02:03:10 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-28 02:03:11 - ABUSER - INFO - Bot setup hook started
+2026-03-28 02:03:11 - ABUSER - INFO - Rate limiter started
+2026-03-28 02:03:11 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-28 02:03:11 - ABUSER - INFO - HTTP session initialized
+2026-03-28 02:03:11 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-28 02:03:11 - ABUSER - INFO - Setup hook completed
+2026-03-28 02:03:13 - discord.gateway - INFO - Connected to Gateway (session ID: c792aa8f7c60bdcf305423c3e5409ad9).
+2026-03-28 02:03:13 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-28 02:03:14 - ABUSER - INFO - ABUSER Bot ready as krazyrain_ - 13 guilds in cache
+2026-03-28 02:03:54 - ABUSER - INFO - Initiating graceful shutdown...
+2026-03-28 02:03:54 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 02:03:54 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 02:03:54 - ABUSER - INFO - HTTP session closed
+2026-03-28 02:03:54 - ABUSER - INFO - Session stats: 0 commands, 0 errors, 0 rate limited
+2026-03-28 02:03:54 - discord.gateway - INFO - Gateway received close code 1000 and reason 'Connection closed.'.
+2026-03-28 02:03:54 - ABUSER - WARNING - Disconnected from Discord
+2026-03-28 02:09:08 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-28 02:09:08 - discord.client - INFO - Logging in using static token.
+2026-03-28 02:09:09 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 518551.
+2026-03-28 02:09:09 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-28 02:09:09 - ABUSER - INFO - Bot setup hook started
+2026-03-28 02:09:09 - ABUSER - INFO - Rate limiter started
+2026-03-28 02:09:09 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-28 02:09:09 - ABUSER - INFO - HTTP session initialized
+2026-03-28 02:09:09 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-28 02:09:09 - ABUSER - INFO - Setup hook completed
+2026-03-28 02:09:09 - discord.gateway - INFO - Connected to Gateway (session ID: 245c9213193bf0a543ca8bda4b6f782b).
+2026-03-28 02:09:09 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-28 02:09:10 - ABUSER - INFO - ABUSER Bot ready as krazyrain_ - 13 guilds in cache
+2026-03-28 02:09:47 - ABUSER - INFO - Initiating graceful shutdown...
+2026-03-28 02:09:47 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 02:09:47 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 02:09:47 - ABUSER - INFO - HTTP session closed
+2026-03-28 02:09:47 - ABUSER - INFO - Session stats: 0 commands, 0 errors, 0 rate limited
+2026-03-28 02:09:47 - discord.gateway - INFO - Gateway received close code 1000 and reason 'Connection closed.'.
+2026-03-28 02:09:47 - ABUSER - WARNING - Disconnected from Discord
+2026-03-28 02:13:56 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-28 02:13:56 - discord.client - INFO - Logging in using static token.
+2026-03-28 02:13:57 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 518551.
+2026-03-28 02:13:57 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-28 02:13:59 - ABUSER - INFO - Bot setup hook started
+2026-03-28 02:13:59 - ABUSER - INFO - Rate limiter started
+2026-03-28 02:13:59 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-28 02:13:59 - ABUSER - INFO - HTTP session initialized
+2026-03-28 02:13:59 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-28 02:13:59 - ABUSER - INFO - Setup hook completed
+2026-03-28 02:14:00 - discord.gateway - INFO - Connected to Gateway (session ID: 9b5b516aeac287e49e3d3738cd3958e4).
+2026-03-28 02:14:00 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-28 02:14:00 - ABUSER - INFO - ABUSER Bot ready as krazyrain_ - 13 guilds in cache
+2026-03-28 02:14:41 - ABUSER - INFO - Initiating graceful shutdown...
+2026-03-28 02:14:41 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 02:14:41 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 02:14:41 - ABUSER - INFO - HTTP session closed
+2026-03-28 02:14:41 - ABUSER - INFO - Session stats: 0 commands, 0 errors, 0 rate limited
+2026-03-28 02:14:41 - discord.gateway - INFO - Gateway received close code 1000 and reason 'Connection closed.'.
+2026-03-28 02:14:41 - ABUSER - WARNING - Disconnected from Discord
+2026-03-28 02:18:53 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-28 02:18:53 - discord.client - INFO - Logging in using static token.
+2026-03-28 02:18:53 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 518551.
+2026-03-28 02:18:53 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-28 02:18:54 - ABUSER - INFO - Bot setup hook started
+2026-03-28 02:18:54 - ABUSER - INFO - Rate limiter started
+2026-03-28 02:18:54 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-28 02:18:54 - ABUSER - INFO - HTTP session initialized
+2026-03-28 02:18:54 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-28 02:18:54 - ABUSER - INFO - Setup hook completed
+2026-03-28 02:18:54 - discord.gateway - INFO - Connected to Gateway (session ID: 5d09856f5c89d13590ae7da0ebb0c7e3).
+2026-03-28 02:18:54 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-28 02:18:55 - ABUSER - INFO - ABUSER Bot ready as krazyrain_ - 13 guilds in cache
+2026-03-28 02:19:25 - ABUSER - INFO - Initiating graceful shutdown...
+2026-03-28 02:19:25 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 02:19:25 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 02:19:25 - ABUSER - INFO - HTTP session closed
+2026-03-28 02:19:25 - ABUSER - INFO - Session stats: 0 commands, 0 errors, 0 rate limited
+2026-03-28 02:19:25 - discord.gateway - INFO - Gateway received close code 1000 and reason 'Connection closed.'.
+2026-03-28 02:19:25 - ABUSER - WARNING - Disconnected from Discord
+2026-03-28 04:51:48 - discord.client - WARNING - PyNaCl is not installed, voice will NOT be supported.
+2026-03-28 04:51:48 - discord.client - INFO - Logging in using static token.
+2026-03-28 04:51:48 - discord.http - INFO - Found user agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36", build number 518551.
+2026-03-28 04:51:48 - discord.http - INFO - Found TLS fingerprint target "chrome142".
+2026-03-28 04:51:48 - ABUSER - INFO - Bot setup hook started
+2026-03-28 04:51:48 - ABUSER - INFO - Rate limiter started
+2026-03-28 04:51:48 - ABUSER - INFO - Rate limiter initialized: 50.0 req/s max, 3 max retries
+2026-03-28 04:51:48 - ABUSER - INFO - HTTP session initialized
+2026-03-28 04:51:48 - ABUSER - INFO - Loaded 9 modules successfully
+2026-03-28 04:51:48 - ABUSER - INFO - Setup hook completed
+2026-03-28 04:51:49 - discord.gateway - INFO - Connected to Gateway (session ID: 7f73b61e9f2e8eb18ebecddd8274f006).
+2026-03-28 04:51:49 - ABUSER - INFO - Connected to Discord (attempt 1)
+2026-03-28 04:51:50 - ABUSER - INFO - ABUSER Bot ready as krazyrain_ - 13 guilds in cache
+2026-03-28 04:53:45 - ABUSER - INFO - Initiating graceful shutdown...
+2026-03-28 04:53:45 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 04:53:45 - ABUSER - INFO - Rate limiter stopped
+2026-03-28 04:53:45 - ABUSER - INFO - HTTP session closed
+2026-03-28 04:53:45 - ABUSER - INFO - Session stats: 0 commands, 0 errors, 0 rate limited
+2026-03-28 04:53:45 - discord.gateway - INFO - Gateway received close code 1000 and reason 'Connection closed.'.
+2026-03-28 04:53:45 - ABUSER - WARNING - Disconnected from Discord

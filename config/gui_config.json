@@ -1,0 +1,39 @@
+{
+  "appearance": {
+    "preset": "Midnight",
+    "theme_mode": 0,
+    "accent": "Red",
+    "font_size": 13,
+    "animations": true,
+    "transparency": false,
+    "compact": false
+  },
+  "behavior": {
+    "confirm_actions": true,
+    "log_commands": true,
+    "minimize_tray": false,
+    "auto_start": false,
+    "auto_update": true,
+    "startup_page": "Login",
+    "last_route": "login"
+  },
+  "bot": {
+    "prefix": ".",
+    "timeout": 30,
+    "case_sensitive": false,
+    "mention_prefix": true,
+    "delete_commands": false
+  },
+  "notifications": {
+    "notify_errors": true,
+    "notify_success": true,
+    "notify_updates": true,
+    "sound_effects": false
+  },
+  "privacy": {
+    "save_tokens": true,
+    "encrypt_tokens": false,
+    "analytics": false
+  },
+  "version": "1.0"
+}
