@@ -78,8 +78,8 @@ def test_post_login_routes_to_guilds(qtbot):
 def test_settings_apply_persists_and_updates_theme(qtbot):
     window = build_window(qtbot)
 
-    window.settings_tab.theme_mode_combo.setCurrentIndex(1)
-    window.settings_tab.preset_combo.setCurrentText("GitHub Light")
+    window.settings_tab.theme_mode_combo.setCurrentIndex(0)
+    window.settings_tab.preset_combo.setCurrentText("Obsidian")
     window.settings_tab.accent_combo.setCurrentText("Cyan")
     window.settings_tab.font_size_spin.setValue(15)
     window.settings_tab.startup_combo.setCurrentText("Guilds")
@@ -87,7 +87,7 @@ def test_settings_apply_persists_and_updates_theme(qtbot):
 
     config_path = window.settings_tab.current_config()
     assert config_path["behavior"]["startup_page"] == "Guilds"
-    assert window.theme_manager.theme.name == "GitHub Light"
+    assert window.theme_manager.theme.name == "Obsidian"
     assert window.theme_manager.theme.accent.name == "CYAN"
     assert QApplication.instance().font().pointSize() == 15
 
