@@ -19,6 +19,7 @@ from ..components import (
     StatusChip,
     rgba,
 )
+from ..theme import get_theme_manager
 from .base import BasePage, GuildItem
 
 
@@ -81,7 +82,6 @@ class NukerPage(BasePage):
         name_col.setSpacing(4)
 
         self.target_name = QLabel("Select a server")
-        self.target_name.setStyleSheet("font-size: 18px; font-weight: 700;")
         name_col.addWidget(self.target_name)
 
         dropdown_row = QHBoxLayout()
@@ -116,7 +116,6 @@ class NukerPage(BasePage):
         self.stat_boosts = QLabel("Boosts: -")
 
         for label in [self.stat_members, self.stat_channels, self.stat_roles, self.stat_boosts]:
-            label.setStyleSheet("font-size: 13px;")
             stats_row.addWidget(label)
 
         stats_row.addStretch(1)
@@ -133,7 +132,6 @@ class NukerPage(BasePage):
 
         # Section title
         actions_title = QLabel("Actions")
-        actions_title.setStyleSheet("font-size: 14px; font-weight: 700;")
         actions_layout.addWidget(actions_title)
 
         # Actions in a clean grid
@@ -144,7 +142,6 @@ class NukerPage(BasePage):
         content_col = QVBoxLayout()
         content_col.setSpacing(8)
         content_label = QLabel("Content")
-        content_label.setStyleSheet("font-size: 12px; font-weight: 600; color: #888;")
         content_col.addWidget(content_label)
 
         self._add_action_btn(content_col, "delete_emojis", "Delete Emojis", "preview")
@@ -155,7 +152,6 @@ class NukerPage(BasePage):
         struct_col = QVBoxLayout()
         struct_col.setSpacing(8)
         struct_label = QLabel("Structure")
-        struct_label.setStyleSheet("font-size: 12px; font-weight: 600; color: #888;")
         struct_col.addWidget(struct_label)
 
         self._add_action_btn(struct_col, "delete_channels", "Delete Channels", "preview")
@@ -167,7 +163,6 @@ class NukerPage(BasePage):
         members_col = QVBoxLayout()
         members_col.setSpacing(8)
         members_label = QLabel("Members")
-        members_label.setStyleSheet("font-size: 12px; font-weight: 600; color: #888;")
         members_col.addWidget(members_label)
 
         self._add_action_btn(members_col, "kick_all", "Kick All", "preview")
@@ -201,7 +196,6 @@ class NukerPage(BasePage):
         name_container = QVBoxLayout()
         name_container.setSpacing(4)
         name_lbl = QLabel("Name")
-        name_lbl.setStyleSheet("font-size: 11px; color: #888;")
         self.server_name_input = AppLineEdit()
         self.server_name_input.setText("Test Server")
         name_container.addWidget(name_lbl)
@@ -211,7 +205,6 @@ class NukerPage(BasePage):
         roles_container = QVBoxLayout()
         roles_container.setSpacing(4)
         roles_lbl = QLabel("Roles")
-        roles_lbl.setStyleSheet("font-size: 11px; color: #888;")
         self.roles_spinner = AppSpinBox()
         self.roles_spinner.setRange(1, 50)
         self.roles_spinner.setValue(5)
@@ -222,7 +215,6 @@ class NukerPage(BasePage):
         channels_container = QVBoxLayout()
         channels_container.setSpacing(4)
         channels_lbl = QLabel("Channels")
-        channels_lbl.setStyleSheet("font-size: 11px; color: #888;")
         self.channels_spinner = AppSpinBox()
         self.channels_spinner.setRange(1, 50)
         self.channels_spinner.setValue(5)
@@ -465,8 +457,7 @@ class NukerPage(BasePage):
     def _update_status(self, message: str, tone: str = "neutral") -> None:
         """Update status."""
         self.status_banner.title_label.setText(message)
-        self.status_banner._tone = tone
-        self.status_banner.refresh_theme()
+        self.status_banner.set_tone(tone)
 
     def on_action_completed(self, action_id: str, success: bool, message: str = "") -> None:
         """Action completed callback."""
@@ -487,6 +478,7 @@ class NukerPage(BasePage):
         super().refresh_theme()
 
         colors = self.theme
+        dt = get_theme_manager().design_tokens
 
         # Set body background to match theme
         body = self.findChild(QScrollArea).widget()
@@ -504,10 +496,15 @@ class NukerPage(BasePage):
                     }}
                 """)
 
-        self.target_name.setStyleSheet(f"color: {colors.text_primary}; font-size: 16px; font-weight: 700;")
+        self.target_name.setStyleSheet(f"color: {dt.text_primary}; font-size: 16px; font-weight: 700;")
 
         for stat in [self.stat_members, self.stat_channels, self.stat_roles, self.stat_boosts]:
-            stat.setStyleSheet(f"color: {colors.text_secondary}; font-size: 12px;")
+            stat.setStyleSheet(f"color: {dt.text_secondary}; font-size: 12px;")
+
+        # Style section labels (Content, Structure, Members, Name, Roles, Channels)
+        for label in self.findChildren(QLabel):
+            if label.text() in ("Content", "Structure", "Members", "Name", "Roles", "Channels", "Actions"):
+                label.setStyleSheet(f"font-size: 12px; font-weight: 600; color: {dt.text_muted};")
 
         for frame in self.findChildren(QFrame):
             frame.setStyleSheet(f"background-color: {colors.divider};")
