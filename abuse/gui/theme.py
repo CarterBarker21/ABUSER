@@ -213,6 +213,72 @@ class ThemeTokens:
 
 
 # ============================================
+# Design Tokens — semantic color aliases
+# ============================================
+
+def _rgba(hex_color: str, alpha: float) -> str:
+    """Inline rgba helper (avoids circular import with components.py)."""
+    h = hex_color.lstrip("#")
+    r, g, b = int(h[0:2], 16), int(h[2:4], 16), int(h[4:6], 16)
+    return f"rgba({r}, {g}, {b}, {alpha:.3f})"
+
+
+@dataclass(frozen=True)
+class DesignTokens:
+    """Semantic color tokens — the single source of truth for all UI color styling.
+
+    Every component and page must read colors exclusively from this dataclass.
+    No widget may reference raw hex literals or ``Theme`` fields directly.
+    """
+
+    # Layer colors
+    background: str       # Deepest app background
+    surface: str          # Cards, panels, sidebar
+    surface_raised: str   # Inputs, hover states
+    # Borders
+    border: str           # Subtle dividers / outlines
+    border_strong: str    # Focused inputs, active states
+    # Text hierarchy
+    text_primary: str     # Main readable text
+    text_secondary: str   # Descriptions, secondary info
+    text_muted: str       # Section labels, very muted
+    text_disabled: str    # Inactive / placeholder
+    # Accent (overridden by accent picker)
+    accent: str           # Brand / action color
+    accent_hover: str     # Accent on hover
+    accent_muted: str     # Accent at ~15 % opacity (backgrounds)
+    # Semantic states
+    danger: str           # Destructive actions
+    danger_hover: str     # Danger on hover
+    success: str          # Confirmed / connected
+    success_bright: str   # Bright success for chips and icons
+    warning: str          # Caution states
+
+
+def make_design_tokens(theme: Theme) -> DesignTokens:
+    """Build a :class:`DesignTokens` instance from the active ``Theme``."""
+    return DesignTokens(
+        background=theme.bg_primary,
+        surface=theme.surface,
+        surface_raised=theme.surface_hover,
+        border=theme.border,
+        border_strong=theme.border_light,
+        text_primary=theme.text_primary,
+        text_secondary=theme.text_secondary,
+        text_muted=theme.text_muted,
+        text_disabled=theme.text_disabled,
+        accent=theme.accent_primary,
+        accent_hover=theme.accent_hover,
+        accent_muted=_rgba(theme.accent_primary, 0.15),
+        danger=theme.error,
+        danger_hover=theme.error_hover,
+        success=theme.success,
+        success_bright=theme.success_bright,
+        warning=theme.warning,
+    )
+
+
+# ============================================
 # Theme Presets
 # ============================================
 
@@ -1531,7 +1597,12 @@ class ThemeManager:
     def tokens(self) -> ThemeTokens:
         """Return typed theme/layout tokens for shared widgets."""
         return ThemeTokens(self.theme.copy())
-    
+
+    @property
+    def design_tokens(self) -> DesignTokens:
+        """Return semantic design tokens built from the active theme."""
+        return make_design_tokens(self.theme)
+
     def create_default_theme(self) -> Theme:
         """Create the release default theme: Discord Dark with a red accent."""
         return create_theme_from_preset("Discord Dark", AccentColor.RED)
