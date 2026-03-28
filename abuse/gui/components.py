@@ -23,7 +23,7 @@ from PyQt6.QtWidgets import (
     QWidget,
 )
 
-from .theme import get_theme_manager
+from .theme import DesignTokens, get_theme_manager
 
 
 def _hex_to_rgb(color: str) -> tuple[int, int, int]:
@@ -67,6 +67,11 @@ class ThemedWidget:
     def tokens(self):
         return get_theme_manager().tokens
 
+    @property
+    def dt(self) -> DesignTokens:
+        """Semantic design tokens — use this instead of raw ``self.theme`` in new code."""
+        return get_theme_manager().design_tokens
+
     def refresh_theme(self) -> None:  # pragma: no cover - interface hook
         pass
 
@@ -85,14 +90,14 @@ class StatusChip(QLabel, ThemedWidget):
         self.refresh_theme()
 
     def refresh_theme(self) -> None:
-        colors = self.theme
+        dt = self.dt
         palette = {
-            "neutral": (rgba(colors.text_secondary, 0.14), colors.text_secondary, rgba(colors.border_light, 0.9)),
-            "accent": (rgba(colors.accent_primary, 0.16), colors.accent_primary, rgba(colors.accent_primary, 0.42)),
-            "success": (rgba(colors.success_bright, 0.16), colors.success_bright, rgba(colors.success_bright, 0.42)),
-            "warning": (rgba(colors.warning, 0.16), colors.warning, rgba(colors.warning, 0.42)),
-            "danger": (rgba(colors.error, 0.16), colors.error, rgba(colors.error, 0.42)),
-            "preview": (rgba(colors.text_muted, 0.14), colors.text_muted, rgba(colors.text_muted, 0.36)),
+            "neutral":  (rgba(dt.text_secondary, 0.14), dt.text_secondary,  rgba(dt.border_strong, 0.9)),
+            "accent":   (rgba(dt.accent, 0.16),         dt.accent,           rgba(dt.accent, 0.42)),
+            "success":  (rgba(dt.success_bright, 0.16), dt.success_bright,   rgba(dt.success_bright, 0.42)),
+            "warning":  (rgba(dt.warning, 0.16),        dt.warning,          rgba(dt.warning, 0.42)),
+            "danger":   (rgba(dt.danger, 0.16),         dt.danger,           rgba(dt.danger, 0.42)),
+            "preview":  (rgba(dt.text_muted, 0.14),     dt.text_muted,       rgba(dt.text_muted, 0.36)),
         }
         background, text, border = palette.get(self._tone, palette["neutral"])
         radius = self.tokens.metrics.control_height_sm // 2
@@ -159,13 +164,13 @@ class PageHeader(QWidget, ThemedWidget):
         self.status_chip.setVisible(bool(text))
 
     def refresh_theme(self) -> None:
-        colors = self.theme
+        dt = self.dt
         self.eyebrow_label.setStyleSheet(
-            f"color: {colors.text_muted}; font-size: 11px; font-weight: 700; letter-spacing: 1.8px;"
+            f"color: {dt.text_muted}; font-size: 11px; font-weight: 700; letter-spacing: 1.8px;"
         )
-        self.title_label.setStyleSheet(f"color: {colors.text_primary};")
+        self.title_label.setStyleSheet(f"color: {dt.text_primary};")
         self.description_label.setStyleSheet(
-            f"color: {colors.text_secondary}; font-size: 13px; line-height: 1.4em;"
+            f"color: {dt.text_secondary}; font-size: 13px; line-height: 1.4em;"
         )
         self.status_chip.refresh_theme()
 
@@ -176,8 +181,9 @@ class SectionLabel(QLabel, ThemedWidget):
         self.refresh_theme()
 
     def refresh_theme(self) -> None:
+        dt = self.dt
         self.setStyleSheet(
-            f"color: {self.theme.text_muted}; font-size: 11px; font-weight: 700; letter-spacing: 1px;"
+            f"color: {dt.text_muted}; font-size: 11px; font-weight: 700; letter-spacing: 1px;"
         )
 
 
@@ -222,27 +228,27 @@ class PanelCard(QFrame, ThemedWidget):
         self.refresh_theme()
 
     def refresh_theme(self) -> None:
-        colors = self.theme
+        dt = self.dt
         border_map = {
-            "neutral": rgba(colors.border_light, 0.9),
-            "accent": rgba(colors.accent_primary, 0.45),
-            "warning": rgba(colors.warning, 0.48),
-            "danger": rgba(colors.error, 0.48),
-            "success": rgba(colors.success_bright, 0.48),
+            "neutral": rgba(dt.border_strong, 0.9),
+            "accent":  rgba(dt.accent, 0.45),
+            "warning": rgba(dt.warning, 0.48),
+            "danger":  rgba(dt.danger, 0.48),
+            "success": rgba(dt.success_bright, 0.48),
         }
         border = border_map.get(self._tone, border_map["neutral"])
         self.setStyleSheet(
             f"""
             QFrame#panelCard {{
-                background-color: {colors.card_bg};
+                background-color: {dt.surface};
                 border: 1px solid {border};
                 border-radius: {self.tokens.metrics.card_radius}px;
             }}
             """
         )
-        self.title_label.setStyleSheet(f"color: {colors.text_primary};")
+        self.title_label.setStyleSheet(f"color: {dt.text_primary};")
         self.description_label.setStyleSheet(
-            f"color: {colors.text_secondary}; font-size: 12px; line-height: 1.4em;"
+            f"color: {dt.text_secondary}; font-size: 12px; line-height: 1.4em;"
         )
 
 
@@ -259,19 +265,19 @@ class AppButton(QPushButton, ThemedWidget):
         self.refresh_theme()
 
     def refresh_theme(self) -> None:
-        colors = self.theme
+        dt = self.dt
         variants = {
-            "primary": (colors.accent_primary, "#FFFFFF", colors.accent_hover, rgba(colors.accent_primary, 0.7)),
-            "secondary": (colors.surface, colors.text_primary, colors.surface_hover, rgba(colors.border_light, 1.0)),
-            "tertiary": (rgba(colors.surface, 0.45), colors.text_secondary, rgba(colors.surface_hover, 0.85), rgba(colors.border_light, 0.8)),
-            "danger": (colors.error, "#FFFFFF", colors.error_hover, rgba(colors.error, 0.6)),
-            "success": (colors.success, "#FFFFFF", colors.success_hover, rgba(colors.success_bright, 0.6)),
-            "preview": (rgba(colors.text_muted, 0.12), colors.text_muted, rgba(colors.text_muted, 0.18), rgba(colors.text_muted, 0.35)),
+            "primary":   (dt.accent,                    "#FFFFFF",          dt.accent_hover,    rgba(dt.accent, 0.7)),
+            "secondary": (dt.surface,                   dt.text_primary,    dt.surface_raised,  rgba(dt.border_strong, 1.0)),
+            "tertiary":  (rgba(dt.surface, 0.45),       dt.text_secondary,  rgba(dt.surface_raised, 0.85), rgba(dt.border_strong, 0.8)),
+            "danger":    (dt.danger,                    "#FFFFFF",          dt.danger_hover,    rgba(dt.danger, 0.6)),
+            "success":   (dt.success,                   "#FFFFFF",          dt.success,         rgba(dt.success_bright, 0.6)),
+            "preview":   (rgba(dt.text_muted, 0.12),    dt.text_muted,      rgba(dt.text_muted, 0.18), rgba(dt.text_muted, 0.35)),
         }
         background, text, hover, border = variants.get(self._variant, variants["secondary"])
-        disabled_bg = rgba(colors.text_muted, 0.12)
-        disabled_text = blend(colors.text_muted, colors.bg_primary, 0.05)
-        pressed = hover if hover.startswith("rgba") else blend(hover, colors.bg_primary, 0.18)
+        disabled_bg   = rgba(dt.text_muted, 0.12)
+        disabled_text = blend(dt.text_muted, dt.background, 0.05)
+        pressed = hover if hover.startswith("rgba") else blend(hover, dt.background, 0.18)
         self.setStyleSheet(
             f"""
             QPushButton {{
@@ -291,7 +297,7 @@ class AppButton(QPushButton, ThemedWidget):
             QPushButton:disabled {{
                 background-color: {disabled_bg};
                 color: {disabled_text};
-                border-color: {rgba(colors.text_muted, 0.25)};
+                border-color: {rgba(dt.text_muted, 0.25)};
             }}
             """
         )
@@ -352,8 +358,7 @@ class SidebarNavButton(QPushButton, ThemedWidget):
         self.icon_label.setPixmap(pixmap)
 
     def refresh_theme(self) -> None:
-        colors = self.theme
-        accent = colors.accent_primary
+        dt = self.dt
         self.setStyleSheet(
             f"""
             QPushButton#sidebarNavButton {{
@@ -363,23 +368,22 @@ class SidebarNavButton(QPushButton, ThemedWidget):
                 text-align: left;
             }}
             QPushButton#sidebarNavButton:hover {{
-                background-color: {rgba(colors.surface_hover, 0.7)};
-                border-color: {rgba(colors.border_light, 0.7)};
+                background-color: {rgba(dt.surface_raised, 0.7)};
+                border-color: {rgba(dt.border_strong, 0.7)};
             }}
             QPushButton#sidebarNavButton:checked {{
-                background-color: {rgba(accent, 0.16)};
-                border: 1px solid {rgba(accent, 0.36)};
-                border-left: 3px solid {accent};
+                background-color: {dt.accent_muted};
+                border: 1px solid {rgba(dt.accent, 0.36)};
+                border-left: 3px solid {dt.accent};
             }}
             QPushButton#sidebarNavButton:checked:hover {{
-                background-color: {rgba(accent, 0.2)};
+                background-color: {rgba(dt.accent, 0.2)};
             }}
             """
         )
-
         checked = self.isChecked()
-        icon_color = accent if checked else colors.text_muted
-        title_fg = colors.text_primary if checked else colors.text_secondary
+        icon_color = dt.accent if checked else dt.text_muted
+        title_fg   = dt.text_primary if checked else dt.text_secondary
         self.icon_label.setStyleSheet("background-color: transparent;")
         self._update_icon(icon_color)
         self.title_label.setStyleSheet(f"color: {title_fg}; background-color: transparent;")
@@ -393,22 +397,22 @@ class AppLineEdit(QLineEdit, ThemedWidget):
         self.refresh_theme()
 
     def refresh_theme(self) -> None:
-        colors = self.theme
+        dt = self.dt
         self.setStyleSheet(
             f"""
             QLineEdit {{
-                background-color: {colors.input_bg};
-                color: {colors.text_primary};
-                border: 1px solid {rgba(colors.border_light, 0.95)};
+                background-color: {dt.background};
+                color: {dt.text_primary};
+                border: 1px solid {rgba(dt.border_strong, 0.95)};
                 border-radius: 10px;
                 padding: 0 12px;
-                selection-background-color: {rgba(colors.accent_primary, 0.35)};
+                selection-background-color: {rgba(dt.accent, 0.35)};
             }}
             QLineEdit:hover {{
-                border-color: {rgba(colors.text_secondary, 0.6)};
+                border-color: {rgba(dt.text_secondary, 0.6)};
             }}
             QLineEdit:focus {{
-                border-color: {colors.accent_primary};
+                border-color: {dt.accent};
             }}
             """
         )
@@ -425,31 +429,31 @@ class AppComboBox(QComboBox, ThemedWidget):
         self.refresh_theme()
 
     def refresh_theme(self) -> None:
-        colors = self.theme
+        dt = self.dt
         self.setStyleSheet(
             f"""
             QComboBox {{
-                background-color: {colors.input_bg};
-                color: {colors.text_primary};
-                border: 1px solid {rgba(colors.border_light, 0.95)};
+                background-color: {dt.background};
+                color: {dt.text_primary};
+                border: 1px solid {rgba(dt.border_strong, 0.95)};
                 border-radius: 10px;
                 padding: 0 12px;
             }}
             QComboBox:hover {{
-                border-color: {rgba(colors.text_secondary, 0.6)};
+                border-color: {rgba(dt.text_secondary, 0.6)};
             }}
             QComboBox:focus {{
-                border-color: {colors.accent_primary};
+                border-color: {dt.accent};
             }}
             QComboBox::drop-down {{
                 border: none;
                 width: 22px;
             }}
             QComboBox QAbstractItemView {{
-                background-color: {colors.bg_secondary};
-                color: {colors.text_primary};
-                border: 1px solid {colors.border};
-                selection-background-color: {rgba(colors.accent_primary, 0.28)};
+                background-color: {dt.surface};
+                color: {dt.text_primary};
+                border: 1px solid {dt.border};
+                selection-background-color: {rgba(dt.accent, 0.28)};
             }}
             """
         )
@@ -462,22 +466,22 @@ class AppTextEdit(QTextEdit, ThemedWidget):
         self.refresh_theme()
 
     def refresh_theme(self) -> None:
-        colors = self.theme
+        dt = self.dt
         self.setStyleSheet(
             f"""
             QTextEdit {{
-                background-color: {colors.input_bg};
-                color: {colors.text_primary};
-                border: 1px solid {rgba(colors.border_light, 0.95)};
+                background-color: {dt.background};
+                color: {dt.text_primary};
+                border: 1px solid {rgba(dt.border_strong, 0.95)};
                 border-radius: 12px;
                 padding: 10px 12px;
-                selection-background-color: {rgba(colors.accent_primary, 0.35)};
+                selection-background-color: {rgba(dt.accent, 0.35)};
             }}
             QTextEdit:hover {{
-                border-color: {rgba(colors.text_secondary, 0.6)};
+                border-color: {rgba(dt.text_secondary, 0.6)};
             }}
             QTextEdit:focus {{
-                border-color: {colors.accent_primary};
+                border-color: {dt.accent};
             }}
             """
         )
@@ -490,23 +494,26 @@ class AppSpinBox(QSpinBox, ThemedWidget):
         self.refresh_theme()
 
     def refresh_theme(self) -> None:
-        colors = self.theme
+        dt = self.dt
         self.setStyleSheet(
             f"""
             QSpinBox {{
-                background-color: {colors.input_bg};
-                color: {colors.text_primary};
-                border: 1px solid {rgba(colors.border_light, 0.95)};
+                background-color: {dt.background};
+                color: {dt.text_primary};
+                border: 1px solid {rgba(dt.border_strong, 0.95)};
                 border-radius: 10px;
                 padding: 0 12px;
             }}
+            QSpinBox:hover {{
+                border-color: {rgba(dt.text_secondary, 0.6)};
+            }}
             QSpinBox:focus {{
-                border-color: {colors.accent_primary};
+                border-color: {dt.accent};
             }}
             QSpinBox::up-button, QSpinBox::down-button {{
-                background: transparent;
                 border: none;
-                width: 18px;
+                background: transparent;
+                width: 16px;
             }}
             """
         )
@@ -519,29 +526,29 @@ class ToggleSwitch(QCheckBox, ThemedWidget):
         self.refresh_theme()
 
     def refresh_theme(self) -> None:
-        colors = self.theme
+        dt = self.dt
         self.setStyleSheet(
             f"""
             QCheckBox {{
-                color: {colors.text_primary};
+                color: {dt.text_primary};
                 spacing: 10px;
             }}
             QCheckBox:disabled {{
-                color: {colors.text_muted};
+                color: {dt.text_muted};
             }}
             QCheckBox::indicator {{
                 width: 36px;
                 height: 20px;
                 border-radius: 10px;
-                background-color: {rgba(colors.text_muted, 0.22)};
-                border: 1px solid {rgba(colors.border_light, 0.7)};
+                background-color: {rgba(dt.text_muted, 0.22)};
+                border: 1px solid {rgba(dt.border_strong, 0.7)};
             }}
             QCheckBox::indicator:checked {{
-                background-color: {colors.accent_primary};
-                border-color: {colors.accent_primary};
+                background-color: {dt.accent};
+                border-color: {dt.accent};
             }}
             QCheckBox::indicator:unchecked:hover {{
-                background-color: {rgba(colors.text_muted, 0.32)};
+                background-color: {rgba(dt.text_muted, 0.32)};
             }}
             """
         )
@@ -570,14 +577,14 @@ class InfoBanner(QFrame, ThemedWidget):
         self.refresh_theme()
 
     def refresh_theme(self) -> None:
-        colors = self.theme
+        dt = self.dt
         mapping = {
-            "neutral": (rgba(colors.surface_hover, 0.55), rgba(colors.border_light, 0.85), colors.text_secondary),
-            "accent": (rgba(colors.accent_primary, 0.12), rgba(colors.accent_primary, 0.35), colors.accent_primary),
-            "warning": (rgba(colors.warning, 0.12), rgba(colors.warning, 0.35), colors.warning),
-            "danger": (rgba(colors.error, 0.12), rgba(colors.error, 0.35), colors.error),
-            "success": (rgba(colors.success_bright, 0.12), rgba(colors.success_bright, 0.35), colors.success_bright),
-            "preview": (rgba(colors.text_muted, 0.1), rgba(colors.text_muted, 0.25), colors.text_muted),
+            "neutral": (rgba(dt.surface_raised, 0.55), rgba(dt.border_strong, 0.85), dt.text_secondary),
+            "accent":  (rgba(dt.accent, 0.12),         rgba(dt.accent, 0.35),         dt.accent),
+            "warning": (rgba(dt.warning, 0.12),        rgba(dt.warning, 0.35),        dt.warning),
+            "danger":  (rgba(dt.danger, 0.12),         rgba(dt.danger, 0.35),         dt.danger),
+            "success": (rgba(dt.success_bright, 0.12), rgba(dt.success_bright, 0.35), dt.success_bright),
+            "preview": (rgba(dt.text_muted, 0.1),      rgba(dt.text_muted, 0.25),     dt.text_muted),
         }
         background, border, accent = mapping.get(self._tone, mapping["neutral"])
         self.setStyleSheet(
@@ -590,7 +597,7 @@ class InfoBanner(QFrame, ThemedWidget):
             """
         )
         self.title_label.setStyleSheet(f"color: {accent};")
-        self.message_label.setStyleSheet(f"color: {self.theme.text_secondary}; font-size: 12px;")
+        self.message_label.setStyleSheet(f"color: {dt.text_secondary}; font-size: 12px;")
 
 
 class EmptyState(QFrame, ThemedWidget):
@@ -615,18 +622,18 @@ class EmptyState(QFrame, ThemedWidget):
         self.refresh_theme()
 
     def refresh_theme(self) -> None:
-        colors = self.theme
+        dt = self.dt
         self.setStyleSheet(
             f"""
             QFrame#emptyState {{
-                background-color: {rgba(colors.surface, 0.42)};
-                border: 1px solid {rgba(colors.border_light, 0.72)};
+                background-color: {rgba(dt.surface, 0.42)};
+                border: 1px solid {rgba(dt.border_strong, 0.72)};
                 border-radius: 12px;
             }}
             """
         )
-        self.title_label.setStyleSheet(f"color: {colors.text_primary};")
-        self.message_label.setStyleSheet(f"color: {colors.text_secondary}; font-size: 12px;")
+        self.title_label.setStyleSheet(f"color: {dt.text_primary};")
+        self.message_label.setStyleSheet(f"color: {dt.text_secondary}; font-size: 12px;")
 
 
 class ActionTileButton(QPushButton, ThemedWidget):
@@ -665,11 +672,11 @@ class ActionTileButton(QPushButton, ThemedWidget):
         self.note_label.setText(note)
 
     def refresh_theme(self) -> None:
-        colors = self.theme
+        dt = self.dt
         variants = {
-            "secondary": (colors.card_bg, rgba(colors.border_light, 0.9), colors.text_primary, colors.text_secondary),
-            "danger": (rgba(colors.error, 0.08), rgba(colors.error, 0.35), colors.text_primary, colors.text_secondary),
-            "preview": (rgba(colors.text_muted, 0.1), rgba(colors.text_muted, 0.22), colors.text_muted, colors.text_muted),
+            "secondary": (dt.surface,              rgba(dt.border_strong, 0.9),  dt.text_primary, dt.text_secondary),
+            "danger":    (rgba(dt.danger, 0.08),   rgba(dt.danger, 0.35),        dt.text_primary, dt.text_secondary),
+            "preview":   (rgba(dt.text_muted, 0.1), rgba(dt.text_muted, 0.22),   dt.text_muted,   dt.text_muted),
         }
         background, border, title, note = variants.get(self._variant, variants["secondary"])
         self.setStyleSheet(
@@ -681,7 +688,7 @@ class ActionTileButton(QPushButton, ThemedWidget):
                 text-align: left;
             }}
             QPushButton:hover {{
-                background-color: {rgba(colors.surface_hover, 0.6)};
+                background-color: {rgba(dt.surface_raised, 0.6)};
             }}
             QPushButton:disabled {{
                 background-color: {background};
@@ -759,23 +766,23 @@ class SidebarStatusPanel(QFrame, ThemedWidget):
         self.ping_value.setText(f"{ping_ms:.0f} ms")
 
     def refresh_theme(self) -> None:
-        colors = self.theme
+        dt = self.dt
         self.setStyleSheet(
             f"""
             QFrame#sidebarStatusPanel {{
-                background-color: {rgba(colors.surface, 0.32)};
-                border: 1px solid {rgba(colors.border_light, 0.82)};
+                background-color: {rgba(dt.surface, 0.32)};
+                border: 1px solid {rgba(dt.border_strong, 0.82)};
                 border-radius: 14px;
             }}
             """
         )
-        self.status_message.setStyleSheet(f"color: {colors.text_secondary}; font-size: 12px;")
-        self.user_value.setStyleSheet(f"color: {colors.text_primary};")
-        self.guilds_value.setStyleSheet(f"color: {colors.text_primary};")
-        self.ping_value.setStyleSheet(f"color: {colors.text_primary};")
+        self.status_message.setStyleSheet(f"color: {dt.text_secondary}; font-size: 12px;")
+        self.user_value.setStyleSheet(f"color: {dt.text_primary};")
+        self.guilds_value.setStyleSheet(f"color: {dt.text_primary};")
+        self.ping_value.setStyleSheet(f"color: {dt.text_primary};")
         for label in self._muted_labels:
             label.setStyleSheet(
-                f"color: {colors.text_muted}; font-size: 10px; font-weight: 700; letter-spacing: 0.8px;"
+                f"color: {dt.text_muted}; font-size: 10px; font-weight: 700; letter-spacing: 0.8px;"
             )
         self.status_chip.refresh_theme()
 
