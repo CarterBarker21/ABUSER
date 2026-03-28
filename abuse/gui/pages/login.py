@@ -31,6 +31,7 @@ from ..config import (
     mask_token,
     save_remembered_session,
 )
+from ..theme import get_theme_manager
 from ..token_finder_thread import TokenFinderThread
 from .base import BasePage
 
@@ -403,5 +404,6 @@ class LoginPage(BasePage):
         self.token_input.refresh_theme()
         self.status_banner.refresh_theme()
         self.found_tokens_combo.refresh_theme()
-        self.storage_note.setStyleSheet(f"color: {self.theme.text_muted}; font-size: 12px;")
+        dt = get_theme_manager().design_tokens
+        self.storage_note.setStyleSheet(f"color: {dt.text_muted}; font-size: 12px;")
         refresh_themed_tree(self)
