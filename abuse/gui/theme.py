@@ -253,6 +253,7 @@ class DesignTokens:
     danger: str           # Destructive actions
     danger_hover: str     # Danger on hover
     success: str          # Confirmed / connected
+    success_hover: str    # Success on hover
     success_bright: str   # Bright success for chips and icons
     warning: str          # Caution states
 
@@ -275,6 +276,7 @@ def make_design_tokens(theme: Theme) -> DesignTokens:
         danger=theme.error,
         danger_hover=theme.error_hover,
         success=theme.success,
+        success_hover=theme.success_hover,
         success_bright=theme.success_bright,
         warning=theme.warning,
     )

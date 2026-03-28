@@ -271,7 +271,7 @@ class AppButton(QPushButton, ThemedWidget):
             "secondary": (dt.surface,                   dt.text_primary,    dt.surface_raised,  rgba(dt.border_strong, 1.0)),
             "tertiary":  (rgba(dt.surface, 0.45),       dt.text_secondary,  rgba(dt.surface_raised, 0.85), rgba(dt.border_strong, 0.8)),
             "danger":    (dt.danger,                    "#FFFFFF",          dt.danger_hover,    rgba(dt.danger, 0.6)),
-            "success":   (dt.success,                   "#FFFFFF",          dt.success,         rgba(dt.success_bright, 0.6)),
+            "success":   (dt.success,                   "#FFFFFF",          dt.success_hover,   rgba(dt.success_bright, 0.6)),
             "preview":   (rgba(dt.text_muted, 0.12),    dt.text_muted,      rgba(dt.text_muted, 0.18), rgba(dt.text_muted, 0.35)),
         }
         background, text, hover, border = variants.get(self._variant, variants["secondary"])

@@ -25,6 +25,7 @@ def test_design_tokens_fields_populated():
     assert dt.danger == theme.error
     assert dt.danger_hover == theme.error_hover
     assert dt.success == theme.success
+    assert dt.success_hover == theme.success_hover
     assert dt.success_bright == theme.success_bright
     assert dt.warning == theme.warning
 
