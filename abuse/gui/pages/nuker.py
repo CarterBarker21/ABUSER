@@ -477,21 +477,20 @@ class NukerPage(BasePage):
         """Refresh theme - matches Guilds tab styling."""
         super().refresh_theme()
 
-        colors = self.theme
         dt = get_theme_manager().design_tokens
 
         # Set body background to match theme
         body = self.findChild(QScrollArea).widget()
         if body:
-            body.setStyleSheet(f"background-color: {colors.bg_primary};")
+            body.setStyleSheet(f"background-color: {dt.background};")
 
         # Style cards - matching Guilds tab exactly
         for card in self.findChildren(QWidget):
             if card.objectName() == "nukerCard":
                 card.setStyleSheet(f"""
                     QWidget#nukerCard {{
-                        background-color: {colors.card_bg};
-                        border: 1px solid {rgba(colors.border_light, 0.9)};
+                        background-color: {dt.surface};
+                        border: 1px solid {rgba(dt.border_strong, 0.9)};
                         border-radius: 12px;
                     }}
                 """)
@@ -507,6 +506,6 @@ class NukerPage(BasePage):
                 label.setStyleSheet(f"font-size: 12px; font-weight: 600; color: {dt.text_muted};")
 
         for frame in self.findChildren(QFrame):
-            frame.setStyleSheet(f"background-color: {colors.divider};")
+            frame.setStyleSheet(f"background-color: {dt.border};")
 
         self.status_banner.refresh_theme()
