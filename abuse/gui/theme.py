@@ -1639,7 +1639,7 @@ def example_usage():
     print("\nTheme Switching Demo:")
     print("-" * 40)
     
-    for theme_name in ["Dracula", "Catppuccin Mocha", "GitHub Light", "Cyberpunk"]:
+    for theme_name in ["Midnight", "Catppuccin Mocha", "Obsidian", "Discord Dark"]:
         manager.switch_theme(theme_name)
         print(f"  Switched to: {manager.theme.name} (accent: {manager.theme.accent.name})")
     
@@ -1661,7 +1661,7 @@ def example_usage():
     theme_manager.apply_theme(app)
     
     # Switch theme at runtime
-    theme_manager.switch_theme("Dracula")
+    theme_manager.switch_theme("Midnight")
     
     # Or use convenience function
     switch_theme("Catppuccin Mocha", accent="pink")
