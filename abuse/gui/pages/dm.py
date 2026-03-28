@@ -29,6 +29,7 @@ from ..components import (
     PanelCard,
     SectionLabel,
 )
+from ..theme import get_theme_manager
 from .base import BasePage
 
 
@@ -196,22 +197,22 @@ class DMPage(BasePage):
 
     def refresh_theme(self) -> None:
         super().refresh_theme()
-        colors = self.theme
+        dt = get_theme_manager().design_tokens
         self.queue_list.setStyleSheet(
             f"""
             QListWidget {{
-                background-color: {colors.input_bg};
-                color: {colors.text_primary};
-                border: 1px solid {colors.border};
+                background-color: {dt.surface_raised};
+                color: {dt.text_primary};
+                border: 1px solid {dt.border};
                 border-radius: 12px;
                 padding: 6px;
             }}
             QListWidget::item {{
                 padding: 10px 12px;
                 margin: 4px 0;
-                border-bottom: 1px solid {colors.divider};
+                border-bottom: 1px solid {dt.border};
             }}
             """
         )
-        self.queue_count_label.setStyleSheet(f"color: {colors.text_secondary};")
-        self.character_count.setStyleSheet(f"color: {colors.text_muted}; font-size: 12px;")
+        self.queue_count_label.setStyleSheet(f"color: {dt.text_secondary};")
+        self.character_count.setStyleSheet(f"color: {dt.text_muted}; font-size: 12px;")
