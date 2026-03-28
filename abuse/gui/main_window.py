@@ -140,7 +140,15 @@ class MainWindow(QMainWindow):
         layout.addWidget(self.nav_heading)
 
         self.route_buttons: dict[str, SidebarNavButton] = {}
+        prev_group: str | None = None
         for route in ROUTES:
+            if prev_group is not None and route.group != prev_group:
+                divider = QFrame()
+                divider.setObjectName("sidebarDivider")
+                divider.setFrameShape(QFrame.Shape.HLine)
+                divider.setFixedHeight(1)
+                layout.addWidget(divider)
+            prev_group = route.group
             button = SidebarNavButton(route.icon_name, route.label)
             button.clicked.connect(lambda checked=False, key=route.key: self.switch_route(key))
             layout.addWidget(button)
@@ -450,3 +458,8 @@ class MainWindow(QMainWindow):
             refresh = getattr(page, "refresh_theme", None)
             if callable(refresh):
                 refresh()
+
+        tm = self.theme_manager.theme
+        for child in self.sidebar.findChildren(QFrame):
+            if child.objectName() == "sidebarDivider":
+                child.setStyleSheet(f"background-color: {tm.divider}; border: none;")
