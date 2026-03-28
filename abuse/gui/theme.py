@@ -219,6 +219,8 @@ class ThemeTokens:
 def _rgba(hex_color: str, alpha: float) -> str:
     """Inline rgba helper (avoids circular import with components.py)."""
     h = hex_color.lstrip("#")
+    if len(h) != 6:
+        raise ValueError(f"_rgba expects a 6-digit hex color, got {hex_color!r}")
     r, g, b = int(h[0:2], 16), int(h[2:4], 16), int(h[4:6], 16)
     return f"rgba({r}, {g}, {b}, {alpha:.3f})"
 
@@ -262,7 +264,7 @@ def make_design_tokens(theme: Theme) -> DesignTokens:
         surface=theme.surface,
         surface_raised=theme.surface_hover,
         border=theme.border,
-        border_strong=theme.border_light,
+        border_strong=theme.border_light,   # border_light is visually stronger (higher luminance) on dark backgrounds
         text_primary=theme.text_primary,
         text_secondary=theme.text_secondary,
         text_muted=theme.text_muted,
