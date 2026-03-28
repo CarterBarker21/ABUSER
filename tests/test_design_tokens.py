@@ -5,6 +5,7 @@ from abuse.gui.theme import (
     create_theme_from_preset,
     get_theme_manager,
 )
+from abuse.gui.routes import ROUTES, ROUTE_DM, ROUTE_LOGS
 
 
 def test_design_tokens_fields_populated():
@@ -44,3 +45,17 @@ def test_theme_manager_design_tokens_property():
     dt = manager.design_tokens
     assert isinstance(dt, DesignTokens)
     assert dt.accent == manager.theme.accent_primary
+
+
+def test_routes_order_core_before_utility():
+    keys = [r.key for r in ROUTES]
+    assert keys.index(ROUTE_DM) < keys.index(ROUTE_LOGS), (
+        "DM (core) must appear before Logs (utility)"
+    )
+
+
+def test_routes_have_group_field():
+    for route in ROUTES:
+        assert route.group in ("core", "utility"), (
+            f"Route {route.key} has invalid group '{route.group}'"
+        )
