@@ -53,30 +53,30 @@ class GuildStatCard(QWidget):
     
     def _get_status_info(self) -> tuple[str, str, str]:
         """Determine status color and tooltip based on permissions.
-        
+
         Returns:
             Tuple of (color_hex, status_text, tooltip)
         """
-        colors = self.theme_manager.theme
-        
+        dt = get_theme_manager().design_tokens
+
         # Debug: Check is_owner status
         print(f"[DEBUG _get_status_info] Guild: {self.guild.name}, is_owner={self.guild.is_owner}, type={type(self.guild.is_owner)}")
-        
+
         if self.guild.is_owner:
             print(f"[DEBUG] -> Owner status detected for {self.guild.name}")
             return (self.OWNER_COLOR, "Owner", "You own this server (full control)")
-        
+
         perms = self.guild.my_permissions
         has_ban = bool(perms & self.PERM_BAN_MEMBERS)
         has_manage_channels = bool(perms & self.PERM_MANAGE_CHANNELS)
         has_kick = bool(perms & self.PERM_KICK_MEMBERS)
-        
+
         if has_ban and has_manage_channels:
-            return (colors.success_bright, "Full Perms", "Has ban + manage_channels permissions")
+            return (dt.success_bright, "Full Perms", "Has ban + manage_channels permissions")
         elif has_kick:
-            return (colors.warning, "Kick Only", "Has kick permission but not ban")
+            return (dt.warning, "Kick Only", "Has kick permission but not ban")
         else:
-            return (colors.error, "No Perms", "No significant permissions")
+            return (dt.danger, "No Perms", "No significant permissions")
 
     # Icon size for guild avatars
     ICON_SIZE = 44
@@ -282,7 +282,7 @@ class GuildStatCard(QWidget):
         layout.addLayout(line2_layout)
 
     def refresh_theme(self) -> None:
-        colors = self.theme_manager.theme
+        dt = get_theme_manager().design_tokens
 
         # Update status circle with current theme colors
         color_hex, status_text, tooltip = self._get_status_info()
@@ -298,8 +298,8 @@ class GuildStatCard(QWidget):
         self.setStyleSheet(
             f"""
             QWidget#guildStatCard {{
-                background-color: {colors.card_bg};
-                border: 1px solid {rgba(colors.border_light, 0.9)};
+                background-color: {dt.surface};
+                border: 1px solid {rgba(dt.border_strong, 0.9)};
                 border-radius: 12px;
             }}
             """
@@ -307,16 +307,16 @@ class GuildStatCard(QWidget):
 
         # Name styling (large, bold, primary color)
         self.name_label.setStyleSheet(
-            f"color: {colors.text_primary}; font-size: 16px; font-weight: 700;"
+            f"color: {dt.text_primary}; font-size: 16px; font-weight: 700;"
         )
 
         # ID styling (muted, monospace)
         self.id_label.setStyleSheet(
-            f"color: {colors.text_muted}; font-size: 12px; font-family: monospace;"
+            f"color: {dt.text_muted}; font-size: 12px; font-family: monospace;"
         )
 
         # Label styling (muted)
-        label_style = f"color: {colors.text_muted}; font-size: 12px; font-weight: 500;"
+        label_style = f"color: {dt.text_muted}; font-size: 12px; font-weight: 500;"
         self.members_label.setStyleSheet(label_style)
         self.channels_label.setStyleSheet(label_style)
         self.roles_label.setStyleSheet(label_style)
@@ -325,9 +325,9 @@ class GuildStatCard(QWidget):
 
         # Value styling (accent for members, secondary for others)
         self.members_value.setStyleSheet(
-            f"color: {colors.accent_primary}; font-size: 13px; font-weight: 700;"
+            f"color: {dt.accent}; font-size: 13px; font-weight: 700;"
         )
-        value_style = f"color: {colors.text_secondary}; font-size: 13px; font-weight: 600;"
+        value_style = f"color: {dt.text_secondary}; font-size: 13px; font-weight: 600;"
         self.channels_value.setStyleSheet(value_style)
         self.roles_value.setStyleSheet(value_style)
         self.boosts_value.setStyleSheet(value_style)
@@ -415,7 +415,8 @@ class GuildsPage(BasePage):
         
         for emoji, text, tone in legend_items:
             item = QLabel(f"{emoji} {text}")
-            item.setStyleSheet(f"color: {self.theme.text_secondary}; font-size: 11px;")
+            dt = get_theme_manager().design_tokens
+            item.setStyleSheet(f"color: {dt.text_secondary}; font-size: 11px;")
             legend_layout.addWidget(item)
         
         header_layout.addWidget(legend_widget)
@@ -563,11 +564,12 @@ class GuildsPage(BasePage):
 
     def _create_section_header(self, title: str, color_hex: str) -> QWidget:
         """Create a section header with a colored indicator and title."""
+        dt = get_theme_manager().design_tokens
         header = QWidget()
         header_layout = QHBoxLayout(header)
         header_layout.setContentsMargins(0, 8, 0, 8)
         header_layout.setSpacing(12)
-        
+
         # Colored indicator dot
         indicator = QLabel()
         indicator.setFixedSize(10, 10)
@@ -578,34 +580,35 @@ class GuildsPage(BasePage):
             }}
         """)
         header_layout.addWidget(indicator)
-        
+
         # Section title
         title_label = QLabel(title)
         title_label.setStyleSheet(f"""
             QLabel {{
-                color: {self.theme.text_primary};
+                color: {dt.text_primary};
                 font-size: 13px;
                 font-weight: 700;
             }}
         """)
         header_layout.addWidget(title_label)
-        
+
         # Horizontal line
         line = QFrame()
         line.setFrameShape(QFrame.Shape.HLine)
-        line.setStyleSheet(f"background-color: {self.theme.divider};")
+        line.setStyleSheet(f"background-color: {dt.border};")
         line.setFixedHeight(1)
         header_layout.addWidget(line, 1)
-        
+
         return header
     
     def _create_divider(self) -> QFrame:
         """Create a clean horizontal divider line between guild cards."""
+        dt = get_theme_manager().design_tokens
         line = QFrame()
         line.setFrameShape(QFrame.Shape.HLine)
         line.setStyleSheet(f"""
             QFrame {{
-                background-color: {self.theme.divider};
+                background-color: {dt.border};
                 border: none;
             }}
         """)
@@ -637,13 +640,14 @@ class GuildsPage(BasePage):
     
     def _create_guild_cards(self, guilds: List[GuildItem]) -> None:
         """Create and layout guild stat cards with section dividers and card dividers.
-        
+
         Groups guilds by permission level with section headers and adds
         clean dividers between each guild card.
         """
+        dt = get_theme_manager().design_tokens
         # Sort by status priority, then by member count
         sorted_guilds = sorted(guilds, key=lambda g: (self._get_guild_status_key(g), -g.member_count))
-        
+
         # Group by status
         current_section = None
         section_info = {
@@ -652,37 +656,37 @@ class GuildsPage(BasePage):
             2: ("Kick Only", None),  # Use theme warning color later
             3: ("No Permissions", None),  # Use theme error color later
         }
-        
+
         previous_card = None  # Track previous card to add dividers between guilds
-        
+
         for i, guild in enumerate(sorted_guilds):
             status_key = self._get_guild_status_key(guild)
-            
+
             # Add section header when status changes
             if status_key != current_section:
                 current_section = status_key
                 section_name, section_color = section_info[status_key]
-                
+
                 # Get color from theme for non-owner sections
                 if section_color is None:
                     if status_key == 1:
-                        section_color = self.theme.success_bright
+                        section_color = dt.success_bright
                     elif status_key == 2:
-                        section_color = self.theme.warning
+                        section_color = dt.warning
                     else:
-                        section_color = self.theme.error
-                
+                        section_color = dt.danger
+
                 header = self._create_section_header(section_name, section_color)
                 self.guilds_layout.addWidget(header)
                 self._guild_cards.append(header)  # Track for cleanup
                 previous_card = None  # Reset - no divider after section header
-            
+
             # Add divider between guilds (but not before the first one or after section header)
             if previous_card is not None:
                 divider = self._create_divider()
                 self.guilds_layout.addWidget(divider)
                 self._guild_cards.append(divider)  # Track for cleanup
-            
+
             card = GuildStatCard(guild)
             self.guilds_layout.addWidget(card)
             self._guild_cards.append(card)
@@ -775,26 +779,26 @@ class GuildsPage(BasePage):
         """Refresh the theme for all components."""
         super().refresh_theme()
 
-        colors = self.theme
+        dt = get_theme_manager().design_tokens
 
         # Refresh overview card styling
         self.overview_card.setStyleSheet(
             f"""
             QWidget#overviewCard {{
-                background-color: {colors.card_bg};
-                border: 1px solid {rgba(colors.border_light, 0.9)};
+                background-color: {dt.surface};
+                border: 1px solid {rgba(dt.border_strong, 0.9)};
                 border-radius: {self.tokens.metrics.card_radius}px;
             }}
             """
         )
-        self.overview_title.setStyleSheet(f"color: {colors.text_primary};")
+        self.overview_title.setStyleSheet(f"color: {dt.text_primary};")
         
         # Refresh legend colors
         legend_widget = self.overview_card.findChild(QWidget, "")
         if legend_widget:
             for child in legend_widget.findChildren(QLabel):
                 if "No Perms" in child.text() or "Kick Only" in child.text() or "Full Perms" in child.text() or "Owner" in child.text():
-                    child.setStyleSheet(f"color: {colors.text_secondary}; font-size: 11px;")
+                    child.setStyleSheet(f"color: {dt.text_secondary}; font-size: 11px;")
 
         # Refresh status banner
         self.status_banner.refresh_theme()
