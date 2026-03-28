@@ -9,17 +9,11 @@ from typing import Optional
 from PyQt6.QtWidgets import QFileDialog, QHBoxLayout, QTextEdit, QVBoxLayout, QWidget, QStackedWidget
 
 from ..components import AppButton, AppComboBox, EmptyState, PanelCard, SearchField, ToggleSwitch
+from ..theme import get_theme_manager
 from .base import BasePage
 
 
 class LogsPage(BasePage):
-    LEVEL_COLORS = {
-        "DEBUG": "#6D6F78",
-        "INFO": "#57F287",
-        "WARNING": "#FAA81A",
-        "ERROR": "#ED4245",
-        "CRITICAL": "#FF6B6B",
-    }
 
     def __init__(self, parent: Optional[QWidget] = None):
         super().__init__(
@@ -30,6 +24,16 @@ class LogsPage(BasePage):
         )
         self._entries: list[dict[str, str]] = []
         self._build_ui()
+
+    def _level_color(self, level: str) -> str:
+        dt = get_theme_manager().design_tokens
+        return {
+            "DEBUG": dt.text_disabled,
+            "INFO": dt.text_primary,
+            "WARNING": dt.warning,
+            "ERROR": dt.danger,
+            "CRITICAL": dt.danger,
+        }.get(level.upper(), dt.text_muted)
 
     def _build_ui(self) -> None:
         toolbar = PanelCard("Log Controls", "Trim what you see, keep auto-scroll optional, and export when needed.")
@@ -117,16 +121,17 @@ class LogsPage(BasePage):
             self.stack.setCurrentWidget(self.empty_state)
             return
 
+        dt = get_theme_manager().design_tokens
         rows = []
         for entry in entries:
-            level_color = self.LEVEL_COLORS.get(entry["level"], self.theme.text_secondary)
+            level_color = self._level_color(entry["level"])
             rows.append(
                 (
                     "<div style='margin-bottom:6px;'>"
-                    f"<span style='color:{self.theme.text_muted};'>[{html.escape(entry['timestamp'])}]</span> "
+                    f"<span style='color:{dt.text_muted};'>[{html.escape(entry['timestamp'])}]</span> "
                     f"<span style='color:{level_color}; font-weight:700;'>{html.escape(entry['level'])}</span> "
-                    f"<span style='color:{self.theme.text_secondary};'>{html.escape(entry['name'])}</span> "
-                    f"<span style='color:{self.theme.text_primary};'>{html.escape(entry['message'])}</span>"
+                    f"<span style='color:{dt.text_secondary};'>{html.escape(entry['name'])}</span> "
+                    f"<span style='color:{dt.text_primary};'>{html.escape(entry['message'])}</span>"
                     "</div>"
                 )
             )
@@ -149,12 +154,13 @@ class LogsPage(BasePage):
 
     def refresh_theme(self) -> None:
         super().refresh_theme()
+        dt = get_theme_manager().design_tokens
         self.logs_view.setStyleSheet(
             f"""
             QTextEdit {{
-                background-color: {self.theme.log_bg};
-                color: {self.theme.text_primary};
-                border: 1px solid {self.theme.border};
+                background-color: {dt.background};
+                color: {dt.text_primary};
+                border: 1px solid {dt.border};
                 border-radius: 12px;
                 padding: 12px;
             }}
