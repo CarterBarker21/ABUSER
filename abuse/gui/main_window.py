@@ -193,6 +193,7 @@ class MainWindow(QMainWindow):
             for child in self.sidebar.findChildren(QFrame):
                 if child.objectName() == "sidebarDivider":
                     child.setVisible(False)
+            self.status_panel.setVisible(False)
         else:
             self.sidebar.setFixedWidth(expanded_width)
             self._collapse_btn.setText("◀")
@@ -205,6 +206,7 @@ class MainWindow(QMainWindow):
             for child in self.sidebar.findChildren(QFrame):
                 if child.objectName() == "sidebarDivider":
                     child.setVisible(True)
+            self.status_panel.setVisible(True)
 
     def _connect_page_signals(self) -> None:
         self.nuker_tab.nuke_action_requested.connect(self._on_nuke_action_requested)
