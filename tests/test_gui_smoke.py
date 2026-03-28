@@ -78,7 +78,6 @@ def test_post_login_routes_to_guilds(qtbot):
 def test_settings_apply_persists_and_updates_theme(qtbot):
     window = build_window(qtbot)
 
-    window.settings_tab.theme_mode_combo.setCurrentIndex(0)
     window.settings_tab.preset_combo.setCurrentText("Obsidian")
     window.settings_tab.accent_combo.setCurrentText("Cyan")
     window.settings_tab.font_size_spin.setValue(15)

@@ -32,7 +32,7 @@ from ..components import (
 )
 from ..config import DEFAULT_GUI_CONFIG, clear_remembered_sessions, load_gui_config
 from ..routes import ROUTE_LABELS, STARTUP_OPTIONS
-from ..theme import get_preset_names, get_theme_family
+from ..theme import get_theme_manager
 from .base import BasePage
 
 
@@ -207,19 +207,8 @@ class SettingsPage(BasePage):
     def _build_appearance_page(self) -> QWidget:
         card = SettingsCard("Appearance", "These controls are wired to the running desktop UI.")
 
-        self.theme_mode_combo = AppComboBox()
-        self.theme_mode_combo.addItems(["Dark", "Light", "System"])
-        self.theme_mode_combo.currentIndexChanged.connect(self._refresh_preset_options)
-        card.add_row(
-            SettingRowWidget(
-                "Theme mode",
-                "Filters the preset list by family so the selected mode actually changes the available design direction.",
-                self.theme_mode_combo,
-                keywords=("theme", "dark", "light", "system"),
-            )
-        )
-
         self.preset_combo = AppComboBox()
+        self.preset_combo.addItems(["Midnight", "Obsidian", "Discord Dark", "Catppuccin Mocha"])
         card.add_row(
             SettingRowWidget(
                 "Theme preset",
@@ -404,30 +393,9 @@ class SettingsPage(BasePage):
             return
         self.content_stack.setCurrentIndex(index)
 
-    def _refresh_preset_options(self) -> None:
-        desired_mode = self.theme_mode_combo.currentIndex()
-        current_text = self.preset_combo.currentText()
-        self.preset_combo.blockSignals(True)
-        self.preset_combo.clear()
-        for preset_name in get_preset_names():
-            family = get_theme_family(preset_name)
-            if desired_mode == 0 and family == "light":
-                continue
-            if desired_mode == 1 and family != "light":
-                continue
-            self.preset_combo.addItem(preset_name)
-
-        if current_text:
-            index = self.preset_combo.findText(current_text)
-            if index >= 0:
-                self.preset_combo.setCurrentIndex(index)
-        if self.preset_combo.currentIndex() < 0 and self.preset_combo.count():
-            self.preset_combo.setCurrentIndex(0)
-        self.preset_combo.blockSignals(False)
 
     def current_config(self) -> dict:
         config = deepcopy(self._config)
-        config["appearance"]["theme_mode"] = self.theme_mode_combo.currentIndex()
         config["appearance"]["preset"] = self.preset_combo.currentText()
         config["appearance"]["accent"] = self.accent_combo.currentText()
         config["appearance"]["font_size"] = self.font_size_spin.value()
@@ -441,9 +409,6 @@ class SettingsPage(BasePage):
         appearance = config.get("appearance", {})
         behavior = config.get("behavior", {})
         privacy = config.get("privacy", {})
-
-        self.theme_mode_combo.setCurrentIndex(appearance.get("theme_mode", 0))
-        self._refresh_preset_options()
 
         preset = appearance.get("preset", "Discord Dark")
         preset_index = self.preset_combo.findText(preset)
@@ -504,13 +469,13 @@ class SettingsPage(BasePage):
 
     def refresh_theme(self) -> None:
         super().refresh_theme()
-        colors = self.theme
+        dt = get_theme_manager().design_tokens
         self.category_list.setStyleSheet(
             f"""
             QListWidget {{
-                background-color: {colors.card_bg};
-                color: {colors.text_secondary};
-                border: 1px solid {colors.border};
+                background-color: {dt.surface};
+                color: {dt.text_secondary};
+                border: 1px solid {dt.border};
                 border-radius: 12px;
                 padding: 8px;
             }}
@@ -520,9 +485,9 @@ class SettingsPage(BasePage):
                 font-weight: 600;
             }}
             QListWidget::item:selected {{
-                background-color: {rgba(colors.accent_primary, 0.16)};
-                border: 1px solid {rgba(colors.accent_primary, 0.3)};
-                color: {colors.text_primary};
+                background-color: {rgba(dt.accent, 0.16)};
+                border: 1px solid {rgba(dt.accent, 0.3)};
+                color: {dt.text_primary};
             }}
             """
         )
