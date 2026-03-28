@@ -5,6 +5,7 @@ from __future__ import annotations
 from datetime import datetime
 from typing import Optional
 
+from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import (
     QApplication,
     QFrame,
@@ -12,6 +13,7 @@ from PyQt6.QtWidgets import (
     QLabel,
     QMainWindow,
     QMessageBox,
+    QPushButton,
     QStackedWidget,
     QVBoxLayout,
     QWidget,
@@ -157,7 +159,52 @@ class MainWindow(QMainWindow):
         layout.addStretch(1)
         self.status_panel = SidebarStatusPanel()
         layout.addWidget(self.status_panel)
+
+        # ── Collapse toggle ───────────────────────────────────────────────────
+        self._sidebar_collapsed = False
+        collapse_row = QHBoxLayout()
+        collapse_row.setContentsMargins(0, 8, 0, 8)
+        self._collapse_btn = QPushButton("◀")
+        self._collapse_btn.setObjectName("sidebarCollapseBtn")
+        self._collapse_btn.setFixedSize(28, 28)
+        self._collapse_btn.setCursor(Qt.CursorShape.PointingHandCursor)
+        self._collapse_btn.setToolTip("Collapse sidebar")
+        self._collapse_btn.clicked.connect(self._toggle_sidebar)
+        collapse_row.addStretch(1)
+        collapse_row.addWidget(self._collapse_btn)
+        layout.addLayout(collapse_row)
+
         return sidebar
+
+    def _toggle_sidebar(self) -> None:
+        """Collapse or expand the sidebar between icon-only and full width."""
+        self._sidebar_collapsed = not self._sidebar_collapsed
+        expanded_width = self.theme_manager.tokens.metrics.sidebar_width
+
+        if self._sidebar_collapsed:
+            self.sidebar.setFixedWidth(56)
+            self._collapse_btn.setText("▶")
+            self._collapse_btn.setToolTip("Expand sidebar")
+            self.brand_title.setVisible(False)
+            self.brand_meta.setVisible(False)
+            self.nav_heading.setVisible(False)
+            for btn in self.route_buttons.values():
+                btn.title_label.setVisible(False)
+            for child in self.sidebar.findChildren(QFrame):
+                if child.objectName() == "sidebarDivider":
+                    child.setVisible(False)
+        else:
+            self.sidebar.setFixedWidth(expanded_width)
+            self._collapse_btn.setText("◀")
+            self._collapse_btn.setToolTip("Collapse sidebar")
+            self.brand_title.setVisible(True)
+            self.brand_meta.setVisible(True)
+            self.nav_heading.setVisible(True)
+            for btn in self.route_buttons.values():
+                btn.title_label.setVisible(True)
+            for child in self.sidebar.findChildren(QFrame):
+                if child.objectName() == "sidebarDivider":
+                    child.setVisible(True)
 
     def _connect_page_signals(self) -> None:
         self.nuker_tab.nuke_action_requested.connect(self._on_nuke_action_requested)
@@ -463,3 +510,21 @@ class MainWindow(QMainWindow):
         for child in self.sidebar.findChildren(QFrame):
             if child.objectName() == "sidebarDivider":
                 child.setStyleSheet(f"background-color: {tm.divider}; border: none;")
+
+        if hasattr(self, "_collapse_btn"):
+            self._collapse_btn.setStyleSheet(
+                f"""
+                QPushButton#sidebarCollapseBtn {{
+                    background-color: transparent;
+                    color: {tm.text_muted};
+                    border: 1px solid transparent;
+                    border-radius: 6px;
+                    font-size: 10px;
+                }}
+                QPushButton#sidebarCollapseBtn:hover {{
+                    background-color: {tm.surface_hover};
+                    color: {tm.text_primary};
+                    border-color: {tm.border_light};
+                }}
+                """
+            )
