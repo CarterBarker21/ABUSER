@@ -625,14 +625,10 @@ class BotRunner(QObject):
             return False
         
         try:
-            # Create bot instance
-            self._bot = ABUSERBot()
-            
-            # Set the token
-            if token:
-                self._bot.token = token
-            else:
-                self._bot.token = self._token
+            # Create bot instance with the provided token
+            # Pass token to constructor so it's set before discord.py initializes
+            actual_token = token if token else self._token
+            self._bot = ABUSERBot(token=actual_token)
             
             # Set up log forwarding
             self._setup_log_forwarding()

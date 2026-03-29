@@ -3,11 +3,24 @@
 from __future__ import annotations
 
 import os
+import sys
 import shutil
 from pathlib import Path
 
 
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
+def _project_root() -> Path:
+    """Return the directory that contains config/ and data/.
+
+    When running from source: the repo root (two levels above this file).
+    When running as a PyInstaller one-file exe: the directory containing the
+    exe, so that config/ and data/ live next to ABUSER.exe.
+    """
+    if getattr(sys, 'frozen', False):
+        return Path(sys.executable).parent
+    return Path(__file__).resolve().parent.parent
+
+
+PROJECT_ROOT = _project_root()
 
 
 def _env_or_path(env_var: str, relative_path: str) -> Path:

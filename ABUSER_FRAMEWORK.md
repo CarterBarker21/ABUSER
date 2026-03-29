@@ -151,7 +151,8 @@ ABUSER/
 │   └── logs/                      # Log files
 ├── tests/                         # Test suite
 │   ├── conftest.py                # Pytest configuration
-│   └── test_gui_smoke.py          # GUI smoke tests
+│   ├── test_design_tokens.py      # Design token tests
+│   └── test_launchers.py          # Launcher script tests
 ├── dev/
 │   └── requirements.txt           # Python dependencies
 ├── main.py                        # GUI entry point (215 lines)

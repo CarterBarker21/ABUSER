@@ -9,6 +9,7 @@ from PyQt6.QtGui import QBrush, QColor, QFont, QPainter, QPixmap
 from PyQt6.QtWidgets import (
     QCheckBox,
     QFrame,
+    QGridLayout,
     QHBoxLayout,
     QLabel,
     QMessageBox,
@@ -26,7 +27,6 @@ from ..components import (
     InfoBanner,
     PanelCard,
     SectionLabel,
-    StatusChip,
     rgba,
 )
 from ..theme import get_theme_manager
@@ -58,10 +58,10 @@ _GROUP_DANGER: list[tuple[str, str, str]] = [
 ]
 
 
-# ── Styled checkbox row ───────────────────────────────────────────────────────
+# ── Modern Styled checkbox row ────────────────────────────────────────────────
 
 class _ActionRow(QWidget):
-    """A single action as a checkbox + description row."""
+    """A single action as a modern checkbox + description row."""
 
     def __init__(
         self,
@@ -78,22 +78,23 @@ class _ActionRow(QWidget):
         self.setCursor(Qt.CursorShape.PointingHandCursor)
 
         layout = QHBoxLayout(self)
-        layout.setContentsMargins(14, 10, 14, 10)
-        layout.setSpacing(14)
+        layout.setContentsMargins(10, 6, 10, 6)
+        layout.setSpacing(10)
 
+        # Modern checkbox with custom indicator
         self.checkbox = QCheckBox()
         self.checkbox.setObjectName("actionCheckbox")
-        self.checkbox.setFixedSize(20, 20)
+        self.checkbox.setFixedSize(18, 18)
         self.checkbox.setCursor(Qt.CursorShape.PointingHandCursor)
         layout.addWidget(self.checkbox, 0, Qt.AlignmentFlag.AlignVCenter)
 
         text_col = QVBoxLayout()
-        text_col.setSpacing(2)
+        text_col.setSpacing(0)
         text_col.setContentsMargins(0, 0, 0, 0)
 
         self.label = QLabel(label)
         self.label.setObjectName("actionLabel")
-        lbl_font = QFont("Segoe UI", 10)
+        lbl_font = QFont("Segoe UI", 9)
         lbl_font.setWeight(QFont.Weight.DemiBold)
         self.label.setFont(lbl_font)
         text_col.addWidget(self.label)
@@ -130,22 +131,22 @@ class _ActionRow(QWidget):
 
         if not enabled:
             row_bg     = "transparent"
-            row_border = "transparent"
+            row_border = dt.border
             lbl_color  = dt.text_muted
             desc_color = dt.text_muted
         elif self._danger and checked:
-            row_bg     = rgba(dt.danger, 0.10)
-            row_border = rgba(dt.danger, 0.40)
+            row_bg     = rgba(dt.danger, 0.08)
+            row_border = rgba(dt.danger, 0.50)
             lbl_color  = dt.danger
-            desc_color = rgba(dt.danger, 0.75)
+            desc_color = rgba(dt.danger, 0.80)
         elif checked:
-            row_bg     = rgba(dt.accent, 0.10)
-            row_border = rgba(dt.accent, 0.35)
+            row_bg     = rgba(dt.accent, 0.08)
+            row_border = rgba(dt.accent, 0.50)
             lbl_color  = dt.text_primary
             desc_color = dt.text_secondary
         else:
             row_bg     = "transparent"
-            row_border = "transparent"
+            row_border = dt.border
             lbl_color  = dt.text_primary
             desc_color = dt.text_muted
 
@@ -154,16 +155,24 @@ class _ActionRow(QWidget):
             QWidget#actionRow {{
                 background-color: {row_bg};
                 border: 1px solid {row_border};
-                border-radius: 8px;
+                border-radius: 6px;
             }}
             QWidget#actionRow:hover {{
-                background-color: {rgba(dt.surface_raised, 0.5)};
-                border-color: {rgba(dt.border_strong, 0.6)};
+                background-color: {rgba(dt.surface_raised, 0.6)};
+                border-color: {rgba(dt.border_strong, 0.8)};
             }}
             """
         )
-        # Checkbox indicator
+        
+        # Modern checkbox indicator with subtle inner shadow effect
         accent = dt.danger if self._danger else dt.accent
+        checkmark = f"""
+            image: url(data:image/svg+xml;utf8,
+            <svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'>
+            <path d='M2 5L4 7L8 3' stroke='white' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/>
+            </svg>);
+        """.replace('\n', ' ')
+        
         self.checkbox.setStyleSheet(
             f"""
             QCheckBox {{
@@ -172,20 +181,24 @@ class _ActionRow(QWidget):
                 spacing: 0px;
             }}
             QCheckBox::indicator {{
-                width: 18px;
-                height: 18px;
-                border-radius: 5px;
-                border: 2px solid {rgba(accent if checked else dt.border_strong, 0.9)};
-                background-color: {rgba(accent, 0.18) if checked else "transparent"};
+                width: 16px;
+                height: 16px;
+                border-radius: 4px;
+                border: 2px solid {accent if checked else rgba(dt.border_strong, 0.6)};
+                background-color: {accent if checked else dt.surface_raised};
             }}
             QCheckBox::indicator:checked {{
                 background-color: {accent};
                 border-color: {accent};
-                image: none;
+                {checkmark}
+            }}
+            QCheckBox::indicator:hover:!checked {{
+                border-color: {accent};
+                background-color: {rgba(accent, 0.08)};
             }}
             QCheckBox::indicator:disabled {{
-                border-color: {rgba(dt.text_muted, 0.35)};
-                background-color: transparent;
+                border-color: {rgba(dt.text_muted, 0.25)};
+                background-color: {rgba(dt.text_muted, 0.05)};
             }}
             """
         )
@@ -193,14 +206,14 @@ class _ActionRow(QWidget):
             f"color: {lbl_color}; background: transparent;"
         )
         self.desc.setStyleSheet(
-            f"color: {desc_color}; font-size: 11px; background: transparent;"
+            f"color: {desc_color}; font-size: 10px; background: transparent;"
         )
 
 
-# ── Group block ───────────────────────────────────────────────────────────────
+# ── Compact Group block ────────────────────────────────────────────────────────
 
 class _ActionGroup(QWidget):
-    """A titled group of _ActionRow items inside a card."""
+    """A titled group of _ActionRow items inside a compact card."""
 
     def __init__(
         self,
@@ -216,13 +229,14 @@ class _ActionGroup(QWidget):
 
         layout = QVBoxLayout(self)
         layout.setContentsMargins(0, 0, 0, 0)
-        layout.setSpacing(2)
+        layout.setSpacing(1)
 
-        # Group heading
+        # Compact group heading
         heading = QLabel(title.upper())
         heading.setObjectName("groupHeading")
-        hf = QFont("Segoe UI", 9)
+        hf = QFont("Segoe UI", 8)
         hf.setWeight(QFont.Weight.Bold)
+        hf.setLetterSpacing(QFont.SpacingType.AbsoluteSpacing, 1)
         heading.setFont(hf)
         layout.addWidget(heading)
         self._heading = heading
@@ -245,9 +259,9 @@ class _ActionGroup(QWidget):
 
     def refresh_theme(self) -> None:
         dt = get_theme_manager().design_tokens
-        color = rgba(dt.danger, 0.85) if self._danger else dt.text_muted
+        color = rgba(dt.danger, 0.85) if self._danger else rgba(dt.text_muted, 0.85)
         self._heading.setStyleSheet(
-            f"color: {color}; letter-spacing: 1.2px; background: transparent;"
+            f"color: {color}; letter-spacing: 1px; background: transparent;"
         )
         for row in self._rows:
             row.refresh_theme()
@@ -260,7 +274,7 @@ class NukerPage(BasePage):
     setup_server_requested = pyqtSignal(str, str, int, int)
     guild_selection_changed = pyqtSignal(str)
 
-    ICON_SIZE = 40
+    ICON_SIZE = 32
 
     def __init__(self, parent: Optional[QWidget] = None):
         super().__init__("Nuker", "", eyebrow="Destructive", parent=parent)
@@ -279,13 +293,15 @@ class NukerPage(BasePage):
         scroll = QScrollArea()
         scroll.setWidgetResizable(True)
         scroll.setFrameShape(QFrame.Shape.NoFrame)
+        scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        scroll.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAsNeeded)
         self._scroll = scroll
 
         body = QWidget()
         self._body = body
         bl = QVBoxLayout(body)
-        bl.setContentsMargins(24, 24, 24, 24)
-        bl.setSpacing(16)
+        bl.setContentsMargins(16, 12, 16, 12)
+        bl.setSpacing(10)
         scroll.setWidget(body)
         self.root_layout.addWidget(scroll, 1)
 
@@ -300,12 +316,13 @@ class NukerPage(BasePage):
     # ── Target server card ────────────────────────────────────────────────────
 
     def _build_target_card(self) -> QWidget:
-        card = PanelCard("Target Server", "Select the server you want to operate on.")
+        card = PanelCard("Target Server")
+        card.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Maximum)
         self._target_card = card
 
-        # Row: icon | name+dropdown | chip
+        # Compact row: icon | name+dropdown
         row = QHBoxLayout()
-        row.setSpacing(16)
+        row.setSpacing(10)
 
         self.target_icon = QLabel()
         self.target_icon.setFixedSize(self.ICON_SIZE, self.ICON_SIZE)
@@ -314,11 +331,12 @@ class NukerPage(BasePage):
         row.addWidget(self.target_icon, 0, Qt.AlignmentFlag.AlignVCenter)
 
         name_col = QVBoxLayout()
-        name_col.setSpacing(6)
+        name_col.setSpacing(2)
+        name_col.setContentsMargins(0, 0, 0, 0)
 
         self.target_name = QLabel("No server selected")
         self.target_name.setObjectName("targetName")
-        nf = QFont("Segoe UI", 14)
+        nf = QFont("Segoe UI", 12)
         nf.setWeight(QFont.Weight.Bold)
         self.target_name.setFont(nf)
         name_col.addWidget(self.target_name)
@@ -329,23 +347,12 @@ class NukerPage(BasePage):
         name_col.addWidget(self.guild_dropdown)
 
         row.addLayout(name_col, 1)
-
-        self.status_chip = StatusChip("Disconnected", "danger")
-        row.addWidget(self.status_chip, 0, Qt.AlignmentFlag.AlignTop)
-
         card.body_layout.addLayout(row)
 
-        # Divider
-        div = QFrame()
-        div.setFrameShape(QFrame.Shape.HLine)
-        div.setFixedHeight(1)
-        div.setObjectName("statsDivider")
-        card.body_layout.addWidget(div)
-        self._stats_divider = div
-
-        # Stat pills row
+        # Compact stat pills row
         stats_row = QHBoxLayout()
         stats_row.setSpacing(0)
+        stats_row.setContentsMargins(0, 4, 0, 0)
 
         self._stat_containers: list[QWidget] = []
         self._stats: list[tuple[QLabel, QLabel]] = []
@@ -361,23 +368,23 @@ class NukerPage(BasePage):
         return card
 
     def _make_stat_pill(self, key: str, value: str) -> tuple[QWidget, QLabel, QLabel]:
-        """Create a small stat block; returns (container, value_label, key_label)."""
+        """Create a compact stat block; returns (container, value_label, key_label)."""
         container = QWidget()
         container.setObjectName("statPill")
         cl = QVBoxLayout(container)
-        cl.setContentsMargins(0, 0, 24, 0)
-        cl.setSpacing(2)
+        cl.setContentsMargins(0, 0, 20, 0)
+        cl.setSpacing(0)
 
         val_lbl = QLabel(value)
         val_lbl.setObjectName("statValue")
-        vf = QFont("Segoe UI", 16)
+        vf = QFont("Segoe UI", 13)
         vf.setWeight(QFont.Weight.Bold)
         val_lbl.setFont(vf)
         cl.addWidget(val_lbl)
 
         key_lbl = QLabel(key.upper())
         key_lbl.setObjectName("statKey")
-        kf = QFont("Segoe UI", 9)
+        kf = QFont("Segoe UI", 8)
         kf.setWeight(QFont.Weight.DemiBold)
         key_lbl.setFont(kf)
         cl.addWidget(key_lbl)
@@ -389,13 +396,15 @@ class NukerPage(BasePage):
     def _build_actions_card(self) -> QWidget:
         card = PanelCard(
             "Actions",
-            "Select the operations to queue, then hit Execute.",
+            "Select operations to queue, then hit Execute.",
         )
+        card.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Maximum)
         self._actions_card = card
 
-        # Three standard groups in a horizontal row
-        groups_row = QHBoxLayout()
-        groups_row.setSpacing(12)
+        # Compact grid layout for action groups
+        groups_grid = QGridLayout()
+        groups_grid.setSpacing(8)
+        groups_grid.setContentsMargins(0, 0, 0, 0)
 
         g_content = _ActionGroup("Content", _GROUP_CONTENT)
         g_structure = _ActionGroup("Structure", _GROUP_STRUCTURE)
@@ -403,12 +412,17 @@ class NukerPage(BasePage):
 
         self._groups = [g_content, g_structure, g_members]
 
-        for group in self._groups:
-            groups_row.addWidget(group, 1)
+        # Place in 3-column grid
+        groups_grid.addWidget(g_content, 0, 0)
+        groups_grid.addWidget(g_structure, 0, 1)
+        groups_grid.addWidget(g_members, 0, 2)
+        groups_grid.setColumnStretch(0, 1)
+        groups_grid.setColumnStretch(1, 1)
+        groups_grid.setColumnStretch(2, 1)
 
-        card.body_layout.addLayout(groups_row)
+        card.body_layout.addLayout(groups_grid)
 
-        # Divider before danger zone
+        # Thin divider before danger zone
         danger_div = QFrame()
         danger_div.setFrameShape(QFrame.Shape.HLine)
         danger_div.setFixedHeight(1)
@@ -416,40 +430,44 @@ class NukerPage(BasePage):
         card.body_layout.addWidget(danger_div)
         self._danger_div = danger_div
 
-        # Danger zone row — checkbox + execute side by side
+        # Danger zone row — compact layout
         danger_row = QHBoxLayout()
-        danger_row.setSpacing(16)
+        danger_row.setSpacing(12)
+        danger_row.setContentsMargins(0, 2, 0, 0)
 
         self._danger_group = _ActionGroup("Danger Zone", _GROUP_DANGER, danger=True)
         danger_row.addWidget(self._danger_group, 1)
 
-        # Execute button + select-all toggle
+        # Compact execute buttons
         btn_col = QVBoxLayout()
-        btn_col.setSpacing(8)
-        btn_col.setContentsMargins(0, 4, 0, 0)
+        btn_col.setSpacing(4)
+        btn_col.setContentsMargins(0, 0, 0, 0)
 
-        self.execute_btn = AppButton("Execute Selected", "danger")
-        self.execute_btn.setMinimumHeight(44)
+        self.execute_btn = AppButton("Execute", "danger")
+        self.execute_btn.setMinimumHeight(36)
         self.execute_btn.setEnabled(False)
         self.execute_btn.clicked.connect(self._on_execute_clicked)
         btn_col.addWidget(self.execute_btn)
 
-        self.select_all_btn = AppButton("Select All", "tertiary")
+        btn_row = QHBoxLayout()
+        btn_row.setSpacing(4)
+
+        self.select_all_btn = AppButton("All", "tertiary")
         self.select_all_btn.setEnabled(False)
         self.select_all_btn.clicked.connect(self._select_all)
-        btn_col.addWidget(self.select_all_btn)
+        btn_row.addWidget(self.select_all_btn)
 
-        self.clear_btn = AppButton("Clear All", "tertiary")
+        self.clear_btn = AppButton("Clear", "tertiary")
         self.clear_btn.setEnabled(False)
         self.clear_btn.clicked.connect(self._clear_all)
-        btn_col.addWidget(self.clear_btn)
+        btn_row.addWidget(self.clear_btn)
 
-        btn_col.addStretch(1)
+        btn_col.addLayout(btn_row)
         danger_row.addLayout(btn_col)
 
         card.body_layout.addLayout(danger_row)
 
-        # Status banner
+        # Compact status banner
         self.status_banner = InfoBanner(
             "No server selected",
             "Select a server to enable actions.",
@@ -464,23 +482,25 @@ class NukerPage(BasePage):
     def _build_setup_card(self) -> QWidget:
         card = PanelCard(
             "Quick Setup",
-            "Rename the server and scaffold channels and roles.",
+            "Rename and scaffold channels and roles.",
         )
+        card.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Maximum)
         self._setup_card = card
 
         row = QHBoxLayout()
-        row.setSpacing(16)
+        row.setSpacing(10)
+        row.setContentsMargins(0, 0, 0, 0)
 
         name_col = QVBoxLayout()
-        name_col.setSpacing(6)
+        name_col.setSpacing(2)
         name_col.addWidget(SectionLabel("Server Name"))
         self.server_name_input = AppLineEdit()
         self.server_name_input.setText("Test Server")
         name_col.addWidget(self.server_name_input)
-        row.addLayout(name_col, 2)
+        row.addLayout(name_col, 3)
 
         roles_col = QVBoxLayout()
-        roles_col.setSpacing(6)
+        roles_col.setSpacing(2)
         roles_col.addWidget(SectionLabel("Roles"))
         self.roles_spinner = AppSpinBox()
         self.roles_spinner.setRange(1, 50)
@@ -489,15 +509,14 @@ class NukerPage(BasePage):
         row.addLayout(roles_col, 1)
 
         channels_col = QVBoxLayout()
-        channels_col.setSpacing(6)
+        channels_col.setSpacing(2)
         channels_col.addWidget(SectionLabel("Channels"))
         self.channels_spinner = AppSpinBox()
         self.channels_spinner.setRange(1, 50)
-        self.channels_spinner.setValue(5)
         channels_col.addWidget(self.channels_spinner)
         row.addLayout(channels_col, 1)
 
-        self.setup_button = AppButton("Setup Server", "accent")
+        self.setup_button = AppButton("Setup", "accent")
         self.setup_button.setEnabled(False)
         self.setup_button.clicked.connect(self._on_setup_clicked)
         row.addWidget(self.setup_button, 0, Qt.AlignmentFlag.AlignBottom)
@@ -565,11 +584,11 @@ class NukerPage(BasePage):
 
         painter.setBrush(QBrush(bg))
         painter.setPen(Qt.PenStyle.NoPen)
-        painter.drawRoundedRect(0, 0, sz, sz, 10, 10)
+        painter.drawRoundedRect(0, 0, sz, sz, 8, 8)
 
         painter.setPen(Qt.GlobalColor.white)
         f = painter.font()
-        f.setPointSize(16)
+        f.setPointSize(13)
         f.setBold(True)
         painter.setFont(f)
         painter.drawText(pixmap.rect(), Qt.AlignmentFlag.AlignCenter, letter)
@@ -729,8 +748,6 @@ class NukerPage(BasePage):
 
     def set_connected(self, connected: bool) -> None:
         self._is_connected = connected
-        self.status_chip.setText("Connected" if connected else "Disconnected")
-        self.status_chip.set_tone("success" if connected else "danger")
         self._update_states()
         if not connected:
             self._update_status("Connect to Discord to enable actions.", "neutral")
@@ -759,6 +776,11 @@ class NukerPage(BasePage):
                 f"background-color: {dt.background}; border: none;"
             )
 
+        # Stat pill containers — must be explicitly transparent
+        if hasattr(self, "_stat_containers"):
+            for container in self._stat_containers:
+                container.setStyleSheet("background: transparent; border: none;")
+
         # Stat labels
         if hasattr(self, "_stats"):
             for val_lbl, key_lbl in self._stats:
@@ -775,20 +797,18 @@ class NukerPage(BasePage):
             )
 
         # Dividers
-        if hasattr(self, "_stats_divider"):
-            self._stats_divider.setStyleSheet(
-                f"QFrame {{ background-color: {rgba(dt.border_strong, 0.5)}; border: none; }}"
-            )
         if hasattr(self, "_danger_div"):
             self._danger_div.setStyleSheet(
-                f"QFrame {{ background-color: {rgba(dt.danger, 0.3)}; border: none; }}"
+                f"QFrame {{ background-color: {rgba(dt.danger, 0.25)}; border: none; }}"
             )
 
         # Action groups
         if hasattr(self, "_groups"):
             for g in self._groups:
+                g.setStyleSheet("QWidget#actionGroup { background: transparent; border: none; }")
                 g.refresh_theme()
         if hasattr(self, "_danger_group"):
+            self._danger_group.setStyleSheet("QWidget#actionGroup { background: transparent; border: none; }")
             self._danger_group.refresh_theme()
 
         # Status banner

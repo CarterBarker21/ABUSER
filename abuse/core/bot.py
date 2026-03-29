@@ -64,7 +64,7 @@ class ABUSERBot(commands.Bot):
     enhanced error handling, and robustness features
     """
     
-    def __init__(self):
+    def __init__(self, token: Optional[str] = None):
         # Load config
         self.config = self._load_config()
         self.start_time = datetime.now()
@@ -89,7 +89,11 @@ class ABUSERBot(commands.Bot):
         
         # Bot configuration
         self.prefix = self.config.get("bot", {}).get("prefix", ".")
-        self.token = self._get_token()
+        # Use provided token or get from environment/files
+        if token and self._validate_token(token):
+            self.token = token
+        else:
+            self.token = self._get_token()
         
         # Cog loading tracking
         self._loaded_cogs: List[str] = []

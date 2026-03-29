@@ -251,12 +251,17 @@ class PanelCard(QFrame, ThemedWidget):
                 border: 1px solid {border};
                 border-radius: {metrics.radius_lg}px;
             }}
+            QFrame#panelCard QLabel {{
+                background: transparent;
+                border: none;
+            }}
             """
         )
         self.title_label.setStyleSheet(f"color: {dt.text_primary}; background: transparent;")
         self.description_label.setStyleSheet(
             f"color: {dt.text_secondary}; font-size: 12px; line-height: 1.4em; background: transparent;"
         )
+        self.header_widget.setStyleSheet("background: transparent;")
 
 
 class AppButton(QPushButton, ThemedWidget):
@@ -322,6 +327,13 @@ class AppButton(QPushButton, ThemedWidget):
 
 
 class SidebarNavButton(QPushButton, ThemedWidget):
+    @staticmethod
+    def _resolve_icon_dir() -> Path:
+        import sys
+        if getattr(sys, 'frozen', False):
+            return Path(sys._MEIPASS) / "abuse" / "gui" / "assets" / "icons" / "sidebar"
+        return Path(__file__).resolve().parent / "assets" / "icons" / "sidebar"
+
     _icon_dir = Path(__file__).resolve().parent / "assets" / "icons" / "sidebar"
 
     # Collapsed = icon centred, no label.  Expanded = icon + label side-by-side.
@@ -387,7 +399,7 @@ class SidebarNavButton(QPushButton, ThemedWidget):
         self.refresh_theme()
 
     def _load_icon_svg(self, icon_name: str) -> str:
-        icon_path = self._icon_dir / f"{icon_name}.svg"
+        icon_path = self._resolve_icon_dir() / f"{icon_name}.svg"
         try:
             return icon_path.read_text(encoding="utf-8")
         except OSError:
