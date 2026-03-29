@@ -17,9 +17,7 @@ from contextlib import asynccontextmanager
 import discord
 from discord.ext import commands
 from discord.errors import LoginFailure, ConnectionClosed, HTTPException
-from colorama import init, Fore, Style
-
-init(autoreset=True)
+from colorama import Fore, Style
 
 from abuse.app_paths import (
     bootstrap_runtime_layout,
@@ -35,11 +33,6 @@ try:
 except Exception:
     load_dotenv = None
 
-bootstrap_runtime_layout()
-if load_dotenv is not None:
-    from abuse.app_paths import env_file_path
-    load_dotenv(env_file_path(), override=False)
-
 
 class ConnectionRetryConfig:
     MAX_RETRIES = 5
@@ -53,6 +46,19 @@ class ABUSERBot(commands.Bot):
     """Main bot class extending discord.py-self with rate limiting and GUI support."""
     
     def __init__(self, token: Optional[str] = None):
+        # Initialize runtime layout and colorama only when bot is created
+        # (not at module import to prevent subprocess issues)
+        import colorama
+        colorama.init(autoreset=True)
+        
+        # Bootstrap runtime directories
+        bootstrap_runtime_layout()
+        
+        # Load environment variables
+        if load_dotenv is not None:
+            from abuse.app_paths import env_file_path
+            load_dotenv(env_file_path(), override=False)
+        
         self.config = self._load_config()
         self.start_time = datetime.now()
         
