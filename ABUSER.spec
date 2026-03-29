@@ -1,7 +1,6 @@
 # -*- mode: python ; coding: utf-8 -*-
-# PyInstaller spec for ABUSER — ONE DIRECTORY build (prevents spawning issues)
+# PyInstaller spec - MINIMAL TEST
 
-import sys
 from pathlib import Path
 
 ROOT = Path(SPECPATH)
@@ -12,48 +11,21 @@ a = Analysis(
     [str(ROOT / 'main.py')],
     pathex=[str(ROOT)],
     binaries=[],
-    datas=[
-        (str(ROOT / 'abuse' / 'gui' / 'assets'), 'abuse/gui/assets'),
-        (str(ROOT / 'config'), 'config'),
-    ],
+    datas=[],
     hiddenimports=[
-        'PyQt6.QtSvg',
-        'PyQt6.QtSvgWidgets',
         'PyQt6.QtCore',
         'PyQt6.QtGui',
         'PyQt6.QtWidgets',
-        'discord',
-        'discord.ext',
-        'discord.ext.commands',
-        'aiohttp',
-        'aiohttp.connector',
-        'aiohttp.client',
-        'dotenv',
-        'asyncio',
-        'asyncio.windows_events',
-        'json',
-        'pathlib',
-        'logging',
     ],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
     excludes=[
-        'pytest',
-        '_pytest',
-        'pytest_qt',
-        'pytestqt',
-        'unittest',
-        'doctest',
-        'tkinter',
-        'turtle',
-        'xml.etree.ElementTree',
-        'pydoc',
-        'setuptools',
-        'pkg_resources',
-        'node_modules',
-        'multiprocessing',
-        'concurrent.futures.process',
+        'discord', 'aiohttp', 'colorama', 'Crypto',
+        'pytest', 'unittest', 'doctest',
+        'tkinter', 'turtle', 'pydoc',
+        'multiprocessing', 'concurrent.futures',
+        'abuse',  # Exclude our own package for testing
     ],
     noarchive=False,
     optimize=0,
@@ -70,7 +42,7 @@ exe = EXE(
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
-    upx=True,
+    upx=False,
     upx_exclude=[],
     console=False,
     disable_windowed_traceback=False,
@@ -80,15 +52,13 @@ exe = EXE(
     entitlements_file=None,
 )
 
-# ONE DIRECTORY mode - creates a folder with EXE inside
-# This prevents the subprocess spawning that one-file mode causes
 coll = COLLECT(
     exe,
     a.binaries,
     a.zipfiles,
     a.datas,
     strip=False,
-    upx=True,
+    upx=False,
     upx_exclude=[],
     name='ABUSER',
 )
