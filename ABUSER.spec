@@ -15,17 +15,17 @@ a = Analysis(
     datas=[
         # SVG icon assets
         (str(ROOT / 'abuse' / 'gui' / 'assets'), 'abuse/gui/assets'),
-        # Config defaults (created at runtime if absent)
+        # Config defaults
         (str(ROOT / 'config'), 'config'),
     ],
     hiddenimports=[
-        # PyQt6 modules not always auto-detected
+        # PyQt6 modules
         'PyQt6.QtSvg',
         'PyQt6.QtSvgWidgets',
         'PyQt6.QtCore',
         'PyQt6.QtGui',
         'PyQt6.QtWidgets',
-        # discord.py-self async internals
+        # discord.py-self
         'discord',
         'discord.ext',
         'discord.ext.commands',
@@ -34,19 +34,22 @@ a = Analysis(
         'aiohttp.client',
         # dotenv
         'dotenv',
-        # stdlib used at runtime
+        # stdlib
         'asyncio',
         'asyncio.windows_events',
         'json',
         'pathlib',
         'logging',
         'concurrent.futures',
+        # multiprocessing for single-instance check
+        'multiprocessing',
+        'multiprocessing.reduction',
     ],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
     excludes=[
-        # Test infrastructure — keeps the exe lean
+        # Test infrastructure
         'pytest',
         '_pytest',
         'pytest_qt',
@@ -60,7 +63,6 @@ a = Analysis(
         'pydoc',
         'setuptools',
         'pkg_resources',
-        # Node / npm artefacts that sometimes get picked up
         'node_modules',
     ],
     noarchive=False,
@@ -83,11 +85,10 @@ exe = EXE(
     upx=True,
     upx_exclude=[],
     runtime_tmpdir=None,
-    console=False,          # no console window
+    console=False,
     disable_windowed_traceback=False,
     argv_emulation=False,
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    # icon='path/to/icon.ico',  # add a .ico here when available
 )

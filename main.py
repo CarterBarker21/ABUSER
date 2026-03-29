@@ -5,9 +5,16 @@ PyQt6 Graphical Interface with Discord selfbot integration.
 """
 
 import sys
+import socket
+
+# IMPORTANT: Multiprocessing freeze support for PyInstaller EXE
+# This MUST be the first thing after imports to prevent multiple windows
+if getattr(sys, 'frozen', False):
+    import multiprocessing
+    multiprocessing.freeze_support()
+
 import asyncio
 import subprocess
-import socket
 from pathlib import Path
 from datetime import datetime
 
@@ -19,11 +26,10 @@ def _ensure_single_instance():
     global _SINGLE_INSTANCE_SOCKET
     try:
         _SINGLE_INSTANCE_SOCKET = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        _SINGLE_INSTANCE_SOCKET.bind(('127.0.0.1', 37429))  # Unique port for ABUSER
+        _SINGLE_INSTANCE_SOCKET.bind(('127.0.0.1', 37429))
         _SINGLE_INSTANCE_SOCKET.listen(1)
         return True
     except socket.error:
-        # Port is already in use, another instance is running
         return False
 
 # Check single instance before anything else
@@ -114,7 +120,7 @@ if load_dotenv is not None:
 try:
     from PyQt6.QtWidgets import (
         QApplication, QWidget, QLabel, QVBoxLayout, QHBoxLayout, 
-        QGraphicsDropShadowEffect, QPushButton
+        QGraphicsDropShadowEffect
     )
     from PyQt6.QtCore import Qt, QTimer, QPropertyAnimation, QEasingCurve, pyqtSignal
     from PyQt6.QtGui import QFont, QColor, QPainter, QLinearGradient, QBrush
@@ -150,7 +156,6 @@ class SplashScreen(QWidget):
         layout.setContentsMargins(40, 40, 40, 40)
         layout.setSpacing(20)
         
-        # Title
         title = QLabel("ABUSER")
         title_font = QFont("Segoe UI", 36)
         title_font.setWeight(QFont.Weight.Bold)
@@ -159,7 +164,6 @@ class SplashScreen(QWidget):
         title.setAlignment(Qt.AlignmentFlag.AlignCenter)
         layout.addWidget(title)
         
-        # Subtitle
         subtitle = QLabel("Advanced Bot for User Server Enhancement & Raiding")
         subtitle_font = QFont("Segoe UI", 11)
         subtitle.setFont(subtitle_font)
@@ -167,7 +171,6 @@ class SplashScreen(QWidget):
         subtitle.setAlignment(Qt.AlignmentFlag.AlignCenter)
         layout.addWidget(subtitle)
         
-        # Version
         version = QLabel("v1.0.0")
         version_font = QFont("Segoe UI", 10)
         version.setFont(version_font)
@@ -177,7 +180,6 @@ class SplashScreen(QWidget):
         
         layout.addStretch(1)
         
-        # Loading text
         self._loading = QLabel("Loading...")
         loading_font = QFont("Segoe UI", 10)
         self._loading.setFont(loading_font)
@@ -185,7 +187,6 @@ class SplashScreen(QWidget):
         self._loading.setAlignment(Qt.AlignmentFlag.AlignCenter)
         layout.addWidget(self._loading)
         
-        # Add shadow effect
         shadow = QGraphicsDropShadowEffect(self)
         shadow.setBlurRadius(30)
         shadow.setXOffset(0)
@@ -215,14 +216,11 @@ class SplashScreen(QWidget):
         painter = QPainter(self)
         painter.setRenderHint(QPainter.RenderHint.Antialiasing)
         
-        # Background gradient
         gradient = QLinearGradient(0, 0, 0, self.height())
         gradient.setColorAt(0, QColor(30, 30, 35))
         gradient.setColorAt(1, QColor(20, 20, 25))
         
         painter.fillRect(self.rect(), QBrush(gradient))
-        
-        # Border
         painter.setPen(QColor(60, 60, 70))
         painter.drawRoundedRect(self.rect().adjusted(1, 1, -1, -1), 12, 12)
 
@@ -282,7 +280,6 @@ def main():
     window = MainWindow()
     window.load_and_apply_settings()
     
-    # Close splash and show main window
     if splash:
         QTimer.singleShot(1500, lambda: _finish_splash(splash, window))
     else:
@@ -298,7 +295,6 @@ def main():
         if bot_runner and bot_runner.is_running:
             print("[*] Shutting down bot...")
             bot_runner.stop_bot()
-        # Close single-instance socket on exit
         global _SINGLE_INSTANCE_SOCKET
         if _SINGLE_INSTANCE_SOCKET:
             try:
