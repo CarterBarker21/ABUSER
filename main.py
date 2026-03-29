@@ -16,16 +16,26 @@ if __name__ == '__main__':
     except (IOError, OSError, ImportError):
         sys.exit(0)
     
-    # STEP 1: app_paths and theme (confirmed working)
+    # STEP 1: app_paths and theme
     from abuse.app_paths import bootstrap_runtime_layout, env_file_path
     bootstrap_runtime_layout()
     
     from abuse.gui.theme import get_theme_manager
     
-    # STEP 2: Test importing token_finder_thread (potential culprit)
-    from abuse.gui.token_finder_thread import TokenFinderThread
+    # STEP 2: Full gui imports (including token_finder_thread)
+    from abuse.gui import MainWindow
+    from abuse.gui.config import load_gui_config
+    from abuse.gui import BotRunner
     
-    # STEP 3: Add PyQt6
+    # STEP 3: Add discord import (TEST)
+    try:
+        import discord
+        from discord.ext import commands
+        discord_available = True
+    except ImportError:
+        discord_available = False
+    
+    # STEP 4: Add PyQt6
     from PyQt6.QtWidgets import QApplication, QMainWindow, QLabel, QVBoxLayout, QWidget
     from PyQt6.QtCore import Qt
     from PyQt6.QtGui import QFont
@@ -36,22 +46,20 @@ if __name__ == '__main__':
     
     theme_manager = get_theme_manager()
     
-    window = QMainWindow()
-    window.setWindowTitle("ABUSER Bot - With TokenFinderThread")
+    window = MainWindow()
+    window.setWindowTitle("ABUSER Bot")
     window.setMinimumSize(800, 600)
     
-    central = QWidget()
-    layout = QVBoxLayout(central)
-    
-    label = QLabel("ABUSER Bot - Test with TokenFinderThread import")
-    label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-    layout.addWidget(label)
-    
-    window.setCentralWidget(central)
+    window.load_and_apply_settings()
     window.show()
+    
+    bot_runner = BotRunner(parent=window)
+    window.connect_bot_runner(bot_runner)
     
     def on_exit():
         try:
+            if bot_runner and bot_runner.is_running:
+                bot_runner.stop_bot()
             fd.close()
             lock_file.unlink(missing_ok=True)
         except:

@@ -1,5 +1,5 @@
 # -*- mode: python ; coding: utf-8 -*-
-# PyInstaller spec - TEST with token_finder_thread
+# PyInstaller spec - TEST with discord
 
 from pathlib import Path
 
@@ -20,15 +20,36 @@ a = Analysis(
         'PyQt6.QtWidgets',
         'abuse.app_paths',
         'abuse.gui.theme',
+        'abuse.gui.config',
+        'abuse.gui.main_window',
+        'abuse.gui.bot_runner',
+        'abuse.gui.components',
+        'abuse.gui.pages',
+        'abuse.gui.pages.base',
+        'abuse.gui.pages.login',
+        'abuse.gui.pages.guilds',
+        'abuse.gui.pages.nuker',
+        'abuse.gui.pages.dm',
+        'abuse.gui.pages.logs',
+        'abuse.gui.pages.settings',
+        'abuse.gui.pages.docs',
+        'abuse.gui.pages.joiner',
+        'abuse.gui.pages.booster',
         'abuse.gui.token_finder_thread',
         'abuse.utils.token_finder',
-        # Exclude discord for now
+        # Add discord
+        'discord',
+        'discord.ext',
+        'discord.ext.commands',
+        'aiohttp',
+        'aiohttp.connector',
+        'aiohttp.client',
     ],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
     excludes=[
-        'discord', 'aiohttp', 'colorama', 'Crypto',
+        'colorama', 'Crypto',
         'pytest', 'unittest', 'doctest',
         'tkinter', 'turtle', 'pydoc',
         'multiprocessing', 'concurrent.futures',
