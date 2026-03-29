@@ -9,8 +9,7 @@ cd /d "%SCRIPT_DIR%"
 set "PYTHON=%SCRIPT_DIR%venv\Scripts\pythonw.exe"
 if not exist "%PYTHON%" set "PYTHON=pythonw.exe"
 
-:: Launch directly - no 'start' command to avoid extra windows
-:: Single-instance check is handled in Python code
+:: Launch directly - single instance check is handled in Python
 "%PYTHON%" "%SCRIPT_DIR%main.py"
 
 exit /b 0
