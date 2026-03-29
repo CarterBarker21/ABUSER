@@ -1,20 +1,11 @@
 #!/usr/bin/env python3
-"""ABUSER Bot - GUI Entry Point
-
-PyQt6 Graphical Interface with Discord selfbot integration.
-"""
+"""ABUSER Bot - GUI Entry Point"""
 
 import sys
-
-# CRITICAL: This MUST be the very first thing
-if __name__ == '__main__':
-    import multiprocessing
-    multiprocessing.freeze_support()
 
 # All imports and code inside __main__ block to prevent subprocess spawning
 if __name__ == '__main__':
     import asyncio
-    import subprocess
     import socket
     from pathlib import Path
     from datetime import datetime
@@ -93,51 +84,48 @@ if __name__ == '__main__':
     from abuse.gui import MainWindow, get_theme_manager, BotRunner
     from abuse.gui.config import load_gui_config
 
-    def main():
-        """Main entry point - starts GUI and bot runner."""
-        QApplication.setHighDpiScaleFactorRoundingPolicy(
-            Qt.HighDpiScaleFactorRoundingPolicy.PassThrough
-        )
-        
-        app = QApplication(sys.argv)
-        app.setApplicationName("ABUSER Bot")
-        app.setApplicationVersion("1.0.0")
-        app.setOrganizationName("ABUSER")
-        
-        font = QFont("Segoe UI", 10)
-        font.setStyleHint(QFont.StyleHint.SansSerif)
-        app.setFont(font)
-        
-        theme_manager = get_theme_manager()
-        appearance = load_gui_config().get("appearance", {})
-        theme_manager.switch_theme(
-            appearance.get("preset", "Discord Dark"),
-            appearance.get("accent", "Red").lower().replace(" ", "_"),
-        )
-        theme_manager.apply_theme(app)
-        
-        window = MainWindow()
-        window.load_and_apply_settings()
-        window.show()
-        
-        bot_runner = BotRunner(parent=window)
-        window.connect_bot_runner(bot_runner)
-        
-        print("[*] ABUSER Bot GUI started")
-        print("[*] Please enter your token in the Login tab to connect")
-        
-        def on_exit():
-            if bot_runner and bot_runner.is_running:
-                print("[*] Shutting down bot...")
-                bot_runner.stop_bot()
-        
-        app.aboutToQuit.connect(on_exit)
-        
-        try:
-            sys.exit(app.exec())
-        except KeyboardInterrupt:
-            print("\n[!] Interrupted by user")
-            on_exit()
-            sys.exit(0)
-
-    main()
+    # Main entry point
+    QApplication.setHighDpiScaleFactorRoundingPolicy(
+        Qt.HighDpiScaleFactorRoundingPolicy.PassThrough
+    )
+    
+    app = QApplication(sys.argv)
+    app.setApplicationName("ABUSER Bot")
+    app.setApplicationVersion("1.0.0")
+    app.setOrganizationName("ABUSER")
+    
+    font = QFont("Segoe UI", 10)
+    font.setStyleHint(QFont.StyleHint.SansSerif)
+    app.setFont(font)
+    
+    theme_manager = get_theme_manager()
+    appearance = load_gui_config().get("appearance", {})
+    theme_manager.switch_theme(
+        appearance.get("preset", "Discord Dark"),
+        appearance.get("accent", "Red").lower().replace(" ", "_"),
+    )
+    theme_manager.apply_theme(app)
+    
+    window = MainWindow()
+    window.load_and_apply_settings()
+    window.show()
+    
+    bot_runner = BotRunner(parent=window)
+    window.connect_bot_runner(bot_runner)
+    
+    print("[*] ABUSER Bot GUI started")
+    print("[*] Please enter your token in the Login tab to connect")
+    
+    def on_exit():
+        if bot_runner and bot_runner.is_running:
+            print("[*] Shutting down bot...")
+            bot_runner.stop_bot()
+    
+    app.aboutToQuit.connect(on_exit)
+    
+    try:
+        sys.exit(app.exec())
+    except KeyboardInterrupt:
+        print("\n[!] Interrupted by user")
+        on_exit()
+        sys.exit(0)
