@@ -1,5 +1,5 @@
 # -*- mode: python ; coding: utf-8 -*-
-# PyInstaller spec - MINIMAL TEST
+# PyInstaller spec - TEST with app_paths and theme
 
 from pathlib import Path
 
@@ -11,11 +11,17 @@ a = Analysis(
     [str(ROOT / 'main.py')],
     pathex=[str(ROOT)],
     binaries=[],
-    datas=[],
+    datas=[
+        (str(ROOT / 'abuse' / 'gui' / 'assets'), 'abuse/gui/assets'),
+    ],
     hiddenimports=[
         'PyQt6.QtCore',
         'PyQt6.QtGui',
         'PyQt6.QtWidgets',
+        'abuse.app_paths',
+        'abuse.gui.theme',
+        'abuse.gui.config',
+        # Exclude discord for now
     ],
     hookspath=[],
     hooksconfig={},
@@ -25,7 +31,6 @@ a = Analysis(
         'pytest', 'unittest', 'doctest',
         'tkinter', 'turtle', 'pydoc',
         'multiprocessing', 'concurrent.futures',
-        'abuse',  # Exclude our own package for testing
     ],
     noarchive=False,
     optimize=0,
