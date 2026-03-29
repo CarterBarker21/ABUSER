@@ -1,12 +1,8 @@
 # -*- mode: python ; coding: utf-8 -*-
-# PyInstaller spec for ABUSER — single-file windowed exe (no console)
+# PyInstaller spec for ABUSER — one-directory build (prevents spawning issues)
 
 import sys
 from pathlib import Path
-
-# CRITICAL: Set multiprocessing start method before any other imports
-import multiprocessing
-multiprocessing.set_start_method('spawn', force=True)
 
 ROOT = Path(SPECPATH)
 
@@ -38,11 +34,6 @@ a = Analysis(
         'json',
         'pathlib',
         'logging',
-        'concurrent.futures',
-        'multiprocessing',
-        'multiprocessing.reduction',
-        # Prevent spawning issues
-        '__main__',
     ],
     hookspath=[],
     hooksconfig={},
@@ -61,6 +52,8 @@ a = Analysis(
         'setuptools',
         'pkg_resources',
         'node_modules',
+        'multiprocessing',
+        'concurrent.futures.process',
     ],
     noarchive=False,
     optimize=0,
@@ -82,7 +75,7 @@ exe = EXE(
     upx=True,
     upx_exclude=[],
     runtime_tmpdir=None,
-    console=False,  # CRITICAL: No console window
+    console=False,
     disable_windowed_traceback=False,
     argv_emulation=False,
     target_arch=None,
