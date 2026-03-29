@@ -1,11 +1,34 @@
 @echo off
-:: ABUSER Bot Launcher
-:: Launches the GUI application
-:: Double-click this file to start the bot
+:: ABUSER Bot Launcher - Prevents multiple instances
 
-setlocal
+setlocal EnableDelayedExpansion
 set "SCRIPT_DIR=%~dp0"
 cd /d "%SCRIPT_DIR%"
+
+:: Check if ABUSER is already running by checking window title
+:: This prevents multiple windows from opening
+tasklist /FI "WINDOWTITLE eq ABUSER Bot*" /FO CSV 2>nul | findstr /I "ABUSER" >nul
+if !errorlevel! equ 0 (
+    echo ABUSER Bot is already running!
+    timeout /t 2 /nobreak >nul
+    exit /b 0
+)
+
+:: Also check for pythonw.exe processes running main.py
+tasklist /FI "IMAGENAME eq pythonw.exe" /FO CSV 2>nul | findstr /I "pythonw" >nul
+if !errorlevel! equ 0 (
+    for /f "tokens=2 delims=," %%a in ('tasklist /FI "IMAGENAME eq pythonw.exe" /FO CSV 2^>nul') do (
+        set "PID=%%a"
+        set "PID=!PID:"=!"
+        :: Check if this pythonw is running our main.py
+        wmic process where "ProcessId=!PID!" get CommandLine 2>nul | findstr /I "main.py" >nul
+        if !errorlevel! equ 0 (
+            echo ABUSER Bot is already running!
+            timeout /t 2 /nobreak >nul
+            exit /b 0
+        )
+    )
+)
 
 :: Check for virtual environment Python first, then system Python
 set "PYTHON=%SCRIPT_DIR%venv\Scripts\pythonw.exe"
@@ -16,7 +39,7 @@ if not exist "%PYTHON%" (
     set "PYTHON_CONSOLE=python.exe"
 )
 
-:: Check if python is available by trying to run it
+:: Check if python is available
 %PYTHON_CONSOLE% --version >nul 2>&1
 if errorlevel 1 (
     echo [ERROR] Python not found!
@@ -46,8 +69,7 @@ if errorlevel 1 (
     exit /b 1
 )
 
-:: Launch with pythonw (no console window)
-:: If this fails, errors are logged to data\logs\startup_*.log
-start "" "%PYTHON%" "%SCRIPT_DIR%main.py"
+:: Launch with pythonw directly (no 'start' command to avoid extra console windows)
+"%PYTHON%" "%SCRIPT_DIR%main.py"
 
 exit /b 0

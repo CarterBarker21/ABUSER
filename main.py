@@ -7,8 +7,29 @@ PyQt6 Graphical Interface with Discord selfbot integration.
 import sys
 import asyncio
 import subprocess
+import socket
 from pathlib import Path
 from datetime import datetime
+
+# Single-instance check using socket (prevents multiple windows)
+_SINGLE_INSTANCE_SOCKET = None
+
+def _ensure_single_instance():
+    """Ensure only one instance of ABUSER runs using a socket."""
+    global _SINGLE_INSTANCE_SOCKET
+    try:
+        _SINGLE_INSTANCE_SOCKET = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        _SINGLE_INSTANCE_SOCKET.bind(('127.0.0.1', 37429))  # Unique port for ABUSER
+        _SINGLE_INSTANCE_SOCKET.listen(1)
+        return True
+    except socket.error:
+        # Port is already in use, another instance is running
+        return False
+
+# Check single instance before anything else
+if not _ensure_single_instance():
+    print("ABUSER Bot is already running!")
+    sys.exit(0)
 
 # Redirect stdout/stderr to log file when running without console (pythonw.exe)
 if sys.platform == "win32" and sys.stdout is None:
@@ -277,6 +298,13 @@ def main():
         if bot_runner and bot_runner.is_running:
             print("[*] Shutting down bot...")
             bot_runner.stop_bot()
+        # Close single-instance socket on exit
+        global _SINGLE_INSTANCE_SOCKET
+        if _SINGLE_INSTANCE_SOCKET:
+            try:
+                _SINGLE_INSTANCE_SOCKET.close()
+            except Exception:
+                pass
     
     app.aboutToQuit.connect(on_exit)
     
