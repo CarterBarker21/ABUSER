@@ -22,10 +22,8 @@ if __name__ == '__main__':
     
     from abuse.gui.theme import get_theme_manager
     
-    # STEP 2: Add gui imports
-    from abuse.gui import MainWindow
-    from abuse.gui.config import load_gui_config
-    from abuse.gui import BotRunner
+    # STEP 2: Test importing token_finder_thread (potential culprit)
+    from abuse.gui.token_finder_thread import TokenFinderThread
     
     # STEP 3: Add PyQt6
     from PyQt6.QtWidgets import QApplication, QMainWindow, QLabel, QVBoxLayout, QWidget
@@ -38,21 +36,22 @@ if __name__ == '__main__':
     
     theme_manager = get_theme_manager()
     
-    window = MainWindow()
-    window.setWindowTitle("ABUSER Bot")
+    window = QMainWindow()
+    window.setWindowTitle("ABUSER Bot - With TokenFinderThread")
     window.setMinimumSize(800, 600)
     
-    # Load settings
-    window.load_and_apply_settings()
-    window.show()
+    central = QWidget()
+    layout = QVBoxLayout(central)
     
-    bot_runner = BotRunner(parent=window)
-    window.connect_bot_runner(bot_runner)
+    label = QLabel("ABUSER Bot - Test with TokenFinderThread import")
+    label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+    layout.addWidget(label)
+    
+    window.setCentralWidget(central)
+    window.show()
     
     def on_exit():
         try:
-            if bot_runner and bot_runner.is_running:
-                bot_runner.stop_bot()
             fd.close()
             lock_file.unlink(missing_ok=True)
         except:
