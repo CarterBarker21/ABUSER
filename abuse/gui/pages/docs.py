@@ -1,29 +1,25 @@
-"""Documentation page — polished two-column layout with collapsible category nav."""
+"""Documentation page — two-column layout with category navigation."""
 
 from __future__ import annotations
 
 from typing import Optional
 
-from PyQt6.QtCore import Qt, QPropertyAnimation, QEasingCurve, pyqtProperty, QRectF
-from PyQt6.QtGui import QFont, QColor, QPainter, QPainterPath
+from PyQt6.QtCore import Qt
+from PyQt6.QtGui import QFont
 from PyQt6.QtWidgets import (
     QFrame,
     QHBoxLayout,
     QLabel,
-    QPushButton,
     QScrollArea,
     QSizePolicy,
     QVBoxLayout,
     QWidget,
-    QGridLayout,
 )
 
 from ..components import InfoBanner, rgba, blend
 from ..theme import get_theme_manager
 from .base import BasePage
 
-
-# ── Content data ──────────────────────────────────────────────────────────────
 
 SECTIONS: list[dict] = [
     {
@@ -181,8 +177,6 @@ SECTIONS: list[dict] = [
 ]
 
 
-# ── Command Reference Data ───────────────────────────────────────────────────
-
 COMMAND_CATEGORIES: list[dict] = [
     {
         "name": "Utility",
@@ -302,119 +296,8 @@ COMMAND_CATEGORIES: list[dict] = [
 ]
 
 
-# ── Collapse Button (matches main_window.py CollapseButton) ───────────────────
-
-class _NavCollapseButton(QPushButton):
-    """Animated collapse toggle button for Docs nav panel."""
-    
-    def __init__(self, parent=None):
-        super().__init__(parent)
-        self._arrow_rotation = 0.0
-        self._hover_progress = 0.0
-        self.setFixedSize(28, 28)
-        self.setCursor(Qt.CursorShape.PointingHandCursor)
-        self.setCheckable(True)
-        self.setFlat(True)
-        self.setObjectName("docNavCollapseBtn")
-        
-        # Animation for rotation
-        self._anim = QPropertyAnimation(self, b"arrow_rotation")
-        self._anim.setDuration(200)
-        self._anim.setEasingCurve(QEasingCurve.Type.InOutCubic)
-        
-    @pyqtProperty(float)
-    def arrow_rotation(self):
-        return self._arrow_rotation
-        
-    @arrow_rotation.setter
-    def arrow_rotation(self, value):
-        self._arrow_rotation = value
-        self.update()
-        
-    def set_collapsed(self, collapsed: bool):
-        """Animate to collapsed or expanded state."""
-        target = 180.0 if collapsed else 0.0
-        self._anim.setStartValue(self._arrow_rotation)
-        self._anim.setEndValue(target)
-        self._anim.start()
-        self.setChecked(collapsed)
-        
-    def enterEvent(self, event):
-        self._hover_progress = 1.0
-        self.update()
-        super().enterEvent(event)
-        
-    def leaveEvent(self, event):
-        self._hover_progress = 0.0
-        self.update()
-        super().leaveEvent(event)
-        
-    def paintEvent(self, event):
-        painter = QPainter(self)
-        painter.setRenderHint(QPainter.RenderHint.Antialiasing)
-        
-        # Get colors from theme
-        dt = get_theme_manager().design_tokens
-        bg_color = QColor(dt.surface_raised)
-        bg_hover = QColor(blend(dt.surface_raised, dt.accent, 0.15))
-        border_color = QColor(rgba(dt.border_strong, 0.4))
-        border_hover = QColor(rgba(dt.accent, 0.5))
-        arrow_color = QColor(dt.text_secondary)
-        arrow_hover = QColor(dt.text_primary)
-        
-        # Interpolate colors based on hover
-        bg = self._interpolate_color(bg_color, bg_hover, self._hover_progress)
-        border = self._interpolate_color(border_color, border_hover, self._hover_progress)
-        arrow = self._interpolate_color(arrow_color, arrow_hover, self._hover_progress)
-        
-        # Draw background with rounded corners
-        r = self.rect().adjusted(2, 2, -2, -2)
-        rect = QRectF(r.x(), r.y(), r.width(), r.height())
-        path = QPainterPath()
-        path.addRoundedRect(rect, 6, 6)
-        
-        painter.fillPath(path, bg)
-        painter.setPen(border)
-        painter.drawPath(path)
-        
-        # Draw chevron arrow
-        painter.translate(self.width() / 2, self.height() / 2)
-        painter.rotate(self._arrow_rotation)
-        self._draw_chevron(painter, arrow)
-        
-    def _interpolate_color(self, c1: QColor, c2: QColor, t: float) -> QColor:
-        """Interpolate between two colors."""
-        return QColor(
-            int(c1.red() + (c2.red() - c1.red()) * t),
-            int(c1.green() + (c2.green() - c1.green()) * t),
-            int(c1.blue() + (c2.blue() - c1.blue()) * t),
-            int(c1.alpha() + (c2.alpha() - c1.alpha()) * t),
-        )
-        
-    def _draw_chevron(self, painter: QPainter, arrow_color: QColor):
-        """Draw a chevron arrow pointing right (when expanded) or left (when collapsed)."""
-        size = 8
-        x_offset = 1
-        
-        painter.setRenderHint(QPainter.RenderHint.Antialiasing)
-        
-        pen = painter.pen()
-        pen.setColor(arrow_color)
-        pen.setWidth(2)
-        pen.setCapStyle(Qt.PenCapStyle.RoundCap)
-        pen.setJoinStyle(Qt.PenJoinStyle.RoundJoin)
-        painter.setPen(pen)
-        
-        # Draw > shape
-        half = size / 2
-        painter.drawLine(int(-half + x_offset), int(-half), int(half + x_offset), 0)
-        painter.drawLine(int(-half + x_offset), int(half), int(half + x_offset), 0)
-
-
-# ── Sub-widgets ───────────────────────────────────────────────────────────────
-
 class _NavItem(QWidget):
-    """Single clickable item in the left category nav — styled like Settings categories."""
+    """Single clickable item in the left category nav."""
 
     def __init__(self, label: str, callback, parent: Optional[QWidget] = None):
         super().__init__(parent)
@@ -488,7 +371,7 @@ class _EntryRow(QWidget):
 
 
 class _SectionCard(QFrame):
-    """One full documentation section rendered as a styled card — matches SettingsCard style."""
+    """One full documentation section rendered as a styled card."""
 
     def __init__(self, section: dict, parent: Optional[QWidget] = None):
         super().__init__(parent)
@@ -504,14 +387,12 @@ class _SectionCard(QFrame):
         outer.setContentsMargins(0, 0, 0, 0)
         outer.setSpacing(0)
 
-        # ── Section header ────────────────────────────────────────────────────
         header = QWidget()
         header.setObjectName("docSectionHeader")
         header_layout = QHBoxLayout(header)
         header_layout.setContentsMargins(20, 18, 20, 18)
         header_layout.setSpacing(12)
 
-        # Accent left bar
         accent_bar = QLabel()
         accent_bar.setObjectName("docAccentBar")
         accent_bar.setFixedWidth(4)
@@ -527,7 +408,6 @@ class _SectionCard(QFrame):
 
         outer.addWidget(header)
 
-        # ── Entries container ─────────────────────────────────────────────────
         entries_widget = QWidget()
         entries_widget.setObjectName("docEntriesContainer")
         entries_layout = QVBoxLayout(entries_widget)
@@ -547,7 +427,7 @@ class _SectionCard(QFrame):
             entries_layout.addWidget(row)
 
         outer.addWidget(entries_widget)
-
+        
         self._header = header
         self._title = title
         self._accent_bar = accent_bar
@@ -555,7 +435,6 @@ class _SectionCard(QFrame):
     def refresh_theme(self) -> None:
         dt = get_theme_manager().design_tokens
 
-        # Card styling with depth (matches SettingsCard)
         self.setStyleSheet(f"""
             QFrame#docSectionCard {{
                 background-color: {blend(dt.surface, dt.background, 0.05)};
@@ -597,7 +476,6 @@ class _CommandCard(QFrame):
         layout.setContentsMargins(16, 16, 16, 16)
         layout.setSpacing(10)
 
-        # ── Header: Command name + aliases ────────────────────────────────────
         header = QHBoxLayout()
         header.setSpacing(8)
 
@@ -607,7 +485,6 @@ class _CommandCard(QFrame):
         name_label.setFont(name_font)
         header.addWidget(name_label)
 
-        # Aliases
         if self._command.get('aliases'):
             aliases_text = f"({', '.join(self._command['aliases'][:3])})"
             aliases_label = QLabel(aliases_text)
@@ -618,32 +495,27 @@ class _CommandCard(QFrame):
         header.addStretch(1)
         layout.addLayout(header)
 
-        # ── Syntax ─────────────────────────────────────────────────────────────
         syntax_label = QLabel(f"Syntax: {self._command['syntax']}")
         syntax_font = QFont("Consolas", 11)
         syntax_label.setFont(syntax_font)
         layout.addWidget(syntax_label)
 
-        # ── Divider ────────────────────────────────────────────────────────────
         divider = QFrame()
         divider.setObjectName("commandDivider")
         divider.setFrameShape(QFrame.Shape.HLine)
         divider.setFixedHeight(1)
         layout.addWidget(divider)
 
-        # ── Description ────────────────────────────────────────────────────────
         desc_label = QLabel(self._command['description'])
         desc_label.setWordWrap(True)
         desc_label.setFont(QFont("Segoe UI", 11))
         layout.addWidget(desc_label)
 
-        # ── Example ─────────────────────────────────────────────────────────────
         example_label = QLabel(f"Example: {self._command['example']}")
         example_font = QFont("Consolas", 10)
         example_label.setFont(example_font)
         layout.addWidget(example_label)
 
-        # ── Footer: Cooldown + Permissions ─────────────────────────────────────
         footer = QHBoxLayout()
         footer.setSpacing(12)
 
@@ -662,7 +534,6 @@ class _CommandCard(QFrame):
         footer.addStretch(1)
         layout.addLayout(footer)
 
-        # Store references for theming
         self._name_label = name_label
         self._aliases_label = aliases_label if self._command.get('aliases') else None
         self._syntax_label = syntax_label
@@ -675,7 +546,6 @@ class _CommandCard(QFrame):
     def refresh_theme(self) -> None:
         dt = get_theme_manager().design_tokens
 
-        # Card styling
         self.setStyleSheet(f"""
             QFrame#commandCard {{
                 background-color: {blend(dt.surface, dt.background, 0.05)};
@@ -687,28 +557,19 @@ class _CommandCard(QFrame):
             }}
         """)
 
-        # Command name - accent color
         self._name_label.setStyleSheet(f"color: {dt.accent}; background: transparent;")
-
-        # Aliases - muted text
+        
         if self._aliases_label:
             self._aliases_label.setStyleSheet(f"color: {dt.text_muted}; background: transparent;")
 
-        # Syntax - secondary text
         self._syntax_label.setStyleSheet(f"color: {dt.text_secondary}; background: transparent;")
-
-        # Description - primary text
         self._desc_label.setStyleSheet(f"color: {dt.text_primary}; background: transparent;")
-
-        # Example - accent-muted
         self._example_label.setStyleSheet(f"color: {dt.accent}; background: transparent;")
-
-        # Cooldown/Permissions - muted
         self._cooldown_label.setStyleSheet(f"color: {dt.text_muted}; background: transparent;")
+        
         if self._perm_label:
             self._perm_label.setStyleSheet(f"color: {dt.warning}; background: transparent;")
 
-        # Divider
         self._divider.setStyleSheet(
             f"QFrame {{ background-color: {rgba(dt.border_strong, 0.2)}; border: none; }}"
         )
@@ -731,21 +592,18 @@ class _CommandCategoryCard(QFrame):
         outer.setContentsMargins(0, 0, 0, 0)
         outer.setSpacing(0)
 
-        # ── Category header ────────────────────────────────────────────────────
         header = QWidget()
         header.setObjectName("cmdCategoryHeader")
         header_layout = QHBoxLayout(header)
         header_layout.setContentsMargins(20, 18, 20, 18)
         header_layout.setSpacing(12)
 
-        # Accent bar
         accent_bar = QLabel()
         accent_bar.setObjectName("cmdCategoryAccentBar")
         accent_bar.setFixedWidth(4)
         accent_bar.setMinimumHeight(24)
         header_layout.addWidget(accent_bar)
 
-        # Icon + Title
         title_text = f"{self._category['icon']} {self._category['name']}"
         title = QLabel(title_text)
         font = QFont("Segoe UI", 15)
@@ -756,7 +614,6 @@ class _CommandCategoryCard(QFrame):
 
         outer.addWidget(header)
 
-        # ── Commands container ─────────────────────────────────────────────────
         commands_widget = QWidget()
         commands_widget.setObjectName("commandsContainer")
         commands_layout = QVBoxLayout(commands_widget)
@@ -769,7 +626,7 @@ class _CommandCategoryCard(QFrame):
             commands_layout.addWidget(card)
 
         outer.addWidget(commands_widget)
-
+        
         self._header = header
         self._title = title
         self._accent_bar = accent_bar
@@ -777,7 +634,6 @@ class _CommandCategoryCard(QFrame):
     def refresh_theme(self) -> None:
         dt = get_theme_manager().design_tokens
 
-        # Card styling
         self.setStyleSheet(f"""
             QFrame#commandCategoryCard {{
                 background-color: {blend(dt.surface, dt.background, 0.05)};
@@ -798,8 +654,6 @@ class _CommandCategoryCard(QFrame):
             card.refresh_theme()
 
 
-# ── Main page ─────────────────────────────────────────────────────────────────
-
 class DocsPage(BasePage):
     def __init__(self, parent: Optional[QWidget] = None):
         super().__init__(
@@ -815,11 +669,9 @@ class DocsPage(BasePage):
         self._section_cards: dict[str, _SectionCard] = {}
         self._command_category_cards: list[_CommandCategoryCard] = []
         self._active_key: str = SECTIONS[0]["key"]
-        self._nav_collapsed = False
         self._build_ui()
 
     def _build_ui(self) -> None:
-        # ── Root horizontal split ─────────────────────────────────────────────
         self.root_layout.setContentsMargins(0, 0, 0, 0)
         self.root_layout.setSpacing(0)
 
@@ -828,7 +680,7 @@ class DocsPage(BasePage):
         container.setSpacing(0)
         self.root_layout.addLayout(container, 1)
 
-        # ── Left nav panel ────────────────────────────────────────────────────
+        # Left nav panel
         self._nav_panel = QFrame()
         self._nav_panel.setObjectName("docNavPanel")
         self._nav_panel.setFixedWidth(200)
@@ -838,14 +690,12 @@ class DocsPage(BasePage):
         nav_layout.setContentsMargins(12, 20, 12, 16)
         nav_layout.setSpacing(4)
 
-        # "DOCS" heading in nav
         nav_heading = QLabel("DOCS")
         nav_heading.setObjectName("docNavHeading")
         nav_layout.addWidget(nav_heading)
         nav_layout.addSpacing(8)
         self._nav_heading = nav_heading
 
-        # Nav items (styled like Settings categories)
         for section in SECTIONS:
             key = section["key"]
             item = _NavItem(
@@ -856,33 +706,16 @@ class DocsPage(BasePage):
             self._nav_items[key] = item
 
         nav_layout.addStretch(1)
-
-        # Collapse button container (centered)
-        collapse_container = QWidget()
-        collapse_layout = QHBoxLayout(collapse_container)
-        collapse_layout.setContentsMargins(0, 0, 0, 0)
-        collapse_layout.setSpacing(0)
-        collapse_layout.addStretch(1)
-        
-        # Collapse button
-        self._collapse_btn = _NavCollapseButton()
-        self._collapse_btn.setToolTip("Collapse navigation")
-        self._collapse_btn.clicked.connect(self._toggle_nav)
-        collapse_layout.addWidget(self._collapse_btn)
-        collapse_layout.addStretch(1)
-        
-        nav_layout.addWidget(collapse_container)
-
         container.addWidget(self._nav_panel)
 
-        # ── Vertical divider ──────────────────────────────────────────────────
+        # Vertical divider
         self._nav_divider = QFrame()
         self._nav_divider.setObjectName("docNavDivider")
         self._nav_divider.setFrameShape(QFrame.Shape.VLine)
         self._nav_divider.setFixedWidth(1)
         container.addWidget(self._nav_divider)
 
-        # ── Content scroll area ───────────────────────────────────────────────
+        # Content scroll area
         self._scroll = QScrollArea()
         self._scroll.setWidgetResizable(True)
         self._scroll.setFrameShape(QFrame.Shape.NoFrame)
@@ -895,7 +728,6 @@ class DocsPage(BasePage):
         content_layout.setContentsMargins(20, 20, 20, 20)
         content_layout.setSpacing(16)
 
-        # Build-notes banner inside the content area
         self._banner = InfoBanner(
             "Current build — v1.5",
             "Guild browsing, logs, settings, and connection state are live. "
@@ -904,15 +736,12 @@ class DocsPage(BasePage):
         )
         content_layout.addWidget(self._banner)
 
-        # Section cards (styled like Settings cards)
         for section in SECTIONS:
             if section["key"] == "commands":
-                # Special handling for Commands section
                 card = _SectionCard(section)
                 self._section_cards[section["key"]] = card
                 content_layout.addWidget(card)
                 
-                # Add command category cards after the intro card
                 for category in COMMAND_CATEGORIES:
                     cat_card = _CommandCategoryCard(category)
                     self._command_category_cards.append(cat_card)
@@ -925,31 +754,8 @@ class DocsPage(BasePage):
         content_layout.addStretch(1)
         self._scroll.setWidget(self._content_widget)
 
-        # Activate first nav item
         self._set_active(self._active_key)
         self.refresh_theme()
-
-    def _toggle_nav(self) -> None:
-        """Collapse or expand the navigation panel."""
-        self._nav_collapsed = not self._nav_collapsed
-        COLLAPSED_W = 56
-        EXPANDED_W = 200
-
-        # Animate button rotation
-        self._collapse_btn.set_collapsed(self._nav_collapsed)
-
-        if self._nav_collapsed:
-            self._nav_panel.setFixedWidth(COLLAPSED_W)
-            self._collapse_btn.setToolTip("Expand navigation")
-            self._nav_heading.hide()
-            for item in self._nav_items.values():
-                item.hide()
-        else:
-            self._nav_panel.setFixedWidth(EXPANDED_W)
-            self._collapse_btn.setToolTip("Collapse navigation")
-            self._nav_heading.show()
-            for item in self._nav_items.values():
-                item.show()
 
     def _set_active(self, key: str) -> None:
         self._active_key = key
@@ -967,7 +773,6 @@ class DocsPage(BasePage):
         dt = get_theme_manager().design_tokens
         tm = get_theme_manager().theme
 
-        # Nav panel (matches Settings category sidebar)
         self._nav_panel.setStyleSheet(
             f"""
             QFrame#docNavPanel {{
@@ -983,7 +788,7 @@ class DocsPage(BasePage):
             f"color: {dt.text_muted}; font-size: 11px; font-weight: 700; "
             f"letter-spacing: 1.5px; background: transparent;"
         )
-        # Content area
+        
         self._content_widget.setStyleSheet(
             f"QWidget#docContent {{ background-color: {tm.bg_primary}; }}"
         )
@@ -991,14 +796,11 @@ class DocsPage(BasePage):
             f"QScrollArea {{ background-color: {tm.bg_primary}; border: none; }}"
         )
 
-        # Refresh all nav items
         for item in self._nav_items.values():
             item.refresh_theme()
 
-        # Refresh all section cards
         for card in self._section_cards.values():
             card.refresh_theme()
 
-        # Refresh all command category cards
         for card in self._command_category_cards:
             card.refresh_theme()

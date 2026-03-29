@@ -91,9 +91,12 @@ if load_dotenv is not None:
     load_dotenv(env_file_path(), override=False)
 
 try:
-    from PyQt6.QtWidgets import QApplication
-    from PyQt6.QtCore import Qt, QTimer
-    from PyQt6.QtGui import QFont
+    from PyQt6.QtWidgets import (
+        QApplication, QWidget, QLabel, QVBoxLayout, QHBoxLayout, 
+        QGraphicsDropShadowEffect, QPushButton
+    )
+    from PyQt6.QtCore import Qt, QTimer, QPropertyAnimation, QEasingCurve, pyqtSignal
+    from PyQt6.QtGui import QFont, QColor, QPainter, QLinearGradient, QBrush
 except ImportError:
     print("[ERROR] PyQt6 not installed!")
     print("Please run: pip install PyQt6")
@@ -101,6 +104,121 @@ except ImportError:
 
 from abuse.gui import MainWindow, get_theme_manager, BotRunner
 from abuse.gui.config import load_gui_config
+
+
+class SplashScreen(QWidget):
+    """First-run splash screen with branding."""
+    
+    finished = pyqtSignal()
+    
+    def __init__(self):
+        super().__init__(None)
+        self.setWindowFlags(
+            Qt.WindowType.FramelessWindowHint | 
+            Qt.WindowType.WindowStaysOnTopHint |
+            Qt.WindowType.SplashScreen
+        )
+        self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
+        self.setFixedSize(480, 320)
+        
+        self._build_ui()
+        self._center_on_screen()
+        
+    def _build_ui(self):
+        layout = QVBoxLayout(self)
+        layout.setContentsMargins(40, 40, 40, 40)
+        layout.setSpacing(20)
+        
+        # Title
+        title = QLabel("ABUSER")
+        title_font = QFont("Segoe UI", 36)
+        title_font.setWeight(QFont.Weight.Bold)
+        title.setFont(title_font)
+        title.setStyleSheet("color: #FF4444; background: transparent;")
+        title.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        layout.addWidget(title)
+        
+        # Subtitle
+        subtitle = QLabel("Advanced Bot for User Server Enhancement & Raiding")
+        subtitle_font = QFont("Segoe UI", 11)
+        subtitle.setFont(subtitle_font)
+        subtitle.setStyleSheet("color: #CCCCCC; background: transparent;")
+        subtitle.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        layout.addWidget(subtitle)
+        
+        # Version
+        version = QLabel("v1.0.0")
+        version_font = QFont("Segoe UI", 10)
+        version.setFont(version_font)
+        version.setStyleSheet("color: #888888; background: transparent;")
+        version.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        layout.addWidget(version)
+        
+        layout.addStretch(1)
+        
+        # Loading text
+        self._loading = QLabel("Loading...")
+        loading_font = QFont("Segoe UI", 10)
+        self._loading.setFont(loading_font)
+        self._loading.setStyleSheet("color: #666666; background: transparent;")
+        self._loading.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        layout.addWidget(self._loading)
+        
+        # Add shadow effect
+        shadow = QGraphicsDropShadowEffect(self)
+        shadow.setBlurRadius(30)
+        shadow.setXOffset(0)
+        shadow.setYOffset(10)
+        shadow.setColor(QColor(0, 0, 0, 100))
+        self.setGraphicsEffect(shadow)
+        
+    def _center_on_screen(self):
+        screen = QApplication.primaryScreen().geometry()
+        self.move(
+            (screen.width() - self.width()) // 2,
+            (screen.height() - self.height()) // 2
+        )
+        
+    def fade_out(self):
+        """Fade out and close."""
+        self._animation = QPropertyAnimation(self, b"windowOpacity")
+        self._animation.setDuration(500)
+        self._animation.setStartValue(1.0)
+        self._animation.setEndValue(0.0)
+        self._animation.setEasingCurve(QEasingCurve.Type.InOutQuad)
+        self._animation.finished.connect(self.close)
+        self._animation.finished.connect(self.finished.emit)
+        self._animation.start()
+        
+    def paintEvent(self, event):
+        painter = QPainter(self)
+        painter.setRenderHint(QPainter.RenderHint.Antialiasing)
+        
+        # Background gradient
+        gradient = QLinearGradient(0, 0, 0, self.height())
+        gradient.setColorAt(0, QColor(30, 30, 35))
+        gradient.setColorAt(1, QColor(20, 20, 25))
+        
+        painter.fillRect(self.rect(), QBrush(gradient))
+        
+        # Border
+        painter.setPen(QColor(60, 60, 70))
+        painter.drawRoundedRect(self.rect().adjusted(1, 1, -1, -1), 12, 12)
+
+
+def is_first_run():
+    """Check if this is the first run by looking for a flag file."""
+    first_run_file = project_root / "data" / ".first_run_complete"
+    return not first_run_file.exists()
+
+
+def mark_first_run_complete():
+    """Mark first run as complete."""
+    first_run_file = project_root / "data" / ".first_run_complete"
+    try:
+        first_run_file.touch()
+    except Exception:
+        pass
 
 
 def setup_application():
@@ -125,6 +243,13 @@ def main():
     """Main entry point - starts GUI and bot runner."""
     app = setup_application()
     
+    # Show splash screen on first run
+    splash = None
+    if is_first_run():
+        splash = SplashScreen()
+        splash.show()
+        app.processEvents()
+    
     theme_manager = get_theme_manager()
     appearance = load_gui_config().get("appearance", {})
     theme_manager.switch_theme(
@@ -135,7 +260,12 @@ def main():
     
     window = MainWindow()
     window.load_and_apply_settings()
-    window.show()
+    
+    # Close splash and show main window
+    if splash:
+        QTimer.singleShot(1500, lambda: _finish_splash(splash, window))
+    else:
+        window.show()
     
     bot_runner = BotRunner(parent=window)
     window.connect_bot_runner(bot_runner)
@@ -156,6 +286,13 @@ def main():
         print("\n[!] Interrupted by user")
         on_exit()
         sys.exit(0)
+
+
+def _finish_splash(splash, window):
+    """Finish splash screen and show main window."""
+    mark_first_run_complete()
+    splash.finished.connect(window.show)
+    splash.fade_out()
 
 
 if __name__ == "__main__":
