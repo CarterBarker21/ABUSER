@@ -16,12 +16,16 @@ if __name__ == '__main__':
     except (IOError, OSError, ImportError):
         sys.exit(0)
     
-    # STEP 1: Add app_paths import only
+    # STEP 1: app_paths and theme (confirmed working)
     from abuse.app_paths import bootstrap_runtime_layout, env_file_path
     bootstrap_runtime_layout()
     
-    # STEP 2: Add theme import
     from abuse.gui.theme import get_theme_manager
+    
+    # STEP 2: Add gui imports
+    from abuse.gui import MainWindow
+    from abuse.gui.config import load_gui_config
+    from abuse.gui import BotRunner
     
     # STEP 3: Add PyQt6
     from PyQt6.QtWidgets import QApplication, QMainWindow, QLabel, QVBoxLayout, QWidget
@@ -32,25 +36,23 @@ if __name__ == '__main__':
     app.setApplicationName("ABUSER Bot")
     app.setFont(QFont("Segoe UI", 10))
     
-    # Get theme
     theme_manager = get_theme_manager()
     
-    window = QMainWindow()
+    window = MainWindow()
     window.setWindowTitle("ABUSER Bot")
     window.setMinimumSize(800, 600)
     
-    central = QWidget()
-    layout = QVBoxLayout(central)
-    
-    label = QLabel("ABUSER Bot - With abuse.app_paths and theme")
-    label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-    layout.addWidget(label)
-    
-    window.setCentralWidget(central)
+    # Load settings
+    window.load_and_apply_settings()
     window.show()
+    
+    bot_runner = BotRunner(parent=window)
+    window.connect_bot_runner(bot_runner)
     
     def on_exit():
         try:
+            if bot_runner and bot_runner.is_running:
+                bot_runner.stop_bot()
             fd.close()
             lock_file.unlink(missing_ok=True)
         except:

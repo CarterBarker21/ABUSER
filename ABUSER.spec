@@ -1,5 +1,5 @@
 # -*- mode: python ; coding: utf-8 -*-
-# PyInstaller spec - TEST with app_paths and theme
+# PyInstaller spec - TEST with gui imports
 
 from pathlib import Path
 
@@ -21,6 +21,21 @@ a = Analysis(
         'abuse.app_paths',
         'abuse.gui.theme',
         'abuse.gui.config',
+        'abuse.gui.main_window',
+        'abuse.gui.bot_runner',
+        'abuse.gui.components',
+        'abuse.gui.pages',
+        'abuse.gui.pages.base',
+        'abuse.gui.pages.login',
+        'abuse.gui.pages.guilds',
+        'abuse.gui.pages.nuker',
+        'abuse.gui.pages.dm',
+        'abuse.gui.pages.logs',
+        'abuse.gui.pages.settings',
+        'abuse.gui.pages.docs',
+        'abuse.gui.pages.joiner',
+        'abuse.gui.pages.booster',
+        'abuse.gui.token_finder_thread',
         # Exclude discord for now
     ],
     hookspath=[],
