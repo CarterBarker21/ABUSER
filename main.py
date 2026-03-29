@@ -5,16 +5,16 @@ PyQt6 Graphical Interface with Discord selfbot integration.
 """
 
 import sys
-import socket
 
-# IMPORTANT: Multiprocessing freeze support for PyInstaller EXE
-# This MUST be the first thing after imports to prevent multiple windows
-if getattr(sys, 'frozen', False):
+# CRITICAL: This MUST be the very first thing before any other imports
+# when using PyInstaller to prevent multiple windows from spawning
+if __name__ == '__main__':
     import multiprocessing
     multiprocessing.freeze_support()
 
 import asyncio
 import subprocess
+import socket
 from pathlib import Path
 from datetime import datetime
 

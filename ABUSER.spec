@@ -4,6 +4,10 @@
 import sys
 from pathlib import Path
 
+# CRITICAL: Set multiprocessing start method before any other imports
+import multiprocessing
+multiprocessing.set_start_method('spawn', force=True)
+
 ROOT = Path(SPECPATH)
 
 block_cipher = None
@@ -13,50 +17,43 @@ a = Analysis(
     pathex=[str(ROOT)],
     binaries=[],
     datas=[
-        # SVG icon assets
         (str(ROOT / 'abuse' / 'gui' / 'assets'), 'abuse/gui/assets'),
-        # Config defaults
         (str(ROOT / 'config'), 'config'),
     ],
     hiddenimports=[
-        # PyQt6 modules
         'PyQt6.QtSvg',
         'PyQt6.QtSvgWidgets',
         'PyQt6.QtCore',
         'PyQt6.QtGui',
         'PyQt6.QtWidgets',
-        # discord.py-self
         'discord',
         'discord.ext',
         'discord.ext.commands',
         'aiohttp',
         'aiohttp.connector',
         'aiohttp.client',
-        # dotenv
         'dotenv',
-        # stdlib
         'asyncio',
         'asyncio.windows_events',
         'json',
         'pathlib',
         'logging',
         'concurrent.futures',
-        # multiprocessing for single-instance check
         'multiprocessing',
         'multiprocessing.reduction',
+        # Prevent spawning issues
+        '__main__',
     ],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
     excludes=[
-        # Test infrastructure
         'pytest',
         '_pytest',
         'pytest_qt',
         'pytestqt',
         'unittest',
         'doctest',
-        # Unused stdlib
         'tkinter',
         'turtle',
         'xml.etree.ElementTree',
@@ -85,7 +82,7 @@ exe = EXE(
     upx=True,
     upx_exclude=[],
     runtime_tmpdir=None,
-    console=False,
+    console=False,  # CRITICAL: No console window
     disable_windowed_traceback=False,
     argv_emulation=False,
     target_arch=None,
