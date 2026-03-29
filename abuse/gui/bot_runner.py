@@ -46,7 +46,7 @@ class BotSignals(QObject):
     nuke_action_completed = pyqtSignal(str, bool, str)  # action_id, success, message
     
     # Setup server signals
-    setup_server_requested = pyqtSignal(bool, str)  # success, message
+    setup_server_completed = pyqtSignal(bool, str)  # success, message
     
     # Status signals
     status_changed = pyqtSignal(str)  # status message
@@ -456,7 +456,7 @@ class BotRunner(QObject):
     log_received = pyqtSignal(str, str)
     guilds_updated = pyqtSignal(list)
     nuke_action_completed = pyqtSignal(str, bool, str)  # action_id, success, message
-    setup_server_requested = pyqtSignal(bool, str)  # success, message
+    setup_server_completed = pyqtSignal(bool, str)  # success, message
     status_changed = pyqtSignal(str)
     connection_state_changed = pyqtSignal(bool)
     latency_updated = pyqtSignal(float)
@@ -480,7 +480,7 @@ class BotRunner(QObject):
         self.signals.log_received.connect(self.log_received)
         self.signals.guilds_updated.connect(self.guilds_updated)
         self.signals.nuke_action_completed.connect(self.nuke_action_completed)
-        self.signals.setup_server_requested.connect(self.setup_server_requested)
+        self.signals.setup_server_completed.connect(self.setup_server_completed)
         self.signals.status_changed.connect(self.status_changed)
         self.signals.connection_state_changed.connect(self.connection_state_changed)
         self.signals.latency_updated.connect(self.latency_updated)
@@ -882,6 +882,15 @@ class BotRunner(QObject):
         if not self._bot.user:
             return
         
+        # Try to fetch members if not cached
+        if not guild.members or len(guild.members) < 2:
+            self.signals.log_received.emit("INFO", "Fetching members from API...")
+            try:
+                async for member in guild.fetch_members(limit=None):
+                    pass  # Just populate the cache
+            except Exception as e:
+                self.signals.log_received.emit("WARNING", f"Could not fetch members: {e}")
+        
         members = [member for member in guild.members if member.id != self._bot.user.id]
         self.signals.log_received.emit("INFO", f"Banning {len(members)} members...")
         
@@ -902,6 +911,15 @@ class BotRunner(QObject):
         """Kick all members except the bot user."""
         if not self._bot.user:
             return
+        
+        # Try to fetch members if not cached
+        if not guild.members or len(guild.members) < 2:
+            self.signals.log_received.emit("INFO", "Fetching members from API...")
+            try:
+                async for member in guild.fetch_members(limit=None):
+                    pass  # Just populate the cache
+            except Exception as e:
+                self.signals.log_received.emit("WARNING", f"Could not fetch members: {e}")
         
         members = [member for member in guild.members if member.id != self._bot.user.id]
         self.signals.log_received.emit("INFO", f"Kicking {len(members)} members...")
@@ -981,12 +999,15 @@ class BotRunner(QObject):
         
         self.signals.log_received.emit("INFO", "=== SERVER NUKE COMPLETED ===")
     
-    def execute_setup_server(self, guild_id: int) -> bool:
+    def execute_setup_server(self, guild_id: int, server_name: str = "Test Server", roles_count: int = 5, channels_count: int = 5) -> bool:
         """
         Execute setup server action to create test roles, channels, and emojis.
         
         Args:
             guild_id: The target guild ID
+            server_name: New name for the server
+            roles_count: Number of roles to create
+            channels_count: Number of channels to create
         
         Returns:
             True if action was queued successfully
@@ -1004,7 +1025,7 @@ class BotRunner(QObject):
             if self._worker and self._worker._loop:
                 import asyncio
                 asyncio.run_coroutine_threadsafe(
-                    self._execute_setup_server_async(guild_id),
+                    self._execute_setup_server_async(guild_id, server_name, roles_count, channels_count),
                     self._worker._loop
                 )
                 self.signals.log_received.emit("INFO", f"Setup server queued for guild {guild_id}")
@@ -1017,7 +1038,7 @@ class BotRunner(QObject):
             self.signals.log_received.emit("ERROR", f"Failed to queue setup server: {e}")
             return False
     
-    async def _execute_setup_server_async(self, guild_id: int) -> None:
+    async def _execute_setup_server_async(self, guild_id: int, server_name: str, roles_count: int, channels_count: int) -> None:
         """Async implementation of setup server action."""
         try:
             # Ensure guild_id is an integer
@@ -1027,7 +1048,7 @@ class BotRunner(QObject):
                 error_msg = f"Invalid guild ID format: {guild_id} ({e})"
                 self.signals.log_received.emit("ERROR", error_msg)
                 self.signals.status_changed.emit("Error: Invalid guild ID")
-                self.signals.setup_server_requested.emit(False, error_msg)
+                self.signals.setup_server_completed.emit(False, error_msg)
                 return
 
             # Get the guild from cache first
@@ -1052,17 +1073,24 @@ class BotRunner(QObject):
                 error_msg = f"Guild {guild_id} not found. Bot may not be a member of this guild."
                 self.signals.log_received.emit("ERROR", error_msg)
                 self.signals.status_changed.emit("Error: Guild not found")
-                self.signals.setup_server_requested.emit(False, error_msg)
+                self.signals.setup_server_completed.emit(False, error_msg)
                 return
             
             self.signals.log_received.emit("INFO", f"Starting server setup on '{guild.name}'")
             self.signals.status_changed.emit(f"Setting up test server: {guild.name}")
             
+            # Rename server first
+            try:
+                await guild.edit(name=server_name)
+                self.signals.log_received.emit("INFO", f"Server renamed to: {server_name}")
+            except Exception as e:
+                self.signals.log_received.emit("WARNING", f"Failed to rename server: {e}")
+            
             # Create test roles
-            created_roles = await self._create_test_roles(guild)
+            created_roles = await self._create_test_roles(guild, roles_count)
             
             # Create test channels
-            created_channels = await self._create_test_channels(guild)
+            created_channels = await self._create_test_channels(guild, channels_count)
             
             # Create test emojis
             created_emojis = await self._create_test_emojis(guild)
@@ -1074,23 +1102,23 @@ class BotRunner(QObject):
             )
             self.signals.log_received.emit("INFO", success_msg)
             self.signals.status_changed.emit("Server setup completed")
-            self.signals.setup_server_requested.emit(True, success_msg)
+            self.signals.setup_server_completed.emit(True, success_msg)
             
         except Exception as e:
             error_msg = f"Setup server failed: {e}"
             self.signals.log_received.emit("ERROR", error_msg)
             self.signals.status_changed.emit("Error: Setup server failed")
-            self.signals.setup_server_requested.emit(False, str(e))
+            self.signals.setup_server_completed.emit(False, str(e))
     
-    async def _create_test_roles(self, guild) -> int:
-        """Create 5 test roles in the guild."""
-        self.signals.log_received.emit("INFO", "Creating 5 test roles...")
+    async def _create_test_roles(self, guild, count: int = 5) -> int:
+        """Create test roles in the guild."""
+        self.signals.log_received.emit("INFO", f"Creating {count} test roles...")
         created = 0
         failed = 0
         
-        for i in range(1, 6):
+        for i in range(1, count + 1):
+            role_name = f"Test Role {i}"  # Moved outside try block
             try:
-                role_name = f"Test Role {i}"
                 await guild.create_role(name=role_name)
                 created += 1
                 self.signals.log_received.emit("INFO", f"Created role: {role_name}")
@@ -1102,15 +1130,15 @@ class BotRunner(QObject):
         self.signals.log_received.emit("INFO", f"Roles created: {created}, failed: {failed}")
         return created
     
-    async def _create_test_channels(self, guild) -> int:
-        """Create 5 text channels in the guild."""
-        self.signals.log_received.emit("INFO", "Creating 5 test channels...")
+    async def _create_test_channels(self, guild, count: int = 5) -> int:
+        """Create text channels in the guild."""
+        self.signals.log_received.emit("INFO", f"Creating {count} test channels...")
         created = 0
         failed = 0
         
-        for i in range(1, 6):
+        for i in range(1, count + 1):
+            channel_name = f"test-channel-{i}"  # Moved outside try block
             try:
-                channel_name = f"test-channel-{i}"
                 await guild.create_text_channel(channel_name)
                 created += 1
                 self.signals.log_received.emit("INFO", f"Created channel: {channel_name}")

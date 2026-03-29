@@ -20,6 +20,44 @@ import sys
 import asyncio
 import subprocess
 from pathlib import Path
+from datetime import datetime
+
+# =============================================================================
+# REDIRECT STDOUT/STDERR TO LOG FILE WHEN RUNNING WITHOUT CONSOLE (pythonw.exe)
+# This captures startup errors that would otherwise be lost
+# =============================================================================
+if sys.platform == "win32" and sys.stdout is None:
+    # Running with pythonw.exe - no console available
+    log_dir = Path(__file__).parent / "data" / "logs"
+    log_dir.mkdir(parents=True, exist_ok=True)
+    log_file = log_dir / f"startup_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log"
+    
+    class Logger:
+        def __init__(self, filepath):
+            self.file = open(filepath, "a", encoding="utf-8")
+            self.file.write(f"[{datetime.now().isoformat()}] ABUSER Bot Starting...\n")
+            self.file.flush()
+        
+        def write(self, msg):
+            self.file.write(msg)
+            self.file.flush()
+        
+        def flush(self):
+            self.file.flush()
+    
+    sys.stdout = Logger(log_file)
+    sys.stderr = sys.stdout
+    
+    # Also log unhandled exceptions
+    def exception_hook(exc_type, exc_value, exc_traceback):
+        import traceback
+        sys.stdout.write(f"[{datetime.now().isoformat()}] UNHANDLED EXCEPTION:\n")
+        traceback.print_exception(exc_type, exc_value, exc_traceback)
+        sys.stdout.flush()
+    
+    sys.excepthook = exception_hook
+
+# =============================================================================
 
 # =============================================================================
 # PREVENT CONSOLE WINDOWS FROM SUBPROCESS CALLS (Windows only)

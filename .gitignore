@@ -1,0 +1,73 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+
+# Pytest
+.pytest_cache/
+.coverage
+htmlcov/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Node.js
+node_modules/
+package-lock.json
+.npm
+
+# Application data (sensitive)
+data/tokens.json
+data/tkn.txt
+data/logs/*.log
+config/.env
+.env
+
+# OS
+Thumbs.db
+Desktop.ini
+
+# Temp files
+tmp/
+temp/
+*.tmp
+
+# Claude/Cursor local settings
+.claude/settings.local.json
+
+# Factory
+.factory/skills/ui-ux-pro-max/scripts/__pycache__/
+
+# Screenshots (generated)
+collapsed.png
+notcollapsed.png

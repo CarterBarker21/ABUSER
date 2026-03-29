@@ -91,6 +91,7 @@ class StatusChip(QLabel, ThemedWidget):
 
     def refresh_theme(self) -> None:
         dt = self.dt
+        metrics = self.tokens.metrics
         palette = {
             "neutral":  (rgba(dt.text_secondary, 0.14), dt.text_secondary,  rgba(dt.border_strong, 0.9)),
             "accent":   (rgba(dt.accent, 0.16),         dt.accent,           rgba(dt.accent, 0.42)),
@@ -100,7 +101,7 @@ class StatusChip(QLabel, ThemedWidget):
             "preview":  (rgba(dt.text_muted, 0.14),     dt.text_muted,       rgba(dt.text_muted, 0.36)),
         }
         background, text, border = palette.get(self._tone, palette["neutral"])
-        radius = self.tokens.metrics.control_height_sm // 2
+        radius = metrics.radius_sm
         self.setStyleSheet(
             f"""
             QLabel#statusChip {{
@@ -111,6 +112,7 @@ class StatusChip(QLabel, ThemedWidget):
                 padding: 4px 10px;
                 font-size: 10px;
                 font-weight: 600;
+                letter-spacing: 0.5px;
             }}
             """
         )
@@ -229,6 +231,7 @@ class PanelCard(QFrame, ThemedWidget):
 
     def refresh_theme(self) -> None:
         dt = self.dt
+        metrics = self.tokens.metrics
         border_map = {
             "neutral": rgba(dt.border_strong, 0.9),
             "accent":  rgba(dt.accent, 0.45),
@@ -237,18 +240,22 @@ class PanelCard(QFrame, ThemedWidget):
             "success": rgba(dt.success_bright, 0.48),
         }
         border = border_map.get(self._tone, border_map["neutral"])
+
+        # Create subtle gradient
+        surface_lighter = blend(dt.surface, "#FFFFFF", 0.03)
+
         self.setStyleSheet(
             f"""
             QFrame#panelCard {{
-                background-color: {dt.surface};
+                background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 {surface_lighter}, stop:1 {dt.surface});
                 border: 1px solid {border};
-                border-radius: {self.tokens.metrics.card_radius}px;
+                border-radius: {metrics.radius_lg}px;
             }}
             """
         )
-        self.title_label.setStyleSheet(f"color: {dt.text_primary};")
+        self.title_label.setStyleSheet(f"color: {dt.text_primary}; background: transparent;")
         self.description_label.setStyleSheet(
-            f"color: {dt.text_secondary}; font-size: 12px; line-height: 1.4em;"
+            f"color: {dt.text_secondary}; font-size: 12px; line-height: 1.4em; background: transparent;"
         )
 
 
@@ -266,6 +273,8 @@ class AppButton(QPushButton, ThemedWidget):
 
     def refresh_theme(self) -> None:
         dt = self.dt
+        metrics = self.tokens.metrics
+
         variants = {
             "primary":   (dt.accent,                    "#FFFFFF",          dt.accent_hover,    rgba(dt.accent, 0.7)),
             "secondary": (dt.surface,                   dt.text_primary,    dt.surface_raised,  rgba(dt.border_strong, 1.0)),
@@ -273,31 +282,40 @@ class AppButton(QPushButton, ThemedWidget):
             "danger":    (dt.danger,                    "#FFFFFF",          dt.danger_hover,    rgba(dt.danger, 0.6)),
             "success":   (dt.success,                   "#FFFFFF",          dt.success_hover,   rgba(dt.success_bright, 0.6)),
             "preview":   (rgba(dt.text_muted, 0.12),    dt.text_muted,      rgba(dt.text_muted, 0.18), rgba(dt.text_muted, 0.35)),
+            "accent":    (dt.accent,                    "#FFFFFF",          dt.accent_hover,    rgba(dt.accent, 0.7)),
         }
         background, text, hover, border = variants.get(self._variant, variants["secondary"])
         disabled_bg   = rgba(dt.text_muted, 0.12)
         disabled_text = blend(dt.text_muted, dt.background, 0.05)
         pressed = hover if hover.startswith("rgba") else blend(hover, dt.background, 0.18)
+
+        # Add gradient for primary and accent variants
+        if self._variant in ("primary", "accent"):
+            background = f"qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 {background}, stop:1 {hover})"
+
         self.setStyleSheet(
             f"""
             QPushButton {{
-                background-color: {background};
+                background: {background};
                 color: {text};
                 border: 1px solid {border};
-                border-radius: 10px;
-                padding: 0 14px;
+                border-radius: {metrics.radius_md}px;
+                padding: 0 16px;
                 font-weight: 600;
+                transition: all {metrics.transition_base};
             }}
             QPushButton:hover {{
-                background-color: {hover};
+                background: {hover if not self._variant in ("primary", "accent") else background};
+                border-color: {border if border.startswith("rgba") else rgba(border, 0.8)};
             }}
             QPushButton:pressed {{
-                background-color: {pressed};
+                background: {pressed};
             }}
             QPushButton:disabled {{
-                background-color: {disabled_bg};
+                background: {disabled_bg};
                 color: {disabled_text};
                 border-color: {rgba(dt.text_muted, 0.25)};
+                opacity: 0.5;
             }}
             """
         )
@@ -306,34 +324,66 @@ class AppButton(QPushButton, ThemedWidget):
 class SidebarNavButton(QPushButton, ThemedWidget):
     _icon_dir = Path(__file__).resolve().parent / "assets" / "icons" / "sidebar"
 
+    # Collapsed = icon centred, no label.  Expanded = icon + label side-by-side.
+    EXPANDED_WIDTH = 216   # must match LayoutTokens.sidebar_width
+    COLLAPSED_WIDTH = 56   # compact icon tile width inside collapsed rail (fits 84px sidebar with 14px margins)
+    COLLAPSED_HEIGHT = 44  # taller than wide for better visual proportion
+    COLLAPSED_ICON_SIZE = 18
+    EXPANDED_ICON_SIZE = 18
+
     def __init__(self, icon_name: str, label: str, parent: Optional[QWidget] = None):
         super().__init__(parent)
         self._icon_name = icon_name
         self._label = label
         self._icon_svg = self._load_icon_svg(icon_name)
+        self._collapsed = False
         self.setObjectName("sidebarNavButton")
         self.setCheckable(True)
         self.setCursor(Qt.CursorShape.PointingHandCursor)
-        self.setMinimumHeight(44)
+        self.setFixedHeight(40)
         self.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)
 
-        layout = QHBoxLayout(self)
-        layout.setContentsMargins(12, 6, 12, 6)
-        layout.setSpacing(10)
+
+        self._layout = QHBoxLayout(self)
+        self._layout.setContentsMargins(12, 6, 12, 6)
+        self._layout.setSpacing(10)
 
         self.icon_label = QLabel()
         self.icon_label.setObjectName("sidebarNavIcon")
         self.icon_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.icon_label.setFixedSize(18, 18)
-        layout.addWidget(self.icon_label, 0, Qt.AlignmentFlag.AlignVCenter)
+        self.icon_label.setFixedSize(self.EXPANDED_ICON_SIZE, self.EXPANDED_ICON_SIZE)
+        self._layout.addWidget(self.icon_label, 0, Qt.AlignmentFlag.AlignVCenter)
 
         self.title_label = QLabel(label)
         self.title_label.setObjectName("sidebarNavTitle")
         title_font = QFont("Segoe UI", 10)
         title_font.setBold(True)
         self.title_label.setFont(title_font)
-        layout.addWidget(self.title_label, 1)
+        self.title_label.setAlignment(Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter)
+        self._layout.addWidget(self.title_label, 1)
 
+        self.refresh_theme()
+
+    def set_collapsed(self, collapsed: bool) -> None:
+        """Switch between icon-only (collapsed) and full (expanded) mode."""
+        self._collapsed = collapsed
+        self.title_label.setVisible(not collapsed)
+        if collapsed:
+            self.setFixedSize(self.COLLAPSED_WIDTH, self.COLLAPSED_HEIGHT)
+            self.setSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
+            self._layout.setContentsMargins(0, 0, 0, 0)
+            self._layout.setSpacing(0)
+            self._layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
+            self.icon_label.setFixedSize(self.COLLAPSED_ICON_SIZE, self.COLLAPSED_ICON_SIZE)
+        else:
+            self.setMinimumWidth(0)
+            self.setMaximumWidth(16777215)
+            self.setFixedHeight(40)
+            self.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)
+            self._layout.setContentsMargins(12, 6, 12, 6)
+            self._layout.setSpacing(10)
+            self._layout.setAlignment(self.icon_label, Qt.AlignmentFlag.AlignVCenter)
+            self.icon_label.setFixedSize(self.EXPANDED_ICON_SIZE, self.EXPANDED_ICON_SIZE)
         self.refresh_theme()
 
     def _load_icon_svg(self, icon_name: str) -> str:
@@ -350,7 +400,9 @@ class SidebarNavButton(QPushButton, ThemedWidget):
 
         svg_data = self._icon_svg.replace("currentColor", color)
         renderer = QSvgRenderer(QByteArray(svg_data.encode("utf-8")))
-        pixmap = QPixmap(18, 18)
+        icon_width = max(18, self.icon_label.width())
+        icon_height = max(18, self.icon_label.height())
+        pixmap = QPixmap(icon_width, icon_height)
         pixmap.fill(Qt.GlobalColor.transparent)
         painter = QPainter(pixmap)
         renderer.render(painter)
@@ -359,31 +411,64 @@ class SidebarNavButton(QPushButton, ThemedWidget):
 
     def refresh_theme(self) -> None:
         dt = self.dt
-        self.setStyleSheet(
-            f"""
-            QPushButton#sidebarNavButton {{
-                background-color: transparent;
-                border: 1px solid transparent;
-                border-radius: 12px;
-                text-align: left;
-            }}
-            QPushButton#sidebarNavButton:hover {{
-                background-color: {rgba(dt.surface_raised, 0.7)};
-                border-color: {rgba(dt.border_strong, 0.7)};
-            }}
-            QPushButton#sidebarNavButton:checked {{
-                background-color: {dt.accent_muted};
-                border: 1px solid {rgba(dt.accent, 0.36)};
-                border-left: 3px solid {dt.accent};
-            }}
-            QPushButton#sidebarNavButton:checked:hover {{
-                background-color: {rgba(dt.accent, 0.2)};
-            }}
-            """
-        )
+        metrics = self.tokens.metrics
+        if self._collapsed:
+            idle_bg = rgba(blend(dt.surface, dt.background, 0.50), 0.58)
+            idle_border = rgba(blend(dt.border_strong, dt.background, 0.18), 0.54)
+            hover_bg = rgba(blend(dt.surface_raised, dt.background, 0.34), 0.78)
+            hover_border = rgba(blend(dt.border_strong, dt.surface_raised, 0.28), 0.72)
+            checked_bg = rgba(dt.accent, 0.18)
+            checked_border = rgba(dt.accent, 0.58)
+            checked_hover = rgba(dt.accent, 0.24)
+            self.setStyleSheet(
+                f"""
+                QPushButton#sidebarNavButton {{
+                    background-color: {idle_bg};
+                    border: 1px solid {idle_border};
+                    border-radius: {metrics.radius_sm + 2}px;
+                    padding: 0px;
+                    min-width: {self.COLLAPSED_WIDTH - 2}px;
+                    max-width: {self.COLLAPSED_WIDTH - 2}px;
+                }}
+                QPushButton#sidebarNavButton:hover {{
+                    background-color: {hover_bg};
+                    border-color: {hover_border};
+                }}
+                QPushButton#sidebarNavButton:checked {{
+                    background-color: {checked_bg};
+                    border: 1px solid {checked_border};
+                }}
+                QPushButton#sidebarNavButton:checked:hover {{
+                    background-color: {checked_hover};
+                }}
+                """
+            )
+        else:
+            self.setStyleSheet(
+                f"""
+                QPushButton#sidebarNavButton {{
+                    background-color: transparent;
+                    border: 1px solid transparent;
+                    border-radius: {metrics.radius_lg}px;
+                    text-align: left;
+                }}
+                QPushButton#sidebarNavButton:hover {{
+                    background-color: {rgba(dt.surface_raised, 0.7)};
+                    border-color: {rgba(dt.border_strong, 0.7)};
+                }}
+                QPushButton#sidebarNavButton:checked {{
+                    background-color: {dt.accent_muted};
+                    border: 1px solid {rgba(dt.accent, 0.36)};
+                    border-left: 3px solid {dt.accent};
+                }}
+                QPushButton#sidebarNavButton:checked:hover {{
+                    background-color: {rgba(dt.accent, 0.2)};
+                }}
+                """
+            )
         checked = self.isChecked()
-        icon_color = dt.accent if checked else dt.text_muted
-        title_fg   = dt.text_primary if checked else dt.text_secondary
+        icon_color = dt.accent if checked else (dt.text_muted if self._collapsed else dt.text_secondary)
+        title_fg = dt.text_primary if checked else dt.text_secondary
         self.icon_label.setStyleSheet("background-color: transparent;")
         self._update_icon(icon_color)
         self.title_label.setStyleSheet(f"color: {title_fg}; background-color: transparent;")
@@ -398,21 +483,24 @@ class AppLineEdit(QLineEdit, ThemedWidget):
 
     def refresh_theme(self) -> None:
         dt = self.dt
+        metrics = self.tokens.metrics
         self.setStyleSheet(
             f"""
             QLineEdit {{
                 background-color: {dt.background};
                 color: {dt.text_primary};
                 border: 1px solid {rgba(dt.border_strong, 0.95)};
-                border-radius: 10px;
+                border-radius: {metrics.radius_md}px;
                 padding: 0 12px;
                 selection-background-color: {rgba(dt.accent, 0.35)};
+                transition: all {metrics.transition_base};
             }}
             QLineEdit:hover {{
                 border-color: {rgba(dt.text_secondary, 0.6)};
             }}
             QLineEdit:focus {{
-                border-color: {dt.accent};
+                border: 2px solid {dt.accent};
+                padding: 0 11px;
             }}
             """
         )
@@ -576,6 +664,11 @@ class InfoBanner(QFrame, ThemedWidget):
 
         self.refresh_theme()
 
+    def set_tone(self, tone: str) -> None:
+        """Update the banner tone and refresh styling."""
+        self._tone = tone
+        self.refresh_theme()
+
     def refresh_theme(self) -> None:
         dt = self.dt
         mapping = {
@@ -596,8 +689,8 @@ class InfoBanner(QFrame, ThemedWidget):
             }}
             """
         )
-        self.title_label.setStyleSheet(f"color: {accent};")
-        self.message_label.setStyleSheet(f"color: {dt.text_secondary}; font-size: 12px;")
+        self.title_label.setStyleSheet(f"color: {accent}; background-color: transparent;")
+        self.message_label.setStyleSheet(f"color: {dt.text_secondary}; font-size: 12px; background-color: transparent;")
 
 
 class EmptyState(QFrame, ThemedWidget):

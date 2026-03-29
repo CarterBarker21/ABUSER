@@ -23,30 +23,28 @@ from abuse.app_paths import migrate_legacy_layout, theme_config_path as shared_t
 class AccentColor(Enum):
     """Available accent colors for the theme."""
     DISCORD_BLUE = ("#5865F2", "#4752C4")
-    RED = ("#ED4245", "#C03537")
-    GREEN = ("#57F287", "#3BA55D")
-    PURPLE = ("#9B59B6", "#8E44AD")
-    ORANGE = ("#E67E22", "#D35400")
-    PINK = ("#EB459E", "#C73E87")
-    CYAN = ("#00D4AA", "#00A884")
-    YELLOW = ("#FAA81A", "#D7940F")
-    
+    RED          = ("#ED4245", "#C03537")
+    GREEN        = ("#57F287", "#3BA55D")
+    PINK         = ("#EB459E", "#C73E87")
+    CYAN         = ("#00D4AA", "#00A884")
+
     def __init__(self, primary: str, hover: str):
         self.primary = primary
         self.hover = hover
-    
+
     @classmethod
     def from_string(cls, name: str) -> "AccentColor":
-        """Get accent color from string name."""
+        """Get accent color from string name, with graceful fallback for removed accents."""
         color_map = {
             "discord_blue": cls.DISCORD_BLUE,
-            "red": cls.RED,
-            "green": cls.GREEN,
-            "purple": cls.PURPLE,
-            "orange": cls.ORANGE,
-            "pink": cls.PINK,
-            "cyan": cls.CYAN,
-            "yellow": cls.YELLOW,
+            "red":          cls.RED,
+            "green":        cls.GREEN,
+            "pink":         cls.PINK,
+            "cyan":         cls.CYAN,
+            # Legacy aliases — map removed accents to nearest kept colour
+            "purple":  cls.DISCORD_BLUE,
+            "orange":  cls.RED,
+            "yellow":  cls.GREEN,
         }
         return color_map.get(name.lower(), cls.DISCORD_BLUE)
 
@@ -175,6 +173,25 @@ class LayoutTokens:
     sidebar_width: int = 216
     content_max_width: int = 1180
 
+    # Border radius system
+    radius_sm: int = 6
+    radius_md: int = 10
+    radius_lg: int = 12
+    radius_xl: int = 16
+
+    # Shadow system
+    shadow_sm: str = "0 1px 2px 0 rgba(0, 0, 0, 0.3)"
+    shadow_md: str = "0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3)"
+    shadow_lg: str = "0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3)"
+    shadow_xl: str = "0 20px 25px -5px rgba(0, 0, 0, 0.6), 0 10px 10px -5px rgba(0, 0, 0, 0.3)"
+    shadow_inner: str = "inset 0 2px 4px 0 rgba(0, 0, 0, 0.4)"
+
+    # Animation timing
+    transition_fast: str = "150ms cubic-bezier(0.4, 0, 0.2, 1)"
+    transition_base: str = "200ms cubic-bezier(0.4, 0, 0.2, 1)"
+    transition_slow: str = "300ms cubic-bezier(0.4, 0, 0.2, 1)"
+    transition_bounce: str = "300ms cubic-bezier(0.68, -0.55, 0.265, 1.55)"
+
 
 @dataclass(frozen=True)
 class ThemeTokens:
@@ -275,138 +292,374 @@ def make_design_tokens(theme: Theme) -> DesignTokens:
 
 
 # ============================================
-# Theme Presets
+# Theme Presets  (5 curated themes)
 # ============================================
 
 THEME_PRESETS: Dict[str, Dict] = {
-    # ============================================
-    # Dark Themes
-    # ============================================
-    
+
+    # ── 1. Midnight ───────────────────────────────────────────────────────────
+    # Near-black zinc — most neutral, works with every accent
     "Midnight": {
         "name": "Midnight",
-        "bg_primary": "#09090B",
-        "bg_secondary": "#18181B",
-        "bg_tertiary": "#27272A",
-        "bg_card": "#18181B",
-        "surface": "#27272A",
+        "bg_primary":    "#09090B",
+        "bg_secondary":  "#18181B",
+        "bg_tertiary":   "#27272A",
+        "bg_card":       "#18181B",
+        "surface":       "#27272A",
         "surface_hover": "#3F3F46",
-        "text_primary": "#FAFAFA",
-        "text_secondary": "#A1A1AA",
+        "text_primary":  "#FAFAFA",
+        "text_secondary":"#A1A1AA",
         "text_disabled": "#52525B",
-        "text_muted": "#71717A",
-        "border": "#27272A",
-        "border_light": "#3F3F46",
-        "divider": "#27272A",
-        "accent": "discord_blue",
-        "success": "#22C55E",
+        "text_muted":    "#71717A",
+        "border":        "#27272A",
+        "border_light":  "#3F3F46",
+        "divider":       "#27272A",
+        "accent":        "discord_blue",
+        "success":       "#22C55E",
         "success_hover": "#16A34A",
-        "success_bright": "#4ADE80",
-        "warning": "#F59E0B",
+        "success_bright":"#4ADE80",
+        "warning":       "#F59E0B",
         "warning_hover": "#D97706",
-        "error": "#EF4444",
-        "error_hover": "#DC2626",
-        "info": "#3B82F6",
-        "info_hover": "#2563EB",
-        "card_bg": "#18181B",
-        "card_border": "#27272A",
-        "input_bg": "#09090B",
-        "log_bg": "#000000",
+        "error":         "#EF4444",
+        "error_hover":   "#DC2626",
+        "info":          "#3B82F6",
+        "info_hover":    "#2563EB",
+        "card_bg":       "#18181B",
+        "card_border":   "#27272A",
+        "input_bg":      "#09090B",
+        "log_bg":        "#000000",
     },
-    
-    "Obsidian": {
-        "name": "Obsidian",
-        "bg_primary": "#000000",
-        "bg_secondary": "#0A0A0A",
-        "bg_tertiary": "#141414",
-        "bg_card": "#0A0A0A",
-        "surface": "#141414",
-        "surface_hover": "#1F1F1F",
-        "text_primary": "#FFFFFF",
-        "text_secondary": "#A1A1AA",
-        "text_disabled": "#52525B",
-        "text_muted": "#71717A",
-        "border": "#1F1F1F",
-        "border_light": "#27272A",
-        "divider": "#1F1F1F",
-        "accent": "discord_blue",
-        "success": "#22C55E",
-        "success_hover": "#16A34A",
-        "success_bright": "#4ADE80",
-        "warning": "#F59E0B",
-        "warning_hover": "#D97706",
-        "error": "#EF4444",
-        "error_hover": "#DC2626",
-        "info": "#3B82F6",
-        "info_hover": "#2563EB",
-        "card_bg": "#0A0A0A",
-        "card_border": "#1F1F1F",
-        "input_bg": "#000000",
-        "log_bg": "#000000",
-    },
-    
+
+    # ── 2. Discord Dark ───────────────────────────────────────────────────────
+    # Faithful Discord colours — most familiar for Discord users
     "Discord Dark": {
         "name": "Discord Dark",
-        "bg_primary": "#111214",
-        "bg_secondary": "#1E1F22",
-        "bg_tertiary": "#2B2D31",
-        "bg_card": "#2B2D31",
-        "surface": "#313338",
+        "bg_primary":    "#111214",
+        "bg_secondary":  "#1E1F22",
+        "bg_tertiary":   "#2B2D31",
+        "bg_card":       "#2B2D31",
+        "surface":       "#313338",
         "surface_hover": "#383A40",
-        "text_primary": "#DBDEE1",
-        "text_secondary": "#B5BAC1",
+        "text_primary":  "#DBDEE1",
+        "text_secondary":"#B5BAC1",
         "text_disabled": "#5C5E66",
-        "text_muted": "#80848E",
-        "border": "#1E1F22",
-        "border_light": "#313338",
-        "divider": "#2B2D31",
-        "accent": "discord_blue",
-        "success": "#23A559",
+        "text_muted":    "#80848E",
+        "border":        "#1E1F22",
+        "border_light":  "#313338",
+        "divider":       "#2B2D31",
+        "accent":        "discord_blue",
+        "success":       "#23A559",
         "success_hover": "#1D8749",
-        "success_bright": "#23A559",
-        "warning": "#FEE75C",
+        "success_bright":"#23A559",
+        "warning":       "#FEE75C",
         "warning_hover": "#E3CE53",
-        "error": "#DA373C",
-        "error_hover": "#C23135",
-        "info": "#00A8FC",
-        "info_hover": "#0084C9",
-        "card_bg": "#2B2D31",
-        "card_border": "#1E1F22",
-        "input_bg": "#1E1F22",
-        "log_bg": "#111214",
+        "error":         "#DA373C",
+        "error_hover":   "#C23135",
+        "info":          "#00A8FC",
+        "info_hover":    "#0084C9",
+        "card_bg":       "#2B2D31",
+        "card_border":   "#1E1F22",
+        "input_bg":      "#1E1F22",
+        "log_bg":        "#111214",
     },
-    
+
+    # ── 3. Tokyo Night ────────────────────────────────────────────────────────
+    # Deep blue-purple palette — distinctive and easy on the eyes
+    "Tokyo Night": {
+        "name": "Tokyo Night",
+        "bg_primary":    "#1A1B26",
+        "bg_secondary":  "#24283B",
+        "bg_tertiary":   "#2A2F45",
+        "bg_card":       "#24283B",
+        "surface":       "#414868",
+        "surface_hover": "#4F5878",
+        "text_primary":  "#C0CAF5",
+        "text_secondary":"#A9B1D6",
+        "text_disabled": "#565F89",
+        "text_muted":    "#565F89",
+        "border":        "#24283B",
+        "border_light":  "#414868",
+        "divider":       "#2A2F45",
+        "accent":        "cyan",
+        "success":       "#73DACA",
+        "success_hover": "#63CABA",
+        "success_bright":"#83EAD9",
+        "warning":       "#E0AF68",
+        "warning_hover": "#D09F58",
+        "error":         "#F7768E",
+        "error_hover":   "#E7667E",
+        "info":          "#7AA2F7",
+        "info_hover":    "#6A92E7",
+        "card_bg":       "#24283B",
+        "card_border":   "#414868",
+        "input_bg":      "#1A1B26",
+        "log_bg":        "#13141C",
+    },
+
+    # ── 4. Catppuccin Mocha ───────────────────────────────────────────────────
+    # Warm mauve-purple, pastel accents — the cult favourite
     "Catppuccin Mocha": {
         "name": "Catppuccin Mocha",
-        "bg_primary": "#1E1E2E",
-        "bg_secondary": "#252537",
-        "bg_tertiary": "#2D2D44",
-        "bg_card": "#28283E",
-        "surface": "#363654",
+        "bg_primary":    "#1E1E2E",
+        "bg_secondary":  "#252537",
+        "bg_tertiary":   "#2D2D44",
+        "bg_card":       "#28283E",
+        "surface":       "#363654",
         "surface_hover": "#414164",
-        "text_primary": "#CDD6F4",
-        "text_secondary": "#A6ADC8",
+        "text_primary":  "#CDD6F4",
+        "text_secondary":"#A6ADC8",
         "text_disabled": "#585B70",
-        "text_muted": "#6C7086",
-        "border": "#313244",
-        "border_light": "#45475A",
-        "divider": "#313244",
-        "accent": "pink",
-        "success": "#A6E3A1",
+        "text_muted":    "#6C7086",
+        "border":        "#313244",
+        "border_light":  "#45475A",
+        "divider":       "#313244",
+        "accent":        "pink",
+        "success":       "#A6E3A1",
         "success_hover": "#8BE08A",
-        "success_bright": "#94E2D5",
-        "warning": "#F9E2AF",
+        "success_bright":"#94E2D5",
+        "warning":       "#F9E2AF",
         "warning_hover": "#F5D89A",
-        "error": "#F38BA8",
-        "error_hover": "#EB7A9A",
-        "info": "#89B4FA",
-        "info_hover": "#74A0F0",
-        "card_bg": "#28283E",
-        "card_border": "#45475A",
-        "input_bg": "#1E1E2E",
-        "log_bg": "#11111B",
+        "error":         "#F38BA8",
+        "error_hover":   "#EB7A9A",
+        "info":          "#89B4FA",
+        "info_hover":    "#74A0F0",
+        "card_bg":       "#28283E",
+        "card_border":   "#45475A",
+        "input_bg":      "#1E1E2E",
+        "log_bg":        "#11111B",
     },
-    
+
+    # ── 5. Dracula ────────────────────────────────────────────────────────────
+    # High-contrast classic — developer favourite, bold and clear
+    "Dracula": {
+        "name": "Dracula",
+        "bg_primary":    "#191A21",
+        "bg_secondary":  "#21222C",
+        "bg_tertiary":   "#282A36",
+        "bg_card":       "#282A36",
+        "surface":       "#44475A",
+        "surface_hover": "#4D5066",
+        "text_primary":  "#F8F8F2",
+        "text_secondary":"#BFBFBF",
+        "text_disabled": "#6272A4",
+        "text_muted":    "#6272A4",
+        "border":        "#282A36",
+        "border_light":  "#44475A",
+        "divider":       "#282A36",
+        "accent":        "pink",
+        "success":       "#50FA7B",
+        "success_hover": "#40E06B",
+        "success_bright":"#69FF94",
+        "warning":       "#F1FA8C",
+        "warning_hover": "#E1EA7C",
+        "error":         "#FF5555",
+        "error_hover":   "#FF4444",
+        "info":          "#8BE9FD",
+        "info_hover":    "#7BD9ED",
+        "card_bg":       "#282A36",
+        "card_border":   "#44475A",
+        "input_bg":      "#191A21",
+        "log_bg":        "#0D0E12",
+    },
+
+    # ── 6. Nord ───────────────────────────────────────────────────────────────
+    # Arctic, north-bluish color palette — clean and frosty
+    "Nord": {
+        "name": "Nord",
+        "bg_primary":    "#242933",
+        "bg_secondary":  "#2E3440",
+        "bg_tertiary":   "#3B4252",
+        "bg_card":       "#2E3440",
+        "surface":       "#434C5E",
+        "surface_hover": "#4C566A",
+        "text_primary":  "#ECEFF4",
+        "text_secondary":"#D8DEE9",
+        "text_disabled": "#4C566A",
+        "text_muted":    "#616E88",
+        "border":        "#2E3440",
+        "border_light":  "#434C5E",
+        "divider":       "#3B4252",
+        "accent":        "cyan",
+        "success":       "#A3BE8C",
+        "success_hover": "#93AE7C",
+        "success_bright":"#B5CEA8",
+        "warning":       "#EBCB8B",
+        "warning_hover": "#DBBB7B",
+        "error":         "#BF616A",
+        "error_hover":   "#AF515A",
+        "info":          "#81A1C1",
+        "info_hover":    "#7191B1",
+        "card_bg":       "#2E3440",
+        "card_border":   "#434C5E",
+        "input_bg":      "#242933",
+        "log_bg":        "#1A1D23",
+    },
+
+    # ── 7. One Dark Pro ───────────────────────────────────────────────────────
+    # VS Code inspired — the classic dev environment look
+    "One Dark Pro": {
+        "name": "One Dark Pro",
+        "bg_primary":    "#1E2227",
+        "bg_secondary":  "#282C34",
+        "bg_tertiary":   "#2C313A",
+        "bg_card":       "#282C34",
+        "surface":       "#3E4451",
+        "surface_hover": "#4B5263",
+        "text_primary":  "#ABB2BF",
+        "text_secondary":"#828997",
+        "text_disabled": "#5C6370",
+        "text_muted":    "#636D83",
+        "border":        "#282C34",
+        "border_light":  "#3E4451",
+        "divider":       "#2C313A",
+        "accent":        "cyan",
+        "success":       "#98C379",
+        "success_hover": "#88B369",
+        "success_bright":"#A8D389",
+        "warning":       "#E5C07B",
+        "warning_hover": "#D5B06B",
+        "error":         "#E06C75",
+        "error_hover":   "#D05C65",
+        "info":          "#61AFEF",
+        "info_hover":    "#519FDF",
+        "card_bg":       "#282C34",
+        "card_border":   "#3E4451",
+        "input_bg":      "#1E2227",
+        "log_bg":        "#15171B",
+    },
+
+    # ── 8. Gruvbox Dark ───────────────────────────────────────────────────────
+    # Retro groove color scheme — warm and nostalgic
+    "Gruvbox Dark": {
+        "name": "Gruvbox Dark",
+        "bg_primary":    "#1D2021",
+        "bg_secondary":  "#282828",
+        "bg_tertiary":   "#32302F",
+        "bg_card":       "#282828",
+        "surface":       "#3C3836",
+        "surface_hover": "#4C4644",
+        "text_primary":  "#FBF1C7",
+        "text_secondary":"#D5C4A1",
+        "text_disabled": "#665C54",
+        "text_muted":    "#928374",
+        "border":        "#282828",
+        "border_light":  "#504945",
+        "divider":       "#32302F",
+        "accent":        "orange",
+        "success":       "#B8BB26",
+        "success_hover": "#A8AB16",
+        "success_bright":"#C8CB36",
+        "warning":       "#FABD2F",
+        "warning_hover": "#EAAD1F",
+        "error":         "#FB4934",
+        "error_hover":   "#EB3924",
+        "info":          "#83A598",
+        "info_hover":    "#739588",
+        "card_bg":       "#282828",
+        "card_border":   "#504945",
+        "input_bg":      "#1D2021",
+        "log_bg":        "#161819",
+    },
+
+    # ── 9. Rose Pine ──────────────────────────────────────────────────────────
+    # Something beautiful — soft, elegant, and calming
+    "Rose Pine": {
+        "name": "Rose Pine",
+        "bg_primary":    "#191724",
+        "bg_secondary":  "#1F1D2E",
+        "bg_tertiary":   "#26233A",
+        "bg_card":       "#1F1D2E",
+        "surface":       "#403D52",
+        "surface_hover": "#524F67",
+        "text_primary":  "#E0DEF4",
+        "text_secondary":"#908CAA",
+        "text_disabled": "#524F67",
+        "text_muted":    "#6E6A86",
+        "border":        "#1F1D2E",
+        "border_light":  "#403D52",
+        "divider":       "#26233A",
+        "accent":        "pink",
+        "success":       "#9CCFD8",
+        "success_hover": "#8CBFC8",
+        "success_bright":"#ACDFE8",
+        "warning":       "#F6C177",
+        "warning_hover": "#E6B167",
+        "error":         "#EB6F92",
+        "error_hover":   "#DB5F82",
+        "info":          "#31748F",
+        "info_hover":    "#21647F",
+        "card_bg":       "#1F1D2E",
+        "card_border":   "#403D52",
+        "input_bg":      "#191724",
+        "log_bg":        "#12101C",
+    },
+
+    # ── 10. Solarized Dark ────────────────────────────────────────────────────
+    # Precision colors for syntax — scientific and proven
+    "Solarized Dark": {
+        "name": "Solarized Dark",
+        "bg_primary":    "#002B36",
+        "bg_secondary":  "#073642",
+        "bg_tertiary":   "#0A394D",
+        "bg_card":       "#073642",
+        "surface":       "#586E75",
+        "surface_hover": "#657B83",
+        "text_primary":  "#EEE8D5",
+        "text_secondary":"#93A1A1",
+        "text_disabled": "#586E75",
+        "text_muted":    "#657B83",
+        "border":        "#073642",
+        "border_light":  "#586E75",
+        "divider":       "#0A394D",
+        "accent":        "cyan",
+        "success":       "#859900",
+        "success_hover": "#758900",
+        "success_bright":"#95A900",
+        "warning":       "#B58900",
+        "warning_hover": "#A57900",
+        "error":         "#DC322F",
+        "error_hover":   "#CC222F",
+        "info":          "#268BD2",
+        "info_hover":    "#167BC2",
+        "card_bg":       "#073642",
+        "card_border":   "#586E75",
+        "input_bg":      "#002B36",
+        "log_bg":        "#001F27",
+    },
+
+    # ── 11. Obsidian ──────────────────────────────────────────────────────────
+    # Deep void — pure OLED black for maximum contrast
+    "Obsidian": {
+        "name": "Obsidian",
+        "bg_primary":    "#000000",
+        "bg_secondary":  "#0A0A0A",
+        "bg_tertiary":   "#141414",
+        "bg_card":       "#0A0A0A",
+        "surface":       "#141414",
+        "surface_hover": "#1F1F1F",
+        "text_primary":  "#FFFFFF",
+        "text_secondary":"#A1A1AA",
+        "text_disabled": "#52525B",
+        "text_muted":    "#71717A",
+        "border":        "#1F1F1F",
+        "border_light":  "#27272A",
+        "divider":       "#1F1F1F",
+        "accent":        "discord_blue",
+        "success":       "#22C55E",
+        "success_hover": "#16A34A",
+        "success_bright":"#4ADE80",
+        "warning":       "#F59E0B",
+        "warning_hover": "#D97706",
+        "error":         "#EF4444",
+        "error_hover":   "#DC2626",
+        "info":          "#3B82F6",
+        "info_hover":    "#2563EB",
+        "card_bg":       "#0A0A0A",
+        "card_border":   "#1F1F1F",
+        "input_bg":      "#000000",
+        "log_bg":        "#000000",
+    },
+
 }
 
 LIGHT_THEME_PRESETS: set[str] = set()
@@ -531,6 +784,16 @@ class ThemeManager:
         font-weight: 600;
         font-size: 13px;
         min-width: 80px;
+    }
+
+    /* Window control buttons must not inherit the global min-width */
+    QPushButton#winBtn_minimize, QPushButton#winBtn_close {
+        min-width: 0;
+        padding: 0;
+    }
+    /* Collapse button and sidebar nav buttons must not inherit the global min-width */
+    QPushButton#collapseBtn {
+        min-width: 0;
     }
 
     QPushButton:hover {

@@ -14,9 +14,9 @@ from abuse.app_paths import tokens_path as shared_tokens_path
 
 DEFAULT_GUI_CONFIG: Dict[str, Any] = {
     "appearance": {
-        "preset": "Discord Dark",
+        "preset": "Midnight",
         "theme_mode": 0,
-        "accent": "Red",
+        "accent": "Blurple",
         "font_size": 13,
         "animations": True,
         "transparency": False,

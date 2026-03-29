@@ -10,6 +10,8 @@ ROUTE_DOCS     = "docs"
 ROUTE_GUILDS   = "guilds"
 ROUTE_NUKER    = "nuker"
 ROUTE_DM       = "dm"
+ROUTE_JOINER   = "joiner"
+ROUTE_BOOSTER  = "booster"
 ROUTE_LOGS     = "logs"
 ROUTE_SETTINGS = "settings"
 ROUTE_LAST_USED = "last_used"
@@ -30,6 +32,8 @@ ROUTES = [
     RouteDefinition(ROUTE_GUILDS,   "Guilds",   "guilds",   "Browse connected guilds and inspect their details.",  group="core"),
     RouteDefinition(ROUTE_NUKER,    "Nuker",    "nuker",    "Preview grouped action surfaces and safety gating.",  group="core"),
     RouteDefinition(ROUTE_DM,       "DM",       "dm",       "Compose drafts and review messaging controls.",       group="core"),
+    RouteDefinition(ROUTE_JOINER,   "Joiner",   "joiner",   "Auto-join servers via invite links.",                 group="core"),
+    RouteDefinition(ROUTE_BOOSTER,  "Booster",  "booster",  "Apply Nitro boosts to servers.",                     group="core"),
     # ── Utility (bottom of sidebar) ──────────────────────────────────────────
     RouteDefinition(ROUTE_LOGS,     "Logs",     "logs",     "Inspect runtime logs with filtering and export.",     group="utility"),
     RouteDefinition(ROUTE_SETTINGS, "Settings", "settings", "Adjust appearance, startup behavior, and privacy.",  group="utility"),

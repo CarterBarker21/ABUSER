@@ -22,14 +22,18 @@ class LogsPage(BasePage):
             eyebrow="Console",
             parent=parent,
         )
+        # Remove the header to match other tabs
+        self.root_layout.removeWidget(self.header)
+        self.header.hide()
+
         self._entries: list[dict[str, str]] = []
         self._build_ui()
 
     def _level_color(self, level: str) -> str:
         dt = get_theme_manager().design_tokens
         return {
-            "DEBUG": dt.text_disabled,
-            "INFO": dt.text_primary,
+            "DEBUG": dt.text_muted,
+            "INFO": dt.accent,
             "WARNING": dt.warning,
             "ERROR": dt.danger,
             "CRITICAL": dt.danger,
