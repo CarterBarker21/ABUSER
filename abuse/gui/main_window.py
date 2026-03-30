@@ -250,7 +250,8 @@ class _RoundedShell(QWidget):
     def __init__(self, parent: Optional[QWidget] = None):
         super().__init__(parent)
         self._bg_color = QColor("#18181B")
-        self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
+        self.setAttribute(Qt.WidgetAttribute.WA_NoSystemBackground, True)
+        self.setAttribute(Qt.WidgetAttribute.WA_OpaquePaintEvent, False)
         self.setObjectName("roundedShell")
 
     def set_bg(self, hex_color: str) -> None:
@@ -475,7 +476,8 @@ class MainWindow(QMainWindow):
         self._set_sidebar_connection_state(False)
         self._connect_page_signals()
         self.refresh_theme()
-        self.switch_route(ROUTE_LOGIN, persist=False)
+        # REMOVED: self.switch_route(ROUTE_LOGIN, persist=False)
+        # load_and_apply_settings() called in main.py handles this
 
     def _build_ui(self) -> None:
         # _RoundedShell paints the bg + clips children to rounded rect
@@ -895,6 +897,7 @@ class MainWindow(QMainWindow):
             font = app.font()
             font.setPointSize(appearance.get("font_size", 13))
             app.setFont(font)
+            self.theme_manager.apply_theme(app)
 
         self.login_tab.set_privacy_options(config.get("privacy", {}).get("save_tokens", True))
         if not self.login_tab.is_connected:

@@ -42,7 +42,7 @@ if __name__ == '__main__':
     
     # GUI imports
     from PyQt6.QtWidgets import QApplication
-    from PyQt6.QtCore import Qt
+    from PyQt6.QtCore import Qt, QTimer
     from PyQt6.QtGui import QFont
     
     from abuse.gui import MainWindow, get_theme_manager
@@ -76,11 +76,18 @@ if __name__ == '__main__':
     # Main window
     window = MainWindow()
     window.load_and_apply_settings()
-    window.show()
     
-    # Bot runner
+    # Wire EVERYTHING before showing
     bot_runner = BotRunner(parent=window)
     window.connect_bot_runner(bot_runner)
+    
+    # Defer show to let Qt finish layout/style polish
+    def _show_main_window():
+        window.show()
+        window.raise_()
+        window.activateWindow()
+    
+    QTimer.singleShot(0, _show_main_window)
     
     print("[*] ABUSER Bot GUI started")
     print("[*] Please enter your token in the Login tab to connect")
