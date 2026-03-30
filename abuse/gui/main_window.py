@@ -260,9 +260,11 @@ class _RoundedShell(QWidget):
         self._apply_mask()
 
     def _apply_mask(self) -> None:
+        w, h = self.width(), self.height()
+        if w <= 0 or h <= 0:
+            return
         path = QPainterPath()
-        path.addRoundedRect(0, 0, self.width(), self.height(),
-                            self.RADIUS, self.RADIUS)
+        path.addRoundedRect(0, 0, w, h, self.RADIUS, self.RADIUS)
         self.setMask(QRegion(path.toFillPolygon().toPolygon()))
 
     def resizeEvent(self, event) -> None:

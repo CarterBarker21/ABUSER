@@ -2,32 +2,51 @@
 """ABUSER Bot - GUI Entry Point"""
 
 import sys
+import os
 
-# CRITICAL: Must be first to prevent subprocess spawning in PyInstaller builds
+# CRITICAL: Prevent any subprocess spawning during imports (PyInstaller issue)
+# Must be before ANY other imports
 if __name__ == '__main__':
-    from multiprocessing import spawn
-    if spawn.is_forking(sys.argv) or "--multiprocessing-fork" in sys.argv:
+    # Block multiprocessing fork/spawn attempts
+    if '--multiprocessing-fork' in sys.argv:
         sys.exit(0)
-    # Windows single-instance guard (prevents brief duplicate windows)
-    if sys.platform == "win32":
+    
+    # Set env vars to prevent subprocess spawning from discord/aiohttp
+    os.environ['PYTHONDONTWRITEBYTECODE'] = '1'
+    os.environ['AIOHTTP_NO_PLUGINS'] = '1'
+    
+    # Windows: Hide console windows from subprocesses
+    if sys.platform == 'win32':
+        # Prevent console window creation by subprocesses
+        import subprocess
+        subprocess._USE_VFORK = False
+        subprocess._USE_POSIX_SPAWN = False
+        
+        # Create mutex for single instance
         import ctypes
         _mutex = ctypes.windll.kernel32.CreateMutexW(None, True, "ABUSER_APP_SINGLE_INSTANCE")
-        if ctypes.windll.kernel32.GetLastError() == 183:  # ERROR_ALREADY_EXISTS
+        if ctypes.windll.kernel32.GetLastError() == 183:
             sys.exit(0)
+    
+    # freeze_support for PyInstaller
     if getattr(sys, 'frozen', False):
         import multiprocessing
         multiprocessing.freeze_support()
+
     from pathlib import Path
     
     # Single instance check
     lock_file = Path(__file__).parent / "data" / ".abuser.lock"
+    fd = None
     try:
         lock_file.parent.mkdir(parents=True, exist_ok=True)
         fd = open(lock_file, 'w')
-        import msvcrt
-        msvcrt.locking(fd.fileno(), msvcrt.LK_NBLCK, 1)
-    except (IOError, OSError, ImportError):
-        sys.exit(0)
+        if sys.platform == "win32":
+            import msvcrt
+            msvcrt.locking(fd.fileno(), msvcrt.LK_NBLCK, 1)
+    except (IOError, OSError, ImportError) as exc:
+        print(f"[!] Failed to acquire single-instance lock: {exc}")
+        sys.exit(1)
     
     # Bootstrap
     from abuse.app_paths import bootstrap_runtime_layout, env_file_path
@@ -97,10 +116,18 @@ if __name__ == '__main__':
             if bot_runner and bot_runner.is_running:
                 print("[*] Shutting down bot...")
                 bot_runner.stop_bot()
-            fd.close()
-            lock_file.unlink(missing_ok=True)
-        except:
-            pass
+        except Exception as exc:
+            print(f"[!] Bot shutdown error: {exc}")
+        finally:
+            try:
+                if 'fd' in locals() and fd is not None and not fd.closed:
+                    fd.close()
+            except Exception:
+                pass
+            try:
+                lock_file.unlink(missing_ok=True)
+            except Exception:
+                pass
     
     import atexit
     atexit.register(on_exit)

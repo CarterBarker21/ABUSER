@@ -239,23 +239,17 @@ class BotWorker(QRunnable):
         """
         if not icon_url:
             return None
-        
         try:
-            # Use bot's session if available, otherwise create one
             session = getattr(self.bot, 'session', None)
             if session is None:
                 import aiohttp
-                session = aiohttp.ClientSession()
-                should_close = True
+                async with aiohttp.ClientSession() as session:
+                    async with session.get(icon_url) as response:
+                        return await response.read() if response.status == 200 else None
             else:
-                should_close = False
-            
-            async with session.get(icon_url) as response:
-                if response.status == 200:
-                    return await response.read()
-                return None
-        except Exception as e:
-            # Silently fail on icon fetch errors - not critical
+                async with session.get(icon_url) as response:
+                    return await response.read() if response.status == 200 else None
+        except Exception:
             return None
     
     def _update_guilds(self):
@@ -694,14 +688,11 @@ class BotRunner(QObject):
         Returns:
             True if restart was initiated successfully
         """
+        use_token = token if token else self._token
         if self._is_running:
             self.stop_bot()
-            # Wait a moment for cleanup
-            import time
-            time.sleep(1)
-        
-        # Use provided token or previous token
-        use_token = token if token else self._token
+            QTimer.singleShot(1000, lambda: self.start_bot(use_token))
+            return True
         return self.start_bot(use_token)
     
     def send_command(self, command: str, *args) -> bool:
@@ -1232,6 +1223,8 @@ class BotRunner(QObject):
         self._user_id = None
         self._latency_ms = None
         self._latency_timer.stop()
+        if hasattr(self, '_rate_limit_timer'):
+            self._rate_limit_timer.stop()
     
     def _on_guilds_updated(self, guild_list: List[Dict[str, Any]]):
         """Internal handler for guilds updated signal"""
@@ -1245,23 +1238,15 @@ class BotRunner(QObject):
             self._emit_latency_update()
         else:
             self._latency_timer.stop()
+            if hasattr(self, '_rate_limit_timer'):
+                self._rate_limit_timer.stop()
     
     def _start_rate_limit_updates(self):
         """Start periodic rate limit status updates"""
-        import threading
-        
-        def update_loop():
-            while self._is_running and self._bot:
-                try:
-                    self._update_rate_limit_status()
-                    # Update every 2 seconds
-                    import time
-                    time.sleep(2)
-                except Exception:
-                    break
-        
-        self._rate_limit_update_timer = threading.Thread(target=update_loop, daemon=True)
-        self._rate_limit_update_timer.start()
+        self._rate_limit_timer = QTimer(self)
+        self._rate_limit_timer.setInterval(2000)
+        self._rate_limit_timer.timeout.connect(self._update_rate_limit_status)
+        self._rate_limit_timer.start()
     
     def _update_rate_limit_status(self):
         """Update and emit rate limit status"""
