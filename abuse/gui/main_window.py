@@ -39,7 +39,8 @@ class _WinBtn(QPushButton):
 
     def __init__(self, role: str, parent: Optional[QWidget] = None):
         super().__init__(parent)
-        assert role in ("minimize", "close")
+        if role not in ("minimize", "close"):
+            raise ValueError(f"_WinBtn: invalid role {role!r}, expected 'minimize' or 'close'")
         self._role = role
         self._hovered = False
         self._pressed = False
@@ -391,6 +392,7 @@ class CollapseButton(QPushButton):
         painter.translate(self.width() / 2, self.height() / 2)
         painter.rotate(self._arrow_rotation)
         self._draw_chevron(painter, arrow)
+        painter.end()
         
     def _interpolate_color(self, c1: QColor, c2: QColor, t: float) -> QColor:
         """Interpolate between two colors."""

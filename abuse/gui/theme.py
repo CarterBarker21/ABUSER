@@ -1657,11 +1657,8 @@ class ThemeManager:
             'Discord Blue': AccentColor.DISCORD_BLUE.primary,
             'Red': AccentColor.RED.primary,
             'Green': AccentColor.GREEN.primary,
-            'Purple': AccentColor.PURPLE.primary,
-            'Orange': AccentColor.ORANGE.primary,
             'Pink': AccentColor.PINK.primary,
             'Cyan': AccentColor.CYAN.primary,
-            'Yellow': AccentColor.YELLOW.primary,
         }
     
     def get_available_themes(self) -> List[str]:

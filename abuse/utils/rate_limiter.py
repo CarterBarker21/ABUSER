@@ -87,7 +87,12 @@ class TokenBucket:
         self.burst_size = burst_size
         self.tokens = burst_size
         self.last_update = time.monotonic()
-        self._lock = asyncio.Lock()
+        self._lock: Optional[asyncio.Lock] = None
+
+    def _get_lock(self) -> asyncio.Lock:
+        if self._lock is None:
+            self._lock = asyncio.Lock()
+        return self._lock
     
     async def consume(self, tokens: int = 1) -> Tuple[bool, float]:
         """
@@ -96,7 +101,7 @@ class TokenBucket:
         Returns:
             Tuple of (success, retry_after_seconds)
         """
-        async with self._lock:
+        async with self._get_lock():
             now = time.monotonic()
             elapsed = now - self.last_update
             
@@ -115,7 +120,7 @@ class TokenBucket:
     
     async def get_remaining(self) -> float:
         """Get remaining tokens"""
-        async with self._lock:
+        async with self._get_lock():
             now = time.monotonic()
             elapsed = now - self.last_update
             self.tokens = min(self.burst_size, self.tokens + elapsed * self.rate)
@@ -134,7 +139,12 @@ class EndpointTracker:
     def __init__(self):
         self._buckets: Dict[str, TokenBucket] = {}
         self._endpoint_mapping: Dict[str, str] = {}  # endpoint -> bucket key
-        self._lock = asyncio.Lock()
+        self._lock: Optional[asyncio.Lock] = None
+
+    def _get_lock(self) -> asyncio.Lock:
+        if self._lock is None:
+            self._lock = asyncio.Lock()
+        return self._lock
     
     def _get_bucket_key(self, endpoint: str) -> str:
         """Get or create bucket key for an endpoint"""
@@ -153,7 +163,7 @@ class EndpointTracker:
         """Check if request can proceed for an endpoint"""
         bucket_key = self._get_bucket_key(endpoint)
         
-        async with self._lock:
+        async with self._get_lock():
             if bucket_key not in self._buckets:
                 # Create new bucket with Discord-like limits
                 self._buckets[bucket_key] = TokenBucket(rate=5.0, burst_size=5)
@@ -177,7 +187,7 @@ class EndpointTracker:
         
         if limit and remaining and reset_after:
             try:
-                async with self._lock:
+                async with self._get_lock():
                     if bucket_key in self._buckets:
                         bucket = self._buckets[bucket_key]
                         bucket.burst_size = int(limit)
@@ -194,8 +204,13 @@ class CommandQueue:
         self.max_size = max_size
         self._queue: deque = deque(maxlen=max_size)
         self._processing = False
-        self._lock = asyncio.Lock()
+        self._lock: Optional[asyncio.Lock] = None
         self._item_available = asyncio.Event()
+
+    def _get_lock(self) -> asyncio.Lock:
+        if self._lock is None:
+            self._lock = asyncio.Lock()
+        return self._lock
     
     async def enqueue(self, item: Tuple[int, Callable, tuple, dict]) -> bool:
         """
@@ -207,7 +222,7 @@ class CommandQueue:
         Returns:
             True if added, False if queue full
         """
-        async with self._lock:
+        async with self._get_lock():
             if len(self._queue) >= self.max_size:
                 return False
             
@@ -232,7 +247,7 @@ class CommandQueue:
         except asyncio.TimeoutError:
             return None
         
-        async with self._lock:
+        async with self._get_lock():
             if self._queue:
                 item = self._queue.popleft()
                 if not self._queue:
@@ -278,11 +293,11 @@ class RateLimiter:
         
         # Guild-specific limiters
         self._guild_buckets: Dict[int, TokenBucket] = {}
-        self._guild_lock = asyncio.Lock()
+        self._guild_lock: Optional[asyncio.Lock] = None
         
         # User-specific limiters
         self._user_buckets: Dict[int, TokenBucket] = {}
-        self._user_lock = asyncio.Lock()
+        self._user_lock: Optional[asyncio.Lock] = None
         
         # Endpoint tracking
         self._endpoint_tracker = EndpointTracker()
@@ -295,7 +310,7 @@ class RateLimiter:
         
         # Retry tracking
         self._retry_counts: Dict[str, int] = defaultdict(int)
-        self._retry_lock = asyncio.Lock()
+        self._retry_lock: Optional[asyncio.Lock] = None
         
         # Statistics
         self._stats = {
@@ -305,7 +320,7 @@ class RateLimiter:
             'retried_requests': 0,
             'failed_requests': 0,
         }
-        self._stats_lock = asyncio.Lock()
+        self._stats_lock: Optional[asyncio.Lock] = None
         
         # Status callbacks (for GUI updates)
         self._status_callbacks: List[Callable] = []
@@ -313,6 +328,26 @@ class RateLimiter:
         # Start queue processor
         self._queue_processor_task: Optional[asyncio.Task] = None
         self._running = False
+
+    def _get_guild_lock(self) -> asyncio.Lock:
+        if self._guild_lock is None:
+            self._guild_lock = asyncio.Lock()
+        return self._guild_lock
+
+    def _get_user_lock(self) -> asyncio.Lock:
+        if self._user_lock is None:
+            self._user_lock = asyncio.Lock()
+        return self._user_lock
+
+    def _get_retry_lock(self) -> asyncio.Lock:
+        if self._retry_lock is None:
+            self._retry_lock = asyncio.Lock()
+        return self._retry_lock
+
+    def _get_stats_lock(self) -> asyncio.Lock:
+        if self._stats_lock is None:
+            self._stats_lock = asyncio.Lock()
+        return self._stats_lock
     
     async def start(self):
         """Start the rate limiter and queue processors"""
@@ -371,13 +406,13 @@ class RateLimiter:
         Returns:
             RateLimitStatus indicating if request can proceed
         """
-        async with self._stats_lock:
+        async with self._get_stats_lock():
             self._stats['total_requests'] += 1
         
         # Check global limit
         global_ok, global_retry = await self._global_bucket.consume()
         if not global_ok:
-            async with self._stats_lock:
+            async with self._get_stats_lock():
                 self._stats['rate_limited_requests'] += 1
             return RateLimitStatus(
                 is_limited=True,
@@ -391,7 +426,7 @@ class RateLimiter:
         tier_bucket = self._tier_buckets[tier]
         tier_ok, tier_retry = await tier_bucket.consume()
         if not tier_ok:
-            async with self._stats_lock:
+            async with self._get_stats_lock():
                 self._stats['rate_limited_requests'] += 1
             return RateLimitStatus(
                 is_limited=True,
@@ -406,7 +441,7 @@ class RateLimiter:
             guild_bucket = self._get_guild_bucket(guild_id)
             guild_ok, guild_retry = await guild_bucket.consume()
             if not guild_ok:
-                async with self._stats_lock:
+                async with self._get_stats_lock():
                     self._stats['rate_limited_requests'] += 1
                 return RateLimitStatus(
                     is_limited=True,
@@ -421,7 +456,7 @@ class RateLimiter:
             user_bucket = self._get_user_bucket(user_id)
             user_ok, user_retry = await user_bucket.consume()
             if not user_ok:
-                async with self._stats_lock:
+                async with self._get_stats_lock():
                     self._stats['rate_limited_requests'] += 1
                 return RateLimitStatus(
                     is_limited=True,
@@ -435,7 +470,7 @@ class RateLimiter:
         if endpoint is not None:
             endpoint_ok, endpoint_retry = await self._endpoint_tracker.check_endpoint(endpoint)
             if not endpoint_ok:
-                async with self._stats_lock:
+                async with self._get_stats_lock():
                     self._stats['rate_limited_requests'] += 1
                 return RateLimitStatus(
                     is_limited=True,
@@ -509,7 +544,7 @@ class RateLimiter:
                 result = await func(*args, **kwargs)
                 
                 # Reset retry count on success
-                async with self._retry_lock:
+                async with self._get_retry_lock():
                     self._retry_counts.pop(operation_key, None)
                 
                 return result
@@ -520,12 +555,12 @@ class RateLimiter:
                         self._stats['retried_requests'] += 1
                     
                     if attempt >= self.config.max_retries:
-                        async with self._stats_lock:
+                        async with self._get_stats_lock():
                             self._stats['failed_requests'] += 1
                         raise RateLimitExceeded(f"Rate limited after {attempt + 1} attempts")
                     
                     # Calculate retry delay with exponential backoff
-                    async with self._retry_lock:
+                    async with self._get_retry_lock():
                         retry_count = self._retry_counts[operation_key]
                         self._retry_counts[operation_key] = retry_count + 1
                     
@@ -565,7 +600,7 @@ class RateLimiter:
         
         success = await queue.enqueue(item)
         if success:
-            async with self._stats_lock:
+            async with self._get_stats_lock():
                 self._stats['queued_requests'] += 1
         
         return success
