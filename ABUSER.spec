@@ -1,5 +1,5 @@
 # -*- mode: python ; coding: utf-8 -*-
-# PyInstaller spec - TEST with discord
+# PyInstaller spec for ABUSER
 
 from pathlib import Path
 
@@ -15,9 +15,11 @@ a = Analysis(
         (str(ROOT / 'abuse' / 'gui' / 'assets'), 'abuse/gui/assets'),
     ],
     hiddenimports=[
+        # PyQt6
         'PyQt6.QtCore',
         'PyQt6.QtGui',
         'PyQt6.QtWidgets',
+        # GUI
         'abuse.app_paths',
         'abuse.gui.theme',
         'abuse.gui.config',
@@ -37,22 +39,22 @@ a = Analysis(
         'abuse.gui.pages.booster',
         'abuse.gui.token_finder_thread',
         'abuse.utils.token_finder',
-        # Add discord
+        # Bot
         'discord',
         'discord.ext',
         'discord.ext.commands',
         'aiohttp',
         'aiohttp.connector',
         'aiohttp.client',
+        'dotenv',
     ],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
     excludes=[
-        'colorama', 'Crypto',
-        'pytest', 'unittest', 'doctest',
+        'pytest', '_pytest', 'pytest_qt', 'pytestqt',
+        'unittest', 'doctest',
         'tkinter', 'turtle', 'pydoc',
-        'multiprocessing', 'concurrent.futures',
     ],
     noarchive=False,
     optimize=0,

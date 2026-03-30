@@ -20,8 +20,12 @@ from PyQt6.QtWidgets import (
 )
 from PyQt6.QtGui import QColor, QPainter, QPainterPath, QFont, QRegion
 
-from .bot_runner import BotRunner
 from .components import SidebarNavButton, SidebarStatusPanel, StatusChip, blend, rgba
+
+# BotRunner is imported lazily to avoid discord import at module load time
+def _get_bot_runner_class():
+    from .bot_runner import BotRunner
+    return BotRunner
 
 # \u2500\u2500 Window control button \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
 
@@ -460,7 +464,7 @@ class MainWindow(QMainWindow):
         self.theme_manager = get_theme_manager()
         self.theme_manager.set_theme_changed_callback(self._on_theme_changed)
 
-        self.bot_runner: Optional[BotRunner] = None
+        self.bot_runner: Optional["BotRunner"] = None
         self._current_route = ROUTE_LOGIN
         self._config = load_gui_config()
         self._sidebar_connected = False
@@ -647,7 +651,7 @@ class MainWindow(QMainWindow):
         self.nuker_tab.setup_server_requested.connect(self._on_setup_server_requested)
         self.settings_tab.settings_applied.connect(self._on_settings_applied)
 
-    def connect_bot_runner(self, bot_runner: BotRunner) -> None:
+    def connect_bot_runner(self, bot_runner: "BotRunner") -> None:
         self.bot_runner = bot_runner
 
         self.login_tab.login_requested.connect(self.bot_runner.start_bot)
