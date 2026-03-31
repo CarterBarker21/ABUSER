@@ -22,11 +22,6 @@ from PyQt6.QtGui import QColor, QPainter, QPainterPath, QFont, QRegion
 
 from .components import SidebarNavButton, SidebarStatusPanel, StatusChip, blend, rgba
 
-# BotRunner is imported lazily to avoid discord import at module load time
-def _get_bot_runner_class():
-    from .bot_runner import BotRunner
-    return BotRunner
-
 # \u2500\u2500 Window control button \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
 
 class _WinBtn(QPushButton):
@@ -557,7 +552,6 @@ class MainWindow(QMainWindow):
         self._brand_widget = QWidget()
         self._brand_widget.setVisible(False)
         self.brand_title = QLabel("ABUSER")
-        self.brand_meta = QLabel("Discord SelfBot | v1.5")
 
         # ── Nav heading + collapse button ─────────────────────────────────────
         self._nav_heading_widget = QWidget()
