@@ -29,7 +29,7 @@ def _init_windows():
         try:
             sys.stdout = codecs.getwriter('utf-8')(sys.stdout.buffer, 'strict')
             sys.stderr = codecs.getwriter('utf-8')(sys.stderr.buffer, 'strict')
-        except:
+        except Exception:
             pass
     
     if sys.platform == "win32":
@@ -67,7 +67,7 @@ def pause():
     print(f"\n  Press Enter to exit...")
     try:
         input()
-    except:
+    except Exception:
         pass
 
 

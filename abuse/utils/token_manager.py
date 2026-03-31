@@ -202,7 +202,7 @@ class TokenManager:
                             if guild_resp.status == 200:
                                 guilds = await guild_resp.json()
                                 account.guild_count = len(guilds)
-                    except:
+                    except Exception:
                         pass
                         
                     self._save_tokens()

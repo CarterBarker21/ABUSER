@@ -332,7 +332,7 @@ class ABUSERBot(commands.Bot):
         
         try:
             terminal_height = shutil.get_terminal_size().lines
-        except:
+        except Exception:
             terminal_height = 24
             
         self._clear_screen()

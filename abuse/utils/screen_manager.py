@@ -30,7 +30,7 @@ class ScreenManager:
         """Get current terminal dimensions"""
         try:
             self.terminal_height = shutil.get_terminal_size().lines
-        except:
+        except Exception:
             self.terminal_height = 24  # default fallback
             
     def _clear_screen(self):
