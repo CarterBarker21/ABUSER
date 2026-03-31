@@ -749,14 +749,7 @@ class MainWindow(QMainWindow):
                     pass
             
             is_owner_val = guild.get("is_owner", False)
-            
-            # Debug: Log is_owner for all servers to check data type
-            print(f"[MAIN WINDOW DEBUG] Server: {guild['name']}, is_owner={is_owner_val}, type={type(is_owner_val)}")
-            
-            # Debug: Log is_owner for owned servers
-            if is_owner_val:
-                print(f"[MAIN WINDOW DEBUG] Creating GuildItem for OWNED server: {guild['name']}, is_owner={is_owner_val}")
-            
+
             item = GuildItem(
                 guild_id=int(guild["id"]),
                 name=guild["name"],
