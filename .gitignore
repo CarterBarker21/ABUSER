@@ -50,8 +50,11 @@ package-lock.json
 data/tokens.json
 data/tkn.txt
 data/logs/*.log
+data/backups/
 config/.env
+config/.env.*
 .env
+*.env
 
 # OS
 Thumbs.db
